@@ -1,0 +1,103 @@
+---
+import { TELEGRAM, VK, YOUTUBE } from "../consts";
+import logo from "/logo.svg"
+---
+
+<div id="toUp" class="toUp">
+ <svg
+  width="26"
+  height="26"
+  viewBox="0 0 26 26"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+ >
+  <path
+   d="M23.1111 26H2.88889C2.12271 26 1.38791 25.6956 0.846136 25.1539C0.304364 24.6121 0 23.8773 0 23.1111V2.88889C0 2.12271 0.304364 1.38791 0.846136 0.846136C1.38791 0.304364 2.12271 0 2.88889 0H23.1111C23.8773 0 24.6121 0.304364 25.1539 0.846136C25.6956 1.38791 26 2.12271 26 2.88889V23.1111C26 23.8773 25.6956 24.6121 25.1539 25.1539C24.6121 25.6956 23.8773 26 23.1111 26ZM13 5.77778L5.77778 13H10.1111V18.7778H15.8889V13H20.2222L13 5.77778Z"
+   fill="var(--tag)"></path>
+ </svg>
+</div>
+
+<header>
+ <div class="container">
+  <div class="menu">
+   <div class="logo">
+    <img src={logo} decoding="async" loading="lazy" alt="Логотип АИЗ СНГ" />
+   </div>
+   <!-- <div class="mail">
+        <a href="mailto:rko-itaa@yandex.ru?subject=API">📧 rko-itaa@yandex.ru</a
+        >
+      </div> -->
+   <div class="socials">
+    <a href={VK} target="_blank">ВКонтакте</a>
+    <a href={TELEGRAM} target="_blank">Телеграм</a>
+    <a href={YOUTUBE} target="_blank">Ютуб</a>
+   </div>
+  </div>
+ </div>
+</header>
+
+<style>
+ header {
+  background-color: var(--white);
+  padding: 15px 0;
+ }
+ .mail a {
+  font-size: var(--size-desc);
+  font-weight: 500;
+  color: var(--tag);
+ }
+ .online {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+ }
+ .online span {
+  font-size: var(--size-link);
+  font-weight: 400;
+  color: var(--text);
+ }
+ .menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+ }
+ .socials {
+  display: flex;
+  gap: 20px;
+ }
+ .socials a {
+  font-size: var(--size-link);
+  font-weight: 500;
+  color: var(--tag);
+ }
+ @media (max-width: 992px) {
+  .socials {
+   display: none;
+  }
+ }
+ .toUp {
+  z-index: 100;
+  cursor: pointer;
+  position: fixed;
+  top: 90%;
+  right: 3.5%;
+  opacity: 0;
+  transition: opacity 0.2s linear, display 0.2s linear;
+ }
+</style>
+
+<script>
+ const backToTopButton = document.getElementById("toUp");
+
+ window.addEventListener("scroll", function () {
+  if (window.pageYOffset > 100) {
+   backToTopButton.style.opacity = "1";
+  } else {
+   backToTopButton.style.opacity = "0";
+  }
+ });
+
+ backToTopButton.addEventListener("click", function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+ });
+</script>

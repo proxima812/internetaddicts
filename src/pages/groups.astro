@@ -1,0 +1,152 @@
+---
+import Layout from "../layout/Layout.astro";
+---
+
+<Layout
+ title="Собрания АИЗ"
+ desc="Время встреч для анонимных интернет зависимых, шде деляться опытом, силами и надеждой."
+>
+ <section class="groups">
+  <div class="container">
+   <div class="grid">
+    <div class="group-item">
+     <span>Онлайн-собрание</span>
+     <h4>✅ Вторник</h4>
+     <p class="time">⌚ 20:00 (МСК)</p>
+     <p class="desc">
+      <b>Формат группы:</b> высказываемся по кругу, по темам, по 4-6 минут.
+     </p>
+     <a href="https://t.me/aiz_itta">Присоединиться</a>
+    </div>
+    <div class="group-item">
+     <span>Онлайн-собрание</span>
+     <h4>✅ Четверг</h4>
+     <p class="time">⌚ 20:00 (МСК)</p>
+     <p class="desc">
+      <b>Формат группы:</b> высказываемся по кругу, по темам, по 4-6 минут.
+     </p>
+     <a href="https://t.me/aiz_itta">Присоединиться</a>
+    </div>
+    <div class="group-item">
+     <span>Онлайн-собрание</span>
+     <h4>✅ Пятница</h4>
+     <p class="time">⌚ 20:00 (МСК)</p>
+     <p class="desc">
+      <b>Формат группы:</b> высказываемся по кругу, по темам, по 4-6 минут.
+     </p>
+     <a href="https://t.me/aiz_itta">Присоединиться</a>
+    </div>
+    <div class="group-item group-live">
+     <span>Живое собрание</span>
+     <h4>✅ Среда</h4>
+     <p class="time">⌚ 12:00 (МСК)</p>
+     <p class="time">📍 г. Москва</p>
+     <p class="desc">
+      <b>Формат группы:</b> интерактив с онлайн группой.
+     </p>
+     <a
+      href="https://2gis.ru/moscow/inside/4504235282805560?utm_referrer=https%3a%2f%2finternetaddicts.ru%2f&fa821dba_ipp_key=v1675869408712%2Fv33947245ba5adc7a72e273%2FDlq34nnVp7DCeNv8PWdapQ%3d%3d&fa821dba_ipp_uid=1671181696020%2fCdsnCwQhLNuooU3x%2fg2jA6oWiM3uYDU%2fEIUuClg%3d%3d"
+      >Ул. Столешников переулок, 2-4с6</a
+     >
+    </div>
+    <div class="group-item group-live">
+     <span>Живое собрание</span>
+     <h4>✅ Суббота</h4>
+     <p class="time">⌚ 18:00 (МСК)</p>
+     <p class="time">📍 г. Москва</p>
+     <p class="desc">
+      <b>Формат группы:</b> интерактив с онлайн группой.
+     </p>
+     <a
+      href="https://2gis.ru/moscow/inside/4504235282805560?utm_referrer=https%3a%2f%2finternetaddicts.ru%2f&fa821dba_ipp_key=v1675869408712%2Fv33947245ba5adc7a72e273%2FDlq34nnVp7DCeNv8PWdapQ%3d%3d&fa821dba_ipp_uid=1671181696020%2fCdsnCwQhLNuooU3x%2fg2jA6oWiM3uYDU%2fEIUuClg%3d%3d"
+      >Ул. Столешников переулок, 2-4с6</a
+     >
+    </div>
+   </div>
+  </div>
+ </section>
+</Layout>
+
+<style>
+ .groups {
+  margin-top: var(--mt);
+ }
+ .grid {
+  padding: 30px;
+  border-radius: var(--border-large);
+  background-color: var(--white);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+ }
+ @media (max-width: 992px) {
+  .grid {
+   grid-template-columns: repeat(2, 1fr);
+  }
+ }
+ @media (max-width: 768px) {
+  .grid {
+   grid-template-columns: repeat(1, 1fr);
+  }
+  .grid {
+   margin: 0 -20px 0;
+  }
+ }
+ .group-item {
+  padding: 20px;
+  border-radius: var(--border-medium);
+  background-color: var(--present);
+ }
+ .group-live {
+  background-color: #e7f4ff;
+ }
+ .group-item span {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text);
+  /* border: 1px solid var(--text);
+    padding: 4px 8px;
+    border-radius: 50px; */
+  border-bottom: 1px solid var(--text);
+  display: inline-block;
+  margin-bottom: 14px;
+ }
+ .group-item p {
+  margin-top: 10px;
+ }
+ .time {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+ }
+ .desc {
+  font-size: 16px;
+  font-weight: 400;
+  color: #474747;
+ }
+ .group-item h4 {
+  font-size: 22px;
+  font-weight: 700;
+ }
+ .group-live a {
+  background-color: #448cde !important;
+ }
+ .group-live a:hover {
+  background-color: #3273bd !important;
+ }
+ .group-item a {
+  font-size: 16px;
+  font-weight: 500;
+  margin-top: 18px;
+  display: inline-block;
+  padding: 8px 14px;
+  background-color: var(--btn);
+  border-radius: 8px;
+  color: #fff;
+  transition: background-color var(--animate);
+ }
+ .group-item a:hover {
+  transition: background-color var(--animate);
+  background-color: var(--btn-hover);
+ }
+</style>

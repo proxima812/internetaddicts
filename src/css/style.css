@@ -1,0 +1,229 @@
+:root {
+  /* Цвета блоков секции */
+  --article: #fbfbfb;
+  --present: #e7fff4;
+  /* Кнопки и их цвета с параметрами */
+  --btn: #48c993;
+  --btn-hover: #37ab7a;
+  --btn-paddings: 6px 16px;
+  --p: #313131;
+  /* Округления */
+  --border-small: 10px;
+  --border-medium: 20px;
+  --border-large: 30px;
+  /* Границы цвет */
+  --border-color-params: 1px solid #f1f1f1;
+  /* Высота секции */
+  --mt: 30px;
+  /* Размер текстов и ссылок */
+  --size-large: 32px;
+  --size-medium: 24px;
+  --size-desc: 16px;
+  --size-link: 14px;
+  --size-span: 12px;
+  /* Прочие настройки */
+  --animate: 0.2s linear;
+  --shadow: 0px 0px 6px rgba(221, 221, 221, 0.25);
+  ---next--shadow: 0 0 0 1px rgb(0 0 0 / 7%), 0 2px 4px rgb(0 0 0 / 5%),
+    0 12px 24px rgb(0 0 0 / 5%);
+  /* TODO Цвета */
+  --white: #fff;
+  --black: #010101;
+  --text: #070123;
+  --text-paragrah: #25212b;
+  --desc: #888;
+  --tag: #0077ff;
+  --purple: #4f42e0;
+  --green: #3bc884;
+  --color-accent: linear-gradient(90.14deg, #f8724f 46.85%, #ff1e46 102.32%);
+  /* TODO Для content */
+  --margin: 14px;
+}
+
+/*!--MAIN PARAMS--!*/
+.flex {
+  display: flex;
+  align-items: flex-start;
+}
+@media (max-width: 665px) {
+  .flex {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.container {
+  width: 1180px;
+  max-width: 100%;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin: 0 auto;
+  position: relative;
+}
+.content {
+  position: relative;
+  margin-top: var(--mt);
+  padding: 30px;
+  background-color: var(--white);
+  border-radius: var(--border-large);
+}
+@media (max-width: 576px){.content{
+  margin: var(--mt) -20px 0;
+}}
+
+/* TODO .content TYPES*/
+.content img {
+  max-width: 100%;
+  object-fit: cover;
+  cursor: pointer;
+  position: relative;
+}
+@media (max-width: 992px) {
+  .content img {
+    max-width: 100%;
+    object-fit: contain;
+  }
+}
+.content p,
+.content h1,
+.content h2,
+.content h3,
+.content h4,
+.content h5,
+.content h6,
+.content ul,
+.content ol {
+  margin-bottom: var(--margin);
+}
+.content a{
+  display: block;
+  margin-top: 4px;
+}
+.content ul li,
+.content ol li {
+  line-height: 130%;
+  font-weight: 400;
+  font-size: 16px;
+  color: #343434;
+  --mt-ol-li: 6px;
+  margin-bottom: var(--mt-ol-li);
+}
+
+/* TODO .content settings*/
+.content p {
+  color: #363636;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 130%;
+}
+.content p:last-child{
+  margin-bottom: 0;
+}
+.content h1 {
+  font-size: 28px;
+  font-weight: 900;
+  display: inline-block;
+  border-radius: 10px;
+  /* background-color: var(--tag);
+  padding: 6px 12px; */
+  color: var(--tag);
+  letter-spacing: 0.4px;
+}
+.content h2,
+.content h3 {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-paragrah);
+}
+.content h4,
+.content h5,
+.content h6 {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-paragrah);
+}
+.content ul,
+.content ol {
+  --ml: 32px;
+  margin-left: var(--ml);
+}
+.content ul li {
+  list-style-type: decimal !important;
+}
+.content ul li:first-child {
+  margin-top: 0;
+}
+.content ol li {
+  list-style-type: disc !important;
+}
+.content blockquote {
+  border-radius: 10px;
+  margin: 30px 0;
+  background: #fafafa;
+  border: var(--border-color-params);
+  padding: 40px;
+  color: #3f484d;
+  position: relative;
+  text-align: center;
+}
+.content blockquote:before,
+.content blockquote:after {
+  --color-blockquote: #3e69dc;
+  font-size: 45px;
+  color: var(--color-blockquote);
+  position: absolute;
+  height: 2px;
+  left: 40px;
+  right: 40px;
+  line-height: 0.5;
+  background: linear-gradient(
+      to right,
+      var(--color-blockquote) 45%,
+      transparent 45%,
+      transparent
+    ),
+    linear-gradient(
+      to right,
+      transparent,
+      transparent 55%,
+      var(--color-blockquote) 55%
+    );
+}
+.content blockquote:before {
+  content: "\201C";
+  top: 25px;
+}
+.content blockquote:after {
+  content: "\201D";
+  bottom: 25px;
+}
+.content blockquote p {
+  font-size: 18px;
+  margin-bottom: 0;
+  font-style: italic;
+}
+.content blockquote footer {
+  margin-bottom: 1em;
+}
+.content blockquote cite {
+  font-style: normal;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+@media (max-width: 576px) {
+  .content blockquote {
+    padding: 30px 10px;
+  }
+  .content blockquote:before {
+    top: 15px;
+  }
+  .content blockquote:after {
+    bottom: 15px;
+  }
+  .content blockquote:before,
+  .content blockquote:after {
+    left: 20px;
+    right: 20px;
+  }
+}

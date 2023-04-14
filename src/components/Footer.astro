@@ -1,0 +1,136 @@
+---
+import astro from "/astro.svg";
+import logo from "/logo.svg";
+const posts = await Astro.glob("../pages/posts/*.{md,mdx}");
+import { VK, YOUTUBE, TELEGRAM, COPYRIGHT, RKO, BASE_FILES } from "../consts";
+---
+
+<div class="top"></div>
+<footer>
+ <div class="container">
+  <div class="top-footer">
+   <div class="grid-footer">
+    <div class="col-footer">
+     <div class="logo-footer">
+      <img src={logo} alt="Логотип АИЗ СНГ" />
+     </div>
+    </div>
+    <div class="col-footer">
+     <span>Информация</span>
+     <a href={TELEGRAM}>Онлайн собрания АИЗ</a>
+     <!-- <a href={RKO}>Собрания объеденных комитетов (РКО) АИЗ</a> -->
+    </div>
+    <div class="col-footer">
+     <span>Страницы</span>
+     <a href="/blog">Блог</a>
+     <a href="/groups">Собрания</a>
+     <a href={BASE_FILES}>Библиотека</a>
+     <!-- <a href="/stories">Личные истории</a> -->
+    </div>
+    <div class="col-footer">
+     <span>Посты</span>
+     {
+      posts.map((post) => (
+       <a href={post.url} target="_blank">
+        {post.frontmatter.title}
+       </a>
+      ))
+     }
+    </div>
+    <div class="col-footer">
+     <span>Библиотека</span>
+     <a href={BASE_FILES}>12 шагов - база знаний</a>
+    </div>
+   </div>
+  </div>
+  <div class="bottom-footer">
+   <div class="bottom-flex">
+    <span><b>© {COPYRIGHT}</b> <b id="year"></b></span>
+    <div class="socials">
+     <a href={VK} target="_blank">ВКонтакте</a>
+     <a href={TELEGRAM} target="_blank">Телеграм</a>
+     <a href={YOUTUBE} target="_blank">Ютуб</a>
+    </div>
+    <div class="astro">
+     <a href="https://astro.build/"><img src={astro} alt="astro generator" /><a> </a></a>
+    </div>
+   </div>
+  </div>
+
+  <style>
+   .top {
+    margin-top: var(--mt);
+   }
+   footer {
+    border-top-left-radius: var(--border-large);
+    border-top-right-radius: var(--border-large);
+    margin-top: auto;
+    padding: 40px;
+    background-color: #fff;
+   }
+   .grid-footer {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 60px;
+   }
+   .col-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+   }
+   .col-footer span {
+    color: var(--green);
+    font-size: var(--size-desc);
+    font-weight: 700;
+   }
+   .col-footer a {
+    color: var(--text);
+    font-size: var(--size-link);
+    font-weight: 400;
+    transition: color var(--animate), transform var(--animate);
+   }
+   .col-footer a:hover {
+    transition: color var(--animate), transform var(--animate);
+    transform: translateY(-2px);
+    color: grey;
+   }
+   .bottom-footer {
+    margin-top: var(--mt);
+    border-top: 1px solid #eee;
+   }
+   .bottom-flex {
+    margin-top: var(--mt);
+    display: flex;
+    justify-content: space-between;
+   }
+   .bottom-flex span {
+    font-size: var(--size-desc);
+    display: inline-block;
+   }
+   .socials {
+    display: flex;
+    gap: 20px;
+   }
+   .socials a {
+    font-size: var(--size-link);
+    font-weight: 500;
+    color: var(--tag);
+   }
+
+   @media (max-width: 1024px) {
+    .grid-footer {
+     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+     gap: 30px;
+    }
+    .bottom-flex {
+     flex-direction: column;
+     gap: 20px;
+    }
+   }
+  </style>
+
+  <script lang="js">
+   document.getElementById("year").innerHTML = new Date().getFullYear();
+  </script>
+ </div>
+</footer>

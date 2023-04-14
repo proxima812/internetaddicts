@@ -1,0 +1,155 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Nav from "../components/Nav.astro";
+import "../css/style.css";
+import "../css/default.css";
+import { BANNER } from "../consts";
+
+export interface Props {
+  title?: string | undefined;
+  desc?: string | undefined;
+}
+
+const { title, desc } = Astro.props;
+const verification_yandex = "4b2209308b18d6d7";
+const verification_google = "yG8qqyFB5KKCPLRVIaTwLRb44KoITy1i1bbCqL95iyo";
+---
+
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#EAEEFA" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="yandex-tableau-widget" href="/tableau.json" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicons/icon.svg" />
+    <link
+      rel="apple-touch-icon"
+      type="image/png"
+      sizes="167x167"
+      href="/favicons/icon-167.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      type="image/png"
+      sizes="180x180"
+      href="/favicons/icon-180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicons/icon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicons/icon-16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="/favicons/icon-48.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/favicons/icon-192.png"
+    />
+
+    <meta name="yandex-verification" content={verification_yandex} />
+    <meta name="google-site-verification" content={verification_google} />
+
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={Astro.url} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:site_name" content={title} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:image" content={BANNER} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <!-- Yandex.Metrika counter -->
+    <script type="text/partytown" async>
+      (function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            (m[i].a = m[i].a || []).push(arguments);
+          };
+        m[i].l = 1 * new Date();
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) {
+            return;
+          }
+        }
+        (k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a);
+      })(
+        window,
+        document,
+        "script",
+        "https://mc.yandex.ru/metrika/tag.js",
+        "ym"
+      );
+
+      ym(92393833, "init", {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+      });
+    </script>
+    <noscript 
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/92393833"
+          style="position:absolute; left:-9999px;"
+          alt=""
+        />
+      </div></noscript
+    >
+    <!-- /Yandex.Metrika counter -->
+    <title>{title}</title>
+  </head>
+  <body>
+    <main class="main-layout">
+      <Header />
+      <Nav />
+      <slot />
+      <Footer />
+    </main>
+  </body>
+</html>
+<style is:global>
+  @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
+  html,
+  body {
+    min-width: 320px;
+    font-family: "Roboto", sans-serif;
+    color: var(--text);
+    background-color: #f7f7f7;
+  }
+  .main-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+</style>

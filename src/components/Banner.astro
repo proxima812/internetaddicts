@@ -1,0 +1,329 @@
+---
+import image_svg from "/svg.svg";
+import { TELEGRAM } from "../consts";
+---
+
+<main>
+ <div class="container">
+  <div class="main">
+   <div class="flex">
+    <div class="col">
+     <div class="col-item">
+      <span>Проблема</span>
+      <h1>
+       Залипание в 📲 и <span>интернете</span>
+      </h1>
+     </div>
+    </div>
+    <div class="col">
+     <img src={image_svg} alt="" />
+    </div>
+   </div>
+  </div>
+  <div class="present">
+   <div class="grid">
+    <section>
+     <h2>Анонимные интернет зависимые</h2>
+     <p>
+      это сообщество людей, которые поддерживают друг друга в преодолении проблем,
+      вызванных одержимым использованием интернета.
+     </p>
+    </section>
+    <section>
+     <h2>Наше сообщество</h2>
+     <p>
+      не связаны ни с какой политической, религиозной или правоохранительной организацией,
+      и не находимся ни под чьим контролем.
+     </p>
+    </section>
+    <section>
+     <h2>Наша единственная цель</h2>
+     <p>
+      воздерживаться от разрушительного использования интернета и помочь другим страдающим
+      от этой зависимости.
+     </p>
+     <div class="links">
+      <a href={TELEGRAM} class="telegram"
+       ><svg
+        width="16"
+        height="14"
+        viewBox="0 0 16 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+       >
+        <path
+         d="M14.5895 0.0789342L0.322969 5.88416C-0.140565 6.04249 -0.0890607 6.72856 0.374473 6.88689L3.97974 8.04793L5.42184 12.6921C5.52485 13.0615 5.98838 13.1671 6.2459 12.9032L8.35756 10.8978L12.3749 13.9059C12.6839 14.117 13.0959 13.9587 13.1989 13.5893L15.9801 1.34553C16.1346 0.448358 15.3621 -0.237715 14.5895 0.0789342V0.0789342ZM6.2459 8.9451L5.78237 11.6894L4.75229 7.88961L14.7955 1.13443L6.2459 8.9451Z"
+         fill="white"></path>
+       </svg> Присоединиться</a
+      >
+      <!-- <a href="/stories" class="speaker">🎙 Личные истории</a> -->
+     </div>
+    </section>
+   </div>
+  </div>
+  <div class="main-message">
+   <p>💭 Мысли интернет зависимого человека</p>
+  </div>
+  <div class="row">
+   <div class="block-message">
+    <span>😞</span>
+    <p>Я всегда жду новых уведомлений от других людей.</p>
+   </div>
+   <div class="block-message">
+    <span>😰</span>
+    <p>Я всегда чувствую тревогу, когда не имею доступа к интернету.</p>
+   </div>
+   <div class="block-message">
+    <span>😐</span>
+    <p>Я провожу часы, просматривая социальные сети каждый день.</p>
+   </div>
+   <div class="block-message">
+    <span>😕</span>
+    <p>Я не могу представить свою жизнь без интернета.</p>
+   </div>
+   <div class="block-message">
+    <span>🤖</span>
+    <p>Я предпочитаю общаться с друзьями через онлайн-мессенджеры, а не лицом к лицу.</p>
+   </div>
+   <div class="block-message">
+    <span>😮</span>
+    <p>Я всегда проверяю свой телефон на наличие уведомлений или новых обновлений.</p>
+   </div>
+  </div>
+
+  <div class="main-message">
+   <p>💭 Мысли выздоровевшего человека от безнадежного залипания в интернете</p>
+  </div>
+  <div class="row-1">
+   <div class="block-message">
+    <span>🙏</span>
+    <p>Я начал доверять себе и людям.</p>
+   </div>
+   <div class="block-message">
+    <span>✊</span>
+    <p>Я знаю, что у меня есть нечто, что дарует мне силы для жизненного пути.</p>
+   </div>
+   <div class="block-message">
+    <span>😄</span>
+    <p>Я провожу часы с пользой, а не залипая на экран.</p>
+   </div>
+   <div class="block-message">
+    <span>😇</span>
+    <p>Я не думаю только о себе.</p>
+   </div>
+   <div class="block-message">
+    <span>🤗</span>
+    <p>Я предпочитаю общаться с друзьями в живую, а не онлайн.</p>
+   </div>
+   <div class="block-message">
+    <span>😝</span>
+    <p>Я не проверяю каждую секунду, кто и когда мне написал. Я живу здесь и сейчас.</p>
+   </div>
+  </div>
+ </div>
+</main>
+
+<style>
+ .present {
+  background-color: var(--present);
+  border-radius: var(--border-medium);
+  padding: 30px;
+ }
+ .grid {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+   "section1 section3"
+   "section2 section3";
+ }
+ .grid section {
+  border-radius: var(--border-medium);
+ }
+ .grid section:nth-child(1) h2,
+ .grid section:nth-child(2) h2 {
+  color: var(--text);
+ }
+ .grid section:nth-child(1) h2,
+ .grid section:nth-child(2) h2,
+ .grid section:nth-child(3) h2 {
+  font-size: var(--size-medium);
+  font-weight: 700;
+ }
+ .grid section:nth-child(1) p,
+ .grid section:nth-child(2) p,
+ .grid section:nth-child(3) p {
+  color: var(--text);
+  margin-top: 4px;
+  font-size: var(--size-desc);
+  font-weight: 300;
+ }
+ .grid section:nth-child(3) {
+  padding: 20px;
+  box-shadow: var(--shadow);
+ }
+ .links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+ }
+ .links a {
+  padding: 5px 10px;
+  border-radius: 10px;
+  transition: transform var(--animate);
+  display: flex;
+  align-items: center;
+ }
+ .speaker {
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #d5dce0;
+  color: var(--text);
+ }
+ .telegram {
+  border-bottom: 1px solid #1a77ab;
+  background-color: #249adc;
+  color: #fff;
+ }
+ .links a svg {
+  margin-right: 6px;
+ }
+ .links a:hover {
+  transition: transform var(--animate);
+  transform: translateY(-5px);
+ }
+ .grid section:nth-child(3) h2,
+ .grid section:nth-child(3) p {
+  color: var(--text);
+ }
+
+ .grid section:nth-child(1) {
+  grid-area: section1;
+  background-color: var(--artilce);
+ }
+ .grid section:nth-child(2) {
+  grid-area: section2;
+  background-color: var(--artilce);
+ }
+ .grid section:nth-child(3) {
+  grid-area: section3;
+  background-color: var(--white);
+ }
+ .main {
+  padding: 30px;
+  margin-top: var(--mt);
+  background-color: var(--white);
+  border-radius: var(--border-large);
+ }
+ .flex {
+  display: flex;
+  align-items: start;
+ }
+ .col {
+  width: 100%;
+  position: relative;
+ }
+ .col img {
+  position: absolute;
+  top: -95px;
+  left: 0;
+ }
+ .col img:last-child {
+  max-width: 100%;
+  object-fit: cover;
+ }
+ .col:last-child {
+  flex-grow: 1;
+ }
+ .col-item span {
+  font-size: var(--size-link);
+  font-weight: 400;
+  color: var(--tag);
+ }
+ .col-item h1 {
+  margin-top: 10px;
+  line-height: 110%;
+  font-size: var(--size-large);
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  color: var(--text);
+ }
+ .col-item h1 span {
+  font-size: var(--size-large);
+  font-weight: 900;
+  background: var(--color-accent);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+ }
+ .row,
+ .row-1 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+ }
+ .main-message {
+  margin: 10px 0;
+  padding: 20px;
+ }
+ .main-message p {
+  font-size: 22px;
+  font-weight: 700;
+  color: #474747;
+ }
+
+ .block-message {
+  background-color: var(--white);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: background-color var(--animate), transform var(--animate);
+ }
+ .block-message:hover {
+  transform: translateY(-5px);
+  transition: background-color var(--animate), transform var(--animate);
+  background-color: #fce2e2;
+ }
+ .row-1 .block-message:hover {
+  background-color: var(--present);
+ }
+ .block-message span {
+  display: inline-block;
+  margin-right: 20px;
+  font-size: 24px;
+ }
+ .block-message p {
+  line-height: 120%;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--text);
+ }
+ @media (max-width: 992px) {
+  .col img {
+   display: none;
+  }
+  .grid {
+   grid-template-columns: repeat(1, 1fr);
+   grid-template-areas:
+    "section1"
+    "section2"
+    "section3";
+  }
+  .row,
+  .row-1 {
+   grid-template-columns: repeat(2, 1fr);
+  }
+ }
+ @media (max-width: 768px) {
+  .col {
+   width: auto;
+  }
+  .row,
+  .row-1 {
+   grid-template-columns: repeat(1, 1fr);
+  }
+ }
+</style>
