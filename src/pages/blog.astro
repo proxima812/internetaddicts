@@ -1,179 +1,188 @@
 ---
 import Layout from "../layout/Layout.astro";
 const posts = (await Astro.glob("./posts/*.{md,mdx}")).sort(
-  (a, b) =>
-    new Date(b.frontmatter.pubDate).valueOf() -
-    new Date(a.frontmatter.pubDate).valueOf()
+ (a, b) =>
+  new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
 );
 ---
 
 <Layout
-  title="Посты и заметки членов АИЗ"
-  desc="Посты и заметки членов АИЗ для передачи опыта, или же рассказы истории и теорий."
+ title="Посты и заметки членов АИЗ"
+ desc="Посты и заметки членов АИЗ для передачи опыта, или же рассказы истории и теорий."
 >
-  <div class="container">
-    <section>
-      <div class="grid">
-        {
-          posts.map((post) => (
-            <article>
-              <div class="info">
-                <a class="title-link" href={post.url}>
-                  <h1>{post.frontmatter.title}</h1>
-                </a>
-                <p>{post.frontmatter.description}</p>
-              </div>
-              <div class="info-read">
-                <div class="author">
-                  <img src={post.frontmatter.image_author} decoding="async" loading="lazy" width="42" height="42" alt="Автор" />
-                  <div class="profile">
-                    <span>{post.frontmatter.author_name}</span>
-                    <time datetime={post.frontmatter.pubDate}>
-                      {new Date(post.frontmatter.pubDate).toLocaleDateString(
-                        "ru-RU",
-                        {
-                          year: "numeric",
-                          month: "numeric",
-                          day: "numeric",
-                        }
-                      )}
-                    </time>
-                  </div>
-                </div>
-                <a href={post.url}>Посмотреть</a>
-              </div>
-            </article>
-          ))
-        }
-      </div>
-    </section>
-  </div>
+ <div class="container">
+  <section>
+   <div class="grid">
+    {
+     posts.map((post) => (
+      <a href={post.url} class="hover-top">
+       <article>
+        <div class="info">
+        
+          <h2>{post.frontmatter.title}</h2>
+       
+         <p>{post.frontmatter.description}</p>
+        </div>
+        <div class="info-read">
+         <div class="author">
+          <img
+           src={post.frontmatter.image_author}
+           decoding="async"
+           loading="lazy"
+           width="42"
+           height="42"
+           alt="Автор"
+          />
+          <div class="profile">
+           <span>{post.frontmatter.author_name}</span>
+           <time datetime={post.frontmatter.pubDate}>
+            {new Date(post.frontmatter.pubDate).toLocaleDateString("ru-RU", {
+             year: "numeric",
+             month: "numeric",
+             day: "numeric",
+            })}
+           </time>
+          </div>
+         </div>
+        </div>
+       </article>
+      </a>
+     ))
+    }
+   </div>
+  </section>
+ </div>
 </Layout>
 
 <style>
-  .title-link {
-    background-color: transparent;
-    padding: 0;
-  }
-  .title-link:hover {
-    background-color: transparent;
-  }
+ .title-link {
+  background-color: transparent;
+  padding: 0;
+ }
+ .title-link:hover {
+  background-color: transparent;
+ }
+ .info-read {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+ }
+ .author {
+  margin-right: 25px;
+  display: flex;
+  align-items: center;
+ }
+ @media (max-width: 768px) {
   .info-read {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
+   flex-direction: column;
+   align-items: start;
   }
   .author {
-    margin-right: 25px;
-    display: flex;
-    align-items: center;
+   margin-right: 0;
+   order: -1;
+   margin-bottom: 10px;
   }
-  @media (max-width: 768px) {
-    .info-read {
-      flex-direction: column;
-      align-items: start;
-    }
-    .author {
-      margin-right: 0;
-      order: -1;
-      margin-bottom: 10px;
-    }
-  }
-  .author img {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  .profile {
-    margin-left: 8px;
-  }
-  .profile span {
-    font-size: var(--size-desc);
-    font-weight: 500;
-    color: var(--text);
-  }
-  .profile time {
-    display: block;
-    font-size: var(--size-link);
-    color: #666;
-    font-weight: 400;
-  }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 30px;
-  }
+ }
+ .author img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+ }
+ .profile {
+  margin-left: 8px;
+ }
+ .profile span {
+  font-size: var(--size-desc);
+  font-weight: 500;
+  color: var(--text);
+ }
+ .profile time {
+  display: block;
+  font-size: var(--size-link);
+  color: #666;
+  font-weight: 400;
+ }
+ .grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+ }
+ section {
+  margin-top: var(--mt);
+  border-radius: var(--border-large);
+  padding: 40px;
+  background-color: var(--white);
+ }
+ article {
+  padding: 25px 30px;
+  align-self: flex-start;
+  background-color: var(--present);
+  border-radius: var(--border-medium);
+  transition: background-color .2s linear;
+ }
+ article:hover{
+  transition: background-color .2s linear;
+  background-color: #d2ffeb;
+ }
+ .tag-link {
+  font-size: var(--size-desc);
+  font-weight: 400;
+  color: var(--tag);
+  padding: 0;
+  background-color: transparent;
+ }
+ .tag-link:hover {
+  background-color: transparent;
+ }
+ .tag {
+  display: inline-block;
+  margin-bottom: 20px;
+ }
+ .info h2 {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 110%;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+ }
+ .info p {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 130%;
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+ }
+ article a {
+  font-size: var(--size-link);
+  font-weight: 500;
+  display: inline-block;
+  background-color: var(--btn);
+  border-radius: 10px;
+  padding: var(--btn-paddings);
+  color: var(--white);
+  transition: background-color var(--animate);
+ }
+ article a:hover {
+  transition: background-color var(--animate);
+  background-color: var(--btn-hover);
+ }
+ @media (max-width: 768px) {
   section {
-    margin-top: var(--mt);
-    border-radius: var(--border-large);
-    padding: 40px;
-    background-color: var(--white);
+   margin-right: -20px;
+   margin-left: -20px;
+   padding: 20px;
+   border-radius: var(--border-medium);
   }
   article {
-    padding: 25px 30px;
-    align-self: flex-start;
-    background-color: var(--present);
-    border-radius: var(--border-medium);
+   padding: 20px;
   }
-  .tag-link {
-    font-size: var(--size-desc);
-    font-weight: 400;
-    color: var(--tag);
-    padding: 0;
-    background-color: transparent;
-  }
-  .tag-link:hover {
-    background-color: transparent;
-  }
-  .tag {
-    display: inline-block;
-    margin-bottom: 20px;
-  }
-  .info h1 {
-    font-size: 28px;
-    font-weight: 900;
-    color: var(--text);
-    line-height: 110%;
-    -webkit-line-clamp: 3;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  .info p {
-    margin-top: 8px;
-    font-size: 16px;
-    font-weight: 400;
-    color: var(--text);
-    line-height: 130%;
-    -webkit-line-clamp: 2;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  article a {
-    font-size: var(--size-link);
-    font-weight: 500;
-    display: inline-block;
-    background-color: var(--btn);
-    border-radius: 10px;
-    padding: var(--btn-paddings);
-    color: var(--white);
-    transition: background-color var(--animate);
-  }
-  article a:hover {
-    transition: background-color var(--animate);
-    background-color: var(--btn-hover);
-  }
-  @media (max-width: 768px) {
-    section {
-      margin-right: -20px;
-      margin-left: -20px;
-      padding: 20px;
-      border-radius: var(--border-medium);
-    }
-    article {
-      padding: 20px;
-    }
-  }
+ }
 </style>

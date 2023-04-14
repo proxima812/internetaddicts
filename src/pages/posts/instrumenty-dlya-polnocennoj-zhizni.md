@@ -7,7 +7,7 @@ pubDate: "02.01.22"
 layout: "../../layout/Post.astro"
 
 author_name: "АИЗ"
-image_author: "/logo.png"
+image_author: "/assets/logo.png"
 ---
 
 ## Упражнение.

@@ -98,6 +98,7 @@
 .content a{
   display: block;
   margin-top: 4px;
+  text-decoration: underline;
 }
 .content ul li,
 .content ol li {
@@ -226,4 +227,12 @@
     left: 20px;
     right: 20px;
   }
+}
+
+.hover-top{
+  transition: transform .2s linear;
+}
+.hover-top:hover{
+  transform: translateY(-3px);
+  transition: transform .2s linear;
 }

@@ -6,8 +6,8 @@ pubDate: "02.09.23"
 
 layout: "../../layout/Post.astro"
 
-author_name: "Sam Gold"
-image_author: "/SamGold.png"
+author_name: "АИЗ"
+image_author: "/assets/logo.png"
 ---
 
 ## Развернутая форма 12 традиций АИЗ
