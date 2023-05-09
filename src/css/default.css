@@ -32,9 +32,6 @@ img {
 p {
  hyphens: auto;
 }
-u {
- text-decoration-skip: ink;
-}
 
 q {
  quotes: "«" "»";

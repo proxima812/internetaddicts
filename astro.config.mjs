@@ -5,7 +5,6 @@ import tailwind from "@astrojs/tailwind";
 import compress from "astro-compress";
 import { defineConfig } from "astro/config";
 import remarkToc from "remark-toc";
-
 import image from "@astrojs/image";
 
 // https://astro.build/config
