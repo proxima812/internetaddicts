@@ -9,35 +9,35 @@
 *,
 *:after,
 *:before {
-  padding: 0;
-  margin: 0;
-  border: 0;
-  box-sizing: border-box;
+ padding: 0;
+ margin: 0;
+ border: 0;
+ box-sizing: border-box;
 }
 
 a {
-  text-decoration: none;
-  user-select: none;
+ text-decoration: none;
+ user-select: none;
 }
-ul,
-ol,
-li {
-  list-style: none;
+ul:where(body),
+ol:where(body),
+li:where(body) {
+ list-style: none;
 }
 
 img {
-  vertical-align: top;
+ vertical-align: top;
 }
 
 p {
-  hyphens: auto;
+ hyphens: auto;
 }
 u {
-  text-decoration-skip: ink;
+ text-decoration-skip: ink;
 }
 
 q {
-  quotes: "«" "»";
+ quotes: "«" "»";
 }
 
 h1,
@@ -46,6 +46,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: inherit;
-  font-size: inherit;
+ font-weight: inherit;
+ font-size: inherit;
 }

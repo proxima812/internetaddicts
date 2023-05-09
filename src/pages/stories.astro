@@ -1,200 +1,43 @@
 ---
+import StoryItem from "../components/blocks/StoryItem.astro";
 import Layout from "../layout/Layout.astro";
 ---
 
 <Layout
-  title="Личные истории членов АИЗ"
-  desc="Личные истории членов АИЗ, которые прошли путь и пришли к душевному спокойствию."
+ title="Личные истории членов"
+ desc="Личные истории членов АИЗ, которые прошли путь и пришли к душевному спокойствию."
 >
-  <div class="container">
-    <section class="histories">
-      <div class="add-story">
-        <a href="https://t.me/proxima8AA">+ Добавить</a>
-        <p>Добавь и ты свою историю выздоровления/успеха✌</p>
-      </div>
-      <div class="grid">
-        <!-- Начало -->
-        <!-- <div class="history-block" id="return">
-          <div class="info-person">
-            <div class="person">🙏</div>
-            <div class="info-date">
-              <a href="https://t.me/proxima8AA" class="name">Камиль</a>
-              <span class="from">В АИЗ с <b>10.11.21</b></span>
-            </div>
-          </div>
-          <div class="desc">
-            <p class="story">
-              Привет 👋 Меня зовут Камиль. В АИЗ я с 10.11.21. О сообществе я
-              узнал у АКИ <i><u>(Анонимные Компьютерные Игроки)</u></i> тогда они
-              были совместные с АИЗ. Мне с первых собраний понравилось сообщество
-              из-за теплого приема и классных людей. Первый шаг для меня в АИЗ было
-              признать проблему с вечным залипанием в интернете. Я начал усердно
-              ходить на каждое собрания, и так я дошел до понимая того, что возможно
-              эффективно использовать интернет. Вместо того, чтобы смотреть те же
-              фильмы, я начал думать, как можно помочь развивать движения в АИЗ,
-              так как мне это помогло, и многим другим, то почему бы не распроститься?
-              У каждого из нах находящихся в АИЗ были знания в той, или иной области.
-              Мы создали комитеты, создали сайт, запускали семинары, назначали спикерские,
-              давали ответы на вопросы от новичков. Сообщество молодое. Каждый человек
-              для нас важен. Каждый новый член сообщества - движок нашего и вашего
-              прогресса в духовном плане. Также есть и моменты, что каждое наше залипание
-              - это бездействие по отношения к нашему сообществу. Мы стараемся нести
-              наши познания каждому, кто хочет идти по пути АИЗ ☝ <br />
-              Спасибо, что прочитали мою историю 🤝
-            </p>
-          </div>
-
-          <button>Раскрыть историю 👀</button>
-        </div> -->
-        <!-- Конец -->
-      </div>
-    </section>
-  </div>
+ <div class="container">
+  <section class="histories">
+   <div class="grid">
+    <!-- Начало -->
+    <StoryItem />
+    <!-- Конец -->
+   </div>
+  </section>
+ </div>
 </Layout>
 
 <style>
-  .add-story {
-    display: flex;
-    align-items: center;
-    margin-bottom: 30px;
-    background-color: #fbfef7;
-    border: 1px solid #f1fae5;
-    padding: 20px;
-    border-radius: var(--border-medium);
-  }
-  .add-story a {
-    display: inline-block;
-    margin-right: 20px;
-    padding: 6px 12px;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 8px;
-    background-color: var(--tag);
-    color: #fff;
-    transition: background-color var(--animate);
-  }
-  @media (max-width: 576px) {
-    .add-story {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-    .add-story a {
-      margin-right: 0;
-      margin-bottom: 20px;
-    }
-  }
-  .add-story a:hover {
-    background-color: #125baf;
-    transition: background-color var(--animate);
-  }
-  button {
-    margin-top: 20px;
-    display: inline-block;
-    border: none;
-    outline: none;
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text);
-    background-color: #efefef;
-    cursor: pointer;
-    transition: background-color var(--animate);
-  }
-  button:hover {
-    transition: background-color var(--animate);
-    background-color: #e3e3e3;
-  }
+ .histories {
+  border-radius: var(--border-large);
+  background-color: var(--white);
+  padding: 30px;
+ }
+ @media (max-width: 576px) {
   .histories {
-    margin-top: var(--mt);
-    border-radius: var(--border-large);
-    background-color: var(--white);
-    padding: 30px;
+   margin: var(--mt) -30px 0;
   }
-  @media (max-width: 576px) {
-    .histories {
-      margin: var(--mt) -30px 0;
-    }
-  }
+ }
+ .grid {
+  display: grid;
+  align-items: flex-start;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+ }
+ @media (max-width: 992px) {
   .grid {
-    display: grid;
-    align-items: flex-start;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+   grid-template-columns: repeat(1, 1fr);
   }
-  @media (max-width: 992px) {
-    .grid {
-      grid-template-columns: repeat(1, 1fr);
-    }
-  }
-  .history-block {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    background-color: #fbfef7;
-    border: 1px solid #f1fae5;
-    padding: 20px;
-    border-radius: var(--border-medium);
-  }
-  .info-person {
-    display: flex;
-    align-items: center;
-    padding: 8px 14px;
-    border-radius: 8px;
-    background-color: #f1fae5;
-  }
-  .person {
-    display: inline-block;
-    font-size: 32px;
-  }
-  .info-date {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    margin-left: 10px;
-  }
-  .name {
-    font-size: 18px;
-    font-weight: 500;
-    color: var(--text);
-  }
-  .from {
-    font-size: 14px;
-    font-weight: 400;
-    color: #666;
-  }
-  .desc {
-    margin-top: 20px;
-  }
-  .story {
-    font-size: 18px;
-    line-height: 130%;
-    font-weight: 400;
-    color: var(--text);
-    -webkit-line-clamp: 3;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
+ }
 </style>
-
-<script lang="js">
-  const stories = document.querySelectorAll(".story");
-  const buttons = document.querySelectorAll("button");
-
-  buttons.forEach((button, index) => {
-    let isHidden = false;
-
-    button.addEventListener("click", function () {
-      const story = stories[index];
-      if (!isHidden) {
-        story.style.WebkitLineClamp = "100";
-        button.textContent = "Скрыть историю 👀";
-      } else {
-        story.style.WebkitLineClamp = "";
-        button.textContent = "Раскрыть историю 👀";
-      }
-      isHidden = !isHidden;
-    });
-  });
-</script>

@@ -1,0 +1,30 @@
+---
+import Article from "../components/blocks/Article.astro";
+import Layout from "../layout/Layout.astro";
+const posts = (await Astro.glob("./posts/*.{md,mdx}")).sort(
+ (a, b) =>
+  new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
+);
+---
+
+<Layout
+ title="Посты"
+ desc="Посты АИЗ. Мероприятие, короткие новости, методы шагов, инструменты"
+>
+ <div class="container">
+  <section>
+   <div class="grid gap-10 grid-cols-1 md:grid-cols-2">
+    {
+     posts.map((post) => (
+      <Article
+       url={post.url}
+       img={post.frontmatter.img}
+       title={post.frontmatter.title}
+       description={post.frontmatter.description}
+      />
+     ))
+    }
+   </div>
+  </section>
+ </div>
+</Layout>

@@ -1,0 +1,31 @@
+---
+export interface Props {
+ img?: string;
+ url: string;
+ title: string;
+ description: string;
+ pubDate?: string;
+}
+
+import CustomImage from "../../components/customs/CustomImage.astro";
+const { img, url, title, description, pubDate } = Astro.props;
+---
+
+<a href={url} class="hover-top">
+ <article class="rounded-lg pb-5 prose max-w-none">
+  <CustomImage src={img} title="Фотография к посту" alt="Фотография к посту" loading />
+  <h3>{title}</h3>
+  <p class="line-clamp-2">{description}</p>
+  {
+   pubDate && (
+    <time datetime={pubDate}>
+     {new Date(pubDate).toLocaleDateString("ru-RU", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+     })}
+    </time>
+   )
+  }
+ </article>
+</a>

@@ -1,0 +1,27 @@
+---
+import { Picture } from "@astrojs/image/components";
+
+type Props = {
+ src: string;
+ title: string;
+ alt: string;
+ loading?: boolean;
+};
+
+const { src, title, alt, loading, img } = Astro.props;
+const loadingAttribute = loading ? "eager" : "lazy";
+---
+
+<Picture
+ {...img}
+ background="white"
+ src={src}
+ title={title}
+ class="rounded-lg cover"
+ widths={[600, 720, 1024]}
+ sizes="(max-width: 1024px) 100vw, 1024px"
+ aspectRatio="16:9"
+ format="avif"
+ alt={alt}
+ loading={loadingAttribute}
+/>

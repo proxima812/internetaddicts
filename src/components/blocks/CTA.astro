@@ -1,0 +1,144 @@
+---
+import { TELEGRAM } from '../../consts';
+
+---
+  <div class="present">
+   <div class="grid">
+    <section>
+     <h2>Анонимные интернет зависимые</h2>
+     <p>
+      это сообщество людей, которые поддерживают друг друга в преодолении проблем,
+      вызванных одержимым использованием интернета.
+     </p>
+    </section>
+    <section>
+     <h2>Наше сообщество</h2>
+     <p>
+      не связаны ни с какой политической, религиозной или правоохранительной организацией,
+      и не находимся ни под чьим контролем.
+     </p>
+    </section>
+    <section>
+     <h2>Наша единственная цель</h2>
+     <p>
+      воздерживаться от разрушительного использования интернета и помочь другим страдающим
+      от этой зависимости.
+     </p>
+     <div class="links">
+      <a href={TELEGRAM} class="telegram"
+       ><svg
+        width="16"
+        height="14"
+        viewBox="0 0 16 14"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+       >
+        <path
+         d="M14.5895 0.0789342L0.322969 5.88416C-0.140565 6.04249 -0.0890607 6.72856 0.374473 6.88689L3.97974 8.04793L5.42184 12.6921C5.52485 13.0615 5.98838 13.1671 6.2459 12.9032L8.35756 10.8978L12.3749 13.9059C12.6839 14.117 13.0959 13.9587 13.1989 13.5893L15.9801 1.34553C16.1346 0.448358 15.3621 -0.237715 14.5895 0.0789342V0.0789342ZM6.2459 8.9451L5.78237 11.6894L4.75229 7.88961L14.7955 1.13443L6.2459 8.9451Z"
+         fill="white"></path>
+       </svg> Присоединиться</a
+      >
+     </div>
+    </section>
+   </div>
+  </div>
+
+  <style>
+     .present {
+  background-color: var(--present);
+  border-radius: var(--border-medium);
+  padding: 30px;
+ }
+ .grid {
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+   "section1 section3"
+   "section2 section3";
+ }
+ .grid section {
+  border-radius: var(--border-medium);
+ }
+ .grid section:nth-child(1) h2,
+ .grid section:nth-child(2) h2 {
+  color: var(--text);
+ }
+ .grid section:nth-child(1) h2,
+ .grid section:nth-child(2) h2,
+ .grid section:nth-child(3) h2 {
+  font-size: var(--size-medium);
+  font-weight: 700;
+ }
+ .grid section:nth-child(1) p,
+ .grid section:nth-child(2) p,
+ .grid section:nth-child(3) p {
+  color: var(--text);
+  margin-top: 4px;
+  font-size: var(--size-desc);
+  font-weight: 300;
+ }
+ .grid section:nth-child(3) {
+  padding: 20px;
+  box-shadow: var(--shadow);
+ }
+ .links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+ }
+ .links a {
+  padding: 5px 10px;
+  border-radius: 10px;
+  transition: transform var(--animate);
+  display: flex;
+  align-items: center;
+ }
+ .speaker {
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #d5dce0;
+  color: var(--text);
+ }
+ .telegram {
+  border-bottom: 1px solid #1a77ab;
+  background-color: #249adc;
+  color: #fff;
+ }
+ .links a svg {
+  margin-right: 6px;
+ }
+ .links a:hover {
+  transition: transform var(--animate);
+  transform: translateY(-5px);
+ }
+ .grid section:nth-child(3) h2,
+ .grid section:nth-child(3) p {
+  color: var(--text);
+ }
+
+ .grid section:nth-child(1) {
+  grid-area: section1;
+  background-color: var(--artilce);
+ }
+ .grid section:nth-child(2) {
+  grid-area: section2;
+  background-color: var(--artilce);
+ }
+ .grid section:nth-child(3) {
+  grid-area: section3;
+  background-color: var(--white);
+ }
+
+ @media (max-width: 992px) {
+
+  .grid {
+   grid-template-columns: repeat(1, 1fr);
+   grid-template-areas:
+    "section1"
+    "section2"
+    "section3";
+  }
+ }
+  </style>

@@ -7,7 +7,7 @@ export async function get(context) {
     description: 'Это сообщество людей, которые поддерживают друг друга в преодолении проблем, вызванных одержимым использованием Интернета и технических устройств.',
     site: context.site,
     items: await pagesGlobToRssItems(
-      import.meta.glob('./posts/*.{md,mdx}'),
+      import.meta.glob('./**/*.{md,mdx}'),
     ),
   });
 }

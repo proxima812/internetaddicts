@@ -1,6 +1,8 @@
 ---
 import { BASE_FILES, COPYRIGHT, TELEGRAM, VK, YOUTUBE } from "../consts";
-import logo from "/assets/logo.svg";
+import Logo from './Logo.astro';
+
+const notes = await Astro.glob("../pages/notes/*.{md,mdx}");
 const posts = await Astro.glob("../pages/posts/*.{md,mdx}");
 ---
 
@@ -8,10 +10,10 @@ const posts = await Astro.glob("../pages/posts/*.{md,mdx}");
 <footer>
  <div class="container">
   <div class="top-footer">
-   <div class="grid-footer">
+   <div class="grid-footer grid gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6">
     <div class="col-footer">
      <div class="logo-footer">
-      <img src={logo} alt="Логотип АИЗ СНГ" />
+      <Logo />
      </div>
     </div>
     <div class="col-footer">
@@ -21,13 +23,15 @@ const posts = await Astro.glob("../pages/posts/*.{md,mdx}");
     </div>
     <div class="col-footer">
      <span>Страницы</span>
-     <a href="/blog">Заметки</a>
+     <a href="/notes">Заметки</a>
+     <a href="/posts">Посты</a>
      <a href="/groups">Собрания</a>
+     <a href="/stories">Личные истории</a>
     </div>
     <div class="col-footer">
-     <span>Посты</span>
+     <span>Последние заметки</span>
      {
-      posts.map((post) => (
+      notes.slice(0, 5).map((post) => (
        <a href={post.url} target="_blank">
         {post.frontmatter.title}
        </a>
@@ -35,14 +39,25 @@ const posts = await Astro.glob("../pages/posts/*.{md,mdx}");
      }
     </div>
     <div class="col-footer">
-     <span>Ссылки</span>
+     <span>Последние посты</span>
+     {
+      posts.slice(0, 5).map((post) => (
+       <a href={post.url} target="_blank">
+        {post.frontmatter.title}
+       </a>
+      ))
+     }
+    </div>
+    <div class="col-footer">
+     <span>Полезные ссылки</span>
      <a href={BASE_FILES}>12 шагов - база знаний</a>
+     <a href="https://t.me/solutionof12steps">АИЗ: группа 12 шагов</a>
     </div>
    </div>
   </div>
   <div class="bottom-footer">
    <div class="bottom-flex">
-    <span><b>© {COPYRIGHT}</b> <b id="year"></b></span>
+    <span><b>{COPYRIGHT}</b> <b id="year"></b></span>
     <div class="socials">
      <a href={VK} target="_blank">ВКонтакте</a>
      <a href={TELEGRAM} target="_blank">Телеграм</a>
@@ -62,11 +77,7 @@ const posts = await Astro.glob("../pages/posts/*.{md,mdx}");
     padding: 40px;
     background-color: #fff;
    }
-   .grid-footer {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 60px;
-   }
+
    .col-footer {
     display: flex;
     flex-direction: column;
@@ -114,7 +125,6 @@ const posts = await Astro.glob("../pages/posts/*.{md,mdx}");
    @media (max-width: 1024px) {
     .grid-footer {
      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-     gap: 30px;
     }
     .bottom-flex {
      flex-direction: column;

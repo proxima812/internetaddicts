@@ -1,180 +1,27 @@
 ---
 import Layout from "./Layout.astro";
-import "../css/style.css";
-import { SITE_URL } from "../consts";
 
 export interface Props {
-  content: {
-    url: string;
-    title: string;
-    description: string;
-    pubDate?: string;
-    updatedDate?: string;
-    heroImage?: string;
-    author_name?: string;
-    image_author?: string;
-  };
+ content: {
+  url: string;
+  title: string;
+  description: string;
+  pubDate?: string;
+ };
 }
 
 const {
-  content: { title, description, pubDate, image_author, author_name, url },
+ content: { title, description, pubDate },
 } = Astro.props;
 ---
 
-<Layout title={title} desc={description}>
-  <div class="container">
-    <main class="flex">
-      <aside class="sidebar">
-        <div class="author">
-          <img src={image_author} alt="Автор поста" decoding="async" loading="lazy" width="40" height="40"/>
-          <div class="author-info">
-            <span>{author_name}</span>
-            <time datetime={pubDate} class="time">
-              {
-                new Date(pubDate).toLocaleDateString("ru-RU", {
-                  year: "numeric",
-                  month: "numeric",
-                  day: "numeric",
-                })
-              }
-            </time>
-          </div>
-        </div>
-        <div class="share">
-          <span>Поделиться</span>
-          <div class="share-links">
-            <a href={"http://vk.com/share.php?url=" + `${SITE_URL}` + `${url}`}>
-              <svg
-                width="36"
-                height="36"
-                viewBox="0 0 36 36"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="2.31519"
-                  y="3.29175"
-                  width="29.5303"
-                  height="29.5303"
-                  rx="1.75339"
-                  fill="white"></rect>
-                <path
-                  d="M23 0.0147553L12.2564 0.0125835C2.45232 0.0106017 0.127704 2.33428 0.125722 12.1383L0.12355 22.8819C0.121568 32.686 2.44525 35.0106 12.2493 35.0126L22.9929 35.0148C32.7969 35.0167 35.1216 32.6931 35.1235 22.889L35.1257 12.1454C35.1277 2.34135 32.7811 0.0167326 23 0.0147553ZM28.3782 24.9832L25.8375 24.9827C24.875 24.9825 24.5788 24.219 22.8478 22.4643C21.3442 21.0061 20.6782 20.8124 20.3074 20.8123C19.7835 20.8122 19.6347 20.9598 19.6346 21.6784L19.6341 23.9741C19.634 24.5899 19.4403 24.9595 17.8107 24.9592C15.1158 24.9586 12.1259 23.3284 10.0299 20.2918C6.86883 15.8419 6.00437 12.5092 6.00451 11.8202C6.00458 11.4494 6.15231 11.1027 6.86431 11.1029L9.41049 11.1034C10.0547 11.1035 10.2996 11.4 10.5499 12.089C11.8081 15.7237 13.9041 18.908 14.7692 18.9081C15.0886 18.9082 15.2363 18.7606 15.2364 17.9458L15.2372 14.1921C15.1402 12.4607 14.2292 12.3118 14.2293 11.6971C14.2293 11.4008 14.4744 11.1044 14.867 11.1045L18.8711 11.1053C19.4125 11.1054 19.6115 11.4018 19.6114 12.0395L19.6104 17.1034C19.6102 17.6502 19.8552 17.8439 20.0029 17.8439C20.3222 17.844 20.5957 17.6504 21.1875 17.0578C23.0166 15.0074 24.3275 11.8457 24.3275 11.8457C24.4982 11.475 24.7947 11.1284 25.4389 11.1285L27.9851 11.129C28.7485 11.1292 28.919 11.5218 28.7483 12.0687C28.4286 13.5495 25.3117 17.9467 25.3117 17.9467C25.0437 18.3907 24.9408 18.5843 25.3115 19.0798C25.5849 19.4506 26.4739 20.2197 27.0655 20.9088C28.1534 22.145 28.9899 23.182 29.2129 23.8995C29.4632 24.6115 29.0935 24.9822 28.3749 24.9821L28.3782 24.9832Z"
-                  fill="#0077FF"></path>
-              </svg>
-            </a>
-            <a href={"https://t.me/share/url?url=" + `${SITE_URL}` + `${url}`}>
-              <svg
-                width="36"
-                height="36"
-                viewBox="0 0 36 36"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <rect
-                  x="0.765625"
-                  width="35"
-                  height="35"
-                  rx="7.35366"
-                  fill="#249ADC"></rect>
-                <path
-                  d="M26.5255 7.76622L7.75032 15.5229C7.1403 15.7344 7.20789 16.6516 7.81782 16.8633L12.5617 18.4164L14.4582 24.6252C14.5936 25.119 15.2036 25.2602 15.5425 24.9076L18.3218 22.2272L23.6074 26.2496C24.014 26.5319 24.5563 26.3204 24.6919 25.8266L28.3551 9.45978C28.5586 8.26048 27.5422 7.34313 26.5255 7.76622V7.76622ZM15.5436 19.6163L14.9329 23.2848L13.5784 18.205L26.7963 9.17727L15.5436 19.6163Z"
-                  fill="white"></path>
-              </svg>
-            </a>
-          </div>
-        </div>
-      </aside>
-      <div class="content">
-        <h1>{title}</h1>
-        <slot />
-      </div>
-    </main>
+<Layout title={title} desc={description} typeSite="article" pubDate={pubDate}>
+ <main class="px-5">
+  <div
+   class="mx-auto max-w-[780px] prose prose-a:text-blue-500 prose-a:no-underline prose-stone"
+  >
+   <h1>{title}</h1>
+   <slot />
   </div>
+ </main>
 </Layout>
-
-<style>
-  .sidebar {
-    margin-right: 30px;
-    position: sticky;
-    top: 60px;
-    margin-top: var(--mt);
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-  }
-  @media (max-width: 665px) {
-    .sidebar {
-      position: static;
-      top: 0;
-      flex-direction: row;
-      margin-right: 0;
-      order: 1;
-    }
-  }
-  .share,
-  .author {
-    padding: 15px;
-    border-radius: var(--border-large);
-    background-color: #e7f4ff;
-  }
-  .author {
-    display: flex;
-    align-items: center;
-  }
-  .author-info span,
-  .share span {
-    font-weight: 500;
-  }
-  .author img {
-    max-width: 100%;
-    object-fit: cover;
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-  }
-  .time {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--tag);
-    display: block;
-  }
-  .share {
-    margin-top: 20px;
-  }
-  .share span {
-    display: inline-block;
-    margin-bottom: 8px;
-  }
-  .share-links {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-  }
-  .share-links a{
-    width: 36px;
-    height: 36px;
-  }
-  @media (max-width: 665px) {
-    .author {
-      margin-right: 30px;
-    }
-    .share {
-      display: flex;
-      align-items: center;
-    }
-    .share span {
-      margin-right: 10px;
-      margin-bottom: 0;
-    }
-  }
-  @media (max-width: 444px) {
-    .sidebar {
-      align-items: flex-start;
-      flex-direction: column;
-    }
-  }
-</style>
-
-

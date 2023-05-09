@@ -1,17 +1,28 @@
 ---
+import { Schema } from "astro-seo-schema";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import Nav from "../components/Nav.astro";
+import ToUp from "../components/blocks/ToUp.astro";
 import { BANNER } from "../consts";
+import "../css/base.css";
 import "../css/default.css";
 import "../css/style.css";
 
 export interface Props {
- title?: string | undefined;
- desc?: string | undefined;
+ title?: string;
+ desc?: string;
+ typeSite?: string;
+ pubDate?: string;
 }
 
-const { title, desc } = Astro.props;
+const LD_name = "internetaddicts.ru";
+
+const poster = BANNER;
+
+const { title, desc, typeSite, pubDate } = Astro.props;
+
+const typeSiteFinal = typeSite ?? "website";
 const verification_yandex = "4b2209308b18d6d7";
 const verification_google = "yG8qqyFB5KKCPLRVIaTwLRb44KoITy1i1bbCqL95iyo";
 ---
@@ -64,20 +75,70 @@ const verification_google = "yG8qqyFB5KKCPLRVIaTwLRb44KoITy1i1bbCqL95iyo";
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href={Astro.url} />
 
-  <meta name="title" content={title} />
+  <meta name="title" content={"АИЗ | " + title} />
   <meta name="description" content={desc} />
 
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={typeSiteFinal} />
   <meta property="og:url" content={Astro.url} />
-  <meta property="og:site_name" content={title} />
-  <meta property="og:title" content={title} />
+  <meta property="og:site_name" content="АИЗ - Анонимные Интернет Зависимые" />
+  <meta property="og:title" content={"АИЗ | " + title} />
   <meta property="og:description" content={desc} />
   <meta property="og:image" content={BANNER} />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
+
+  {pubDate && <meta property="article:modified_time" content={pubDate} />}
+
+  {
+   typeSite === "article" ? (
+    <Schema
+     item={{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: `${title}`,
+      image: [`${poster}`],
+      author: {
+       "@type": "Person",
+       name: "internetaddicts.ru",
+      },
+      publisher: {
+       "@type": "Organization",
+       name: `${LD_name}`,
+       logo: {
+        "@type": "ImageObject",
+        url: `${Astro.site}favicon.svg`,
+       },
+      },
+      dateModified: `${pubDate}`,
+      description: `${desc}`,
+      mainEntityOfPage: {
+       "@type": "WebPage",
+       "@id": `${Astro.url}`,
+      },
+     }}
+    />
+   ) : (
+    <Schema
+     item={{
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: `${LD_name}`,
+      url: `${Astro.site}`,
+     }}
+    />
+   )
+  }
+
+  <title>{"АИЗ | " + title}</title>
+ </head>
+ <body>
+  <main class="main-layout">
+   <Header />
+   <ToUp />
+   <Nav />
+   <slot />
+   <Footer />
+  </main>
   <!-- Yandex.Metrika counter -->
-  <script async>
+  <script type="text/partytown" async>
    (function (m, e, t, r, i, k, a) {
     m[i] =
      m[i] ||
@@ -113,15 +174,6 @@ const verification_google = "yG8qqyFB5KKCPLRVIaTwLRb44KoITy1i1bbCqL95iyo";
    </div></noscript
   >
   <!-- /Yandex.Metrika counter -->
-  <title>{title}</title>
- </head>
- <body>
-  <main class="main-layout">
-   <Header />
-   <Nav />
-   <slot />
-   <Footer />
-  </main>
  </body>
 </html>
 <style is:global>
@@ -131,6 +183,7 @@ const verification_google = "yG8qqyFB5KKCPLRVIaTwLRb44KoITy1i1bbCqL95iyo";
   font-family: "Roboto", sans-serif;
   color: var(--text);
   background-color: #f7f7f7;
+  scroll-behavior: smooth;
  }
  .main-layout {
   min-height: 100vh;

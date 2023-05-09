@@ -1,13 +1,12 @@
-import { defineConfig } from "astro/config";
-
-// https://astro.build/config
 import mdx from "@astrojs/mdx";
-
-// https://astro.build/config
 import partytown from "@astrojs/partytown";
-
-// https://astro.build/config
 import sitemap from "@astrojs/sitemap";
+import tailwind from "@astrojs/tailwind";
+import compress from "astro-compress";
+import { defineConfig } from "astro/config";
+import remarkToc from "remark-toc";
+
+import image from "@astrojs/image";
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,8 +14,27 @@ export default defineConfig({
  integrations: [
   mdx(),
   partytown({
-   config: { debug: false },
+   config: {
+    forward: ["dataLayer.push"],
+   },
   }),
   sitemap(),
+  tailwind({
+   applyBaseStyles: false,
+  }),
+  compress(),
+  image({
+   serviceEntryPoint: "@astrojs/image/sharp",
+  }),
  ],
+ markdown: {
+  remarkPlugins: [
+   [
+    remarkToc,
+    {
+     heading: "Содержание",
+    },
+   ],
+  ],
+ },
 });
