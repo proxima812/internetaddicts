@@ -24,6 +24,7 @@ export default defineConfig({
   compress(),
   image({
    serviceEntryPoint: "@astrojs/image/sharp",
+   logLevel: "debug",
   }),
  ],
  markdown: {

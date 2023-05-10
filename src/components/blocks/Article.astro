@@ -13,7 +13,11 @@ const { img, url, title, description, pubDate } = Astro.props;
 
 <a href={url} class="hover-top">
  <article class="rounded-lg pb-5 prose max-w-none">
-  <CustomImage src={img} title="Фотография к посту" alt="Фотография к посту" loading />
+  {
+   img && (
+    <CustomImage src={img} title="Фотография к посту" alt="Фотография к посту" loading />
+   )
+  }
   <h3>{title}</h3>
   <p class="line-clamp-2">{description}</p>
   {
