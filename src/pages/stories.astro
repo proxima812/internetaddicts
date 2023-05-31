@@ -9,7 +9,7 @@ const story = await Astro.glob("./stories/*.{md,mdx}");
  desc="Личные истории членов АИЗ, которые прошли путь и пришли к душевному спокойствию."
 >
  <div class="container">
-  <div class="grid gap-5 grid-cols-2">
+  <div class="grid gap-5 grid-cols-1 md:grid-cols-2">
    {
     story.map((s) => (
      <article class="flex flex-col gap-2 bg-white p-4 rounded-lg">
