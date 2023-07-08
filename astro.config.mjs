@@ -1,15 +1,15 @@
+import image from "@astrojs/image";
 import mdx from "@astrojs/mdx";
 import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
-import compress from "astro-compress";
 import { defineConfig } from "astro/config";
 import remarkToc from "remark-toc";
-import image from "@astrojs/image";
 
 // https://astro.build/config
 export default defineConfig({
  site: "https://internetaddicts.ru",
+ compressHTML: true,
  integrations: [
   mdx(),
   partytown({
@@ -21,7 +21,6 @@ export default defineConfig({
   tailwind({
    applyBaseStyles: false,
   }),
-  compress(),
   image({
    serviceEntryPoint: "@astrojs/image/sharp",
    logLevel: "debug",
