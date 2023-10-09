@@ -5,6 +5,20 @@ import Layout from '../../layout/Layout.astro'
 const live_link =
   'https://2gis.ru/moscow/inside/4504235282805560?utm_referrer=https%3a%2f%2finternetaddicts.ru%2f&fa821dba_ipp_key=v1675869408712%2Fv33947245ba5adc7a72e273%2FDlq34nnVp7DCeNv8PWdapQ%3d%3d&fa821dba_ipp_uid=1671181696020%2fCdsnCwQhLNuooU3x%2fg2jA6oWiM3uYDU%2fEIUuClg%3d%3d'
 const online_link = 'https://t.me/aiz_itta'
+
+//  interface Props {
+//   frontmatter: {
+//     name: string
+//     description: string
+//     date: string
+//     type: string
+//     link: string
+//   }
+// }
+// const {
+//   frontmatter: { name, description, date, type, link },
+// } = Astro.props
+const groups = await Astro.glob('./*')
 ---
 
 <Layout
@@ -13,7 +27,7 @@ const online_link = 'https://t.me/aiz_itta'
 >
   <section class="groups">
     <div class="container">
-      <div class="grid">
+      <!-- <div class="grid">
         <Group
           type_group="Онлайн-собрание"
           day="Понедельник"
@@ -35,7 +49,7 @@ const online_link = 'https://t.me/aiz_itta'
           desc="Ведущий: Сергей"
           link={online_link}
         />
-        
+
         <Group
           type_group="Живое собрание"
           type_group_class="group-live"
@@ -77,6 +91,50 @@ const online_link = 'https://t.me/aiz_itta'
           desc="Шаги"
           link={live_link}
         />
+      </div> -->
+      <div class="grid">
+        {
+          groups.map((group) => (
+            <div class="p-4 bg-gray-50 rounded-lg ring-1 ring-gray-200">
+              <div class="flex flex-col gap-3">
+                <div class="flex items-center justify-between gap-2 flex-wrap">
+                  <h4 class="font-bold text-lg">{group.frontmatter.name}</h4>
+                  {group.frontmatter.type === 'Онлайн' ? (
+                    <span class="bg-green-100 ring-1 ring-green-200 px-2 py-1 rounded-md">
+                      🌐 {group.frontmatter.type}
+                    </span>
+                  ) : (
+                    <span class="bg-sky-100 ring-1 ring-sky-200 px-2 py-1 rounded-md">
+                      🌤 {group.frontmatter.type}
+                    </span>
+                  )}
+                </div>
+                <time class="font-medium" datetime={group.frontmatter.date}>
+                  ⌚
+                  <span class="underline underline-offset-4">
+                    {group.frontmatter.date}
+                  </span>
+                </time>
+                <p>{group.frontmatter.description}</p>
+                {group.frontmatter.type === 'Онлайн' ? (
+                  <a
+                    href={group.frontmatter.link}
+                    class="text-center py-1 px-2 rounded-md bg-blue-500 text-white hover:bg-blue-700"
+                  >
+                    Войти
+                  </a>
+                ) : (
+                  <a
+                    href={group.frontmatter.link}
+                    class="text-center py-1 px-2 rounded-md bg-purple-500 text-white hover:bg-purple-700"
+                  >
+                    На карте
+                  </a>
+                )}
+              </div>
+            </div>
+          ))
+        }
       </div>
     </div>
   </section>
