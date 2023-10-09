@@ -1,0 +1,108 @@
+---
+import Group from '../../components/blocks/Group.astro'
+import Layout from '../../layout/Layout.astro'
+
+const live_link =
+  'https://2gis.ru/moscow/inside/4504235282805560?utm_referrer=https%3a%2f%2finternetaddicts.ru%2f&fa821dba_ipp_key=v1675869408712%2Fv33947245ba5adc7a72e273%2FDlq34nnVp7DCeNv8PWdapQ%3d%3d&fa821dba_ipp_uid=1671181696020%2fCdsnCwQhLNuooU3x%2fg2jA6oWiM3uYDU%2fEIUuClg%3d%3d'
+const online_link = 'https://t.me/aiz_itta'
+---
+
+<Layout
+  title="Онлайн собрания и Офлайн"
+  desc="Время встреч для анонимных интернет зависимых, шде деляться опытом, силами и надеждой."
+>
+  <section class="groups">
+    <div class="container">
+      <div class="grid">
+        <Group
+          type_group="Онлайн-собрание"
+          day="Понедельник"
+          time="⌚ 13:00"
+          desc="Ведущая: Полина"
+          link={online_link}
+        />
+        <Group
+          type_group="Онлайн-собрание"
+          day="Вторник"
+          time="⌚ 20:00"
+          desc="высказываемся по кругу, по темам, по 4-6 минут."
+          link="https://t.me/+SDRtlysnh_9kNDE9"
+        />
+        <Group
+          type_group="Онлайн-собрание"
+          day="Среда"
+          time="⌚ 20:00"
+          desc="Ведущий: Сергей"
+          link={online_link}
+        />
+        
+        <Group
+          type_group="Живое собрание"
+          type_group_class="group-live"
+          day="Среда"
+          point="📍 г. Москва"
+          time="12:00"
+          desc="Шаги"
+          link={live_link}
+        />
+        <Group
+          type_group="Живое собрание"
+          type_group_class="group-live"
+          day="Суббота"
+          point="📍Санкт-Петербург, Колпинская ул, д.27-29 (метро Чкаловская)"
+          time="12:00"
+          desc="(чат группы: https://t.me/itaa_spb)"
+          link="https://t.me/itaa_spb)"
+        />
+        <Group
+          type_group="Онлайн-собрание"
+          day="Четверг"
+          time="⌚ 20:00"
+          desc="высказываемся по кругу, по темам, по 4-6 минут."
+          link={online_link}
+        />
+        <Group
+          type_group="Онлайн-собрание"
+          day="Пятница"
+          time="⌚ 20:00"
+          desc="высказываемся по кругу, по темам, по 4-6 минут."
+          link={online_link}
+        />
+        <Group
+          type_group="Живое собрание"
+          type_group_class="group-live"
+          day="Суббота"
+          time="18:00"
+          point="📍 г. Москва"
+          desc="Шаги"
+          link={live_link}
+        />
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .grid {
+    padding: 30px;
+    align-items: start;
+    border-radius: var(--border-large);
+    background-color: var(--white);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 992px) {
+    .grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 768px) {
+    .grid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    .grid {
+      margin: 0 -20px 0;
+    }
+  }
+</style>

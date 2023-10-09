@@ -1,193 +1,153 @@
 ---
-import { Schema } from "astro-seo-schema";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-import Nav from "../components/Nav.astro";
-import ToUp from "../components/blocks/ToUp.astro";
-import { BANNER } from "../consts";
-import "../css/base.css";
-import "../css/default.css";
-import "../css/style.css";
+import Footer from '../components/Footer.astro'
+import Header from '../components/Header.astro'
+import Nav from '../components/Nav.astro'
+import ToUp from '../components/blocks/ToUp.astro'
+import { BANNER } from '../consts'
+import '../css/base.css'
+import '../css/default.css'
+import '../css/style.css'
 
 export interface Props {
- title?: string;
- desc?: string;
- typeSite?: string;
- pubDate?: string;
+  title?: string
+  desc?: string
+  typeSite?: string
+  pubDate?: string
 }
 
-const LD_name = "internetaddicts.ru";
+const LD_name = 'internetaddicts.ru'
 
-const poster = BANNER;
+const poster = BANNER
 
-const { title, desc, typeSite, pubDate } = Astro.props;
+const { title, desc, typeSite, pubDate } = Astro.props
 
-const typeSiteFinal = typeSite ?? "website";
-const verification_yandex = "4b2209308b18d6d7";
-const verification_google = "yG8qqyFB5KKCPLRVIaTwLRb44KoITy1i1bbCqL95iyo";
+const typeSiteFinal = typeSite ?? 'website'
+const verification_yandex = '4b2209308b18d6d7'
+const verification_google = 'yG8qqyFB5KKCPLRVIaTwLRb44KoITy1i1bbCqL95iyo'
 ---
 
 <!DOCTYPE html>
 <html lang="ru">
- <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width" />
-  <meta name="theme-color" content="#EAEEFA" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="generator" content={Astro.generator} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#EAEEFA" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="generator" content={Astro.generator} />
 
-  <link
-   rel="preload"
-   href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
-   as="style"
-  />
-  <link
-   rel="stylesheet"
-   href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
-  />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-  <link rel="manifest" href="/manifest.webmanifest" />
-  <link rel="yandex-tableau-widget" href="/tableau.json" />
-
-  <link rel="icon" type="image/svg+xml" href="/favicons/icon.svg" />
-  <link
-   rel="apple-touch-icon"
-   type="image/png"
-   sizes="167x167"
-   href="/favicons/icon-167.png"
-  />
-  <link
-   rel="apple-touch-icon"
-   type="image/png"
-   sizes="180x180"
-   href="/favicons/icon-180.png"
-  />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/icon-32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/icon-16.png" />
-  <link rel="icon" type="image/png" sizes="48x48" href="/favicons/icon-48.png" />
-  <link rel="icon" type="image/png" sizes="192x192" href="/favicons/icon-192.png" />
-
-  <meta name="yandex-verification" content={verification_yandex} />
-  <meta name="google-site-verification" content={verification_google} />
-
-  <meta name="robots" content="index, follow" />
-  <link rel="canonical" href={Astro.url} />
-
-  <meta name="title" content={"АИЗ | " + title} />
-  <meta name="description" content={desc} />
-
-  <meta property="og:type" content={typeSiteFinal} />
-  <meta property="og:url" content={Astro.url} />
-  <meta property="og:site_name" content="АИЗ - Анонимные Интернет Зависимые" />
-  <meta property="og:title" content={"АИЗ | " + title} />
-  <meta property="og:description" content={desc} />
-  <meta property="og:image" content={BANNER} />
-
-  {pubDate && <meta property="article:modified_time" content={pubDate} />}
-
-  {
-   typeSite === "article" ? (
-    <Schema
-     item={{
-      "@context": "https://schema.org",
-      "@type": "Article",
-      headline: `${title}`,
-      image: [`${poster}`],
-      author: {
-       "@type": "Person",
-       name: "internetaddicts.ru",
-      },
-      publisher: {
-       "@type": "Organization",
-       name: `${LD_name}`,
-       logo: {
-        "@type": "ImageObject",
-        url: `${Astro.site}favicon.svg`,
-       },
-      },
-      dateModified: `${pubDate}`,
-      description: `${desc}`,
-      mainEntityOfPage: {
-       "@type": "WebPage",
-       "@id": `${Astro.url}`,
-      },
-     }}
+    <link
+      rel="preload"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+      as="style"
     />
-   ) : (
-    <Schema
-     item={{
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      name: `${LD_name}`,
-      url: `${Astro.site}`,
-     }}
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
     />
-   )
-  }
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-  <title>{"АИЗ | " + title}</title>
- </head>
- <body>
-  <main class="main-layout">
-   <Header />
-   <ToUp />
-   <Nav />
-   <slot />
-   <Footer />
-  </main>
-  <!-- Yandex.Metrika counter -->
-  <script type="text/partytown" async>
-   (function (m, e, t, r, i, k, a) {
-    m[i] =
-     m[i] ||
-     function () {
-      (m[i].a = m[i].a || []).push(arguments);
-     };
-    m[i].l = 1 * new Date();
-    for (var j = 0; j < document.scripts.length; j++) {
-     if (document.scripts[j].src === r) {
-      return;
-     }
-    }
-    (k = e.createElement(t)),
-     (a = e.getElementsByTagName(t)[0]),
-     (k.async = 1),
-     (k.src = r),
-     a.parentNode.insertBefore(k, a);
-   })(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="yandex-tableau-widget" href="/tableau.json" />
 
-   ym(92393833, "init", {
-    clickmap: true,
-    trackLinks: true,
-    accurateTrackBounce: true,
-   });
-  </script>
-  <noscript
-   ><div>
-    <img
-     src="https://mc.yandex.ru/watch/92393833"
-     style="position:absolute; left:-9999px;"
-     alt=""
+    <link rel="icon" type="image/svg+xml" href="/favicons/icon.svg" />
+    <link
+      rel="apple-touch-icon"
+      type="image/png"
+      sizes="167x167"
+      href="/favicons/icon-167.png"
     />
-   </div></noscript
-  >
-  <!-- /Yandex.Metrika counter -->
- </body>
+    <link
+      rel="apple-touch-icon"
+      type="image/png"
+      sizes="180x180"
+      href="/favicons/icon-180.png"
+    />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/icon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/icon-16.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicons/icon-48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/icon-192.png" />
+
+    <meta name="yandex-verification" content={verification_yandex} />
+    <meta name="google-site-verification" content={verification_google} />
+
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={Astro.url} />
+
+    <meta name="title" content={'АИЗ | ' + title} />
+    <meta name="description" content={desc} />
+
+    <meta property="og:type" content={typeSiteFinal} />
+    <meta property="og:url" content={Astro.url} />
+    <meta property="og:site_name" content="АИЗ - Анонимные Интернет Зависимые" />
+    <meta property="og:title" content={'АИЗ | ' + title} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:image" content={BANNER} />
+
+    {pubDate && <meta property="article:modified_time" content={pubDate} />}
+
+    <title>{'АИЗ | ' + title}</title>
+  </head>
+  <body>
+    <main class="main-layout">
+      <Header />
+      <ToUp />
+      <Nav />
+      <slot />
+      <Footer />
+    </main>
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+      ;(function (m, e, t, r, i, k, a) {
+        m[i] =
+          m[i] ||
+          function () {
+            ;(m[i].a = m[i].a || []).push(arguments)
+          }
+        m[i].l = 1 * new Date()
+        for (var j = 0; j < document.scripts.length; j++) {
+          if (document.scripts[j].src === r) {
+            return
+          }
+        }
+        ;(k = e.createElement(t)),
+          (a = e.getElementsByTagName(t)[0]),
+          (k.async = 1),
+          (k.src = r),
+          a.parentNode.insertBefore(k, a)
+      })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
+
+      ym(88691431, 'init', {
+        clickmap: true,
+        trackLinks: true,
+        accurateTrackBounce: true,
+        webvisor: true,
+      })
+    </script>
+    <noscript
+      ><div>
+        <img
+          src="https://mc.yandex.ru/watch/88691431"
+          style="position:absolute; left:-9999px;"
+          alt=""
+        />
+      </div></noscript
+    >
+    <!-- /Yandex.Metrika counter -->
+  </body>
 </html>
 <style is:global>
- html,
- body {
-  min-width: 320px;
-  font-family: "Roboto", sans-serif;
-  color: var(--text);
-  background-color: #f7f7f7;
-  scroll-behavior: smooth;
- }
- .main-layout {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
- }
+  html,
+  body {
+    min-width: 320px;
+    font-family: 'Roboto', sans-serif;
+    color: var(--text);
+    background-color: #f7f7f7;
+    scroll-behavior: smooth;
+  }
+  .main-layout {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 </style>
