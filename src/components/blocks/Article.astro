@@ -1,16 +1,21 @@
 ---
 export interface Props {
-  img?: string
-  url: string
-  title: string
-  description: string
-  pubDate?: string
+  data: {
+    img?: string
+    title: string
+    description: string
+    pubDate?: string
+  }
+  slug
 }
 
-const { img, url, title, description, pubDate } = Astro.props
+const {
+  data: { description, title, pubDate, img },
+  slug,
+} = Astro.props
 ---
 
-<a href={url} class="hover-top">
+<a href={`/posts/${slug}`} class="hover-top">
   <article class="rounded-lg pb-5 prose max-w-none">
     <!-- {
    img && (

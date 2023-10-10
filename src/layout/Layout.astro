@@ -13,13 +13,14 @@ export interface Props {
   desc?: string
   typeSite?: string
   pubDate?: string
+  elemsTrue?: boolean
 }
 
 const LD_name = 'internetaddicts.ru'
 
 const poster = BANNER
 
-const { title, desc, typeSite, pubDate } = Astro.props
+const { title, desc, typeSite, pubDate, elemsTrue } = Astro.props
 
 const typeSiteFinal = typeSite ?? 'website'
 const verification_yandex = '4b2209308b18d6d7'

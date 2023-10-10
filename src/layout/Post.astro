@@ -1,27 +1,23 @@
 ---
-import Layout from "./Layout.astro";
+import Layout from "./Layout.astro"
 
 export interface Props {
- content: {
+
   url: string;
   title: string;
   description: string;
   pubDate?: string;
- };
+
 }
 
 const {
- content: { title, description, pubDate },
-} = Astro.props;
+  title, description, pubDate, } = Astro.props;
 ---
 
 <Layout title={title} desc={description} typeSite="article" pubDate={pubDate}>
  <main class="p-5">
-  <div
-   class="mx-auto max-w-[780px] prose prose-a:text-blue-500 prose-a:no-underline prose-stone"
-  >
-   <h1>{title}</h1>
+
    <slot />
-  </div>
+
  </main>
 </Layout>

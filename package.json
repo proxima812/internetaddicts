@@ -4,22 +4,34 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "astro dev",
+    "dev": "astro dev --host 127.0.0.1",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.19.7",
+    "@astrojs/react": "^3.0.0",
+    "@astrojs/mdx": "^1.0.0",
     "@astrojs/partytown": "^1.0.3",
     "@astrojs/rss": "^3.0.0",
-    "@astrojs/sitemap": "^2.0.2",
-    "@astrojs/tailwind": "^4.0.0",
-    "astro": "^2.10.15",
-    "tailwindcss": "^3.3.2"
+    "@astrojs/sitemap": "^3.0.0",
+    "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/markdoc": "^0.5.0",
+    "@keystatic/astro": "^1.0.2",
+    "@keystatic/core": "^0.1.5",
+    "@types/react": "^18.2.8",
+    "@types/react-dom": "^18.0.11",
+    "astro": "^3.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.5.9"
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.15",
+    "postcss": "^8.4.29",
+    "prettier": "^3.0.3",
+    "prettier-plugin-astro": "^0.12.0",
+    "tailwindcss": "^3.3.3"
   }
 }
