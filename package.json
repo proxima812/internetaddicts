@@ -11,13 +11,14 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/react": "^3.0.0",
+    "@astrojs/markdoc": "^0.5.0",
     "@astrojs/mdx": "^1.0.0",
+    "@astrojs/netlify": "^3.0.2",
     "@astrojs/partytown": "^1.0.3",
+    "@astrojs/react": "^3.0.0",
     "@astrojs/rss": "^3.0.0",
     "@astrojs/sitemap": "^3.0.0",
     "@astrojs/tailwind": "^5.0.0",
-    "@astrojs/markdoc": "^0.5.0",
     "@keystatic/astro": "^1.0.2",
     "@keystatic/core": "^0.1.5",
     "@types/react": "^18.2.8",
