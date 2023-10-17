@@ -251,43 +251,6 @@ declare module 'astro:content' {
   data: InferEntrySchema<"groups">
 } & { render(): Render[".mdoc"] };
 };
-"notes": {
-"aiz-i-12shagov.md": {
-	id: "aiz-i-12shagov.md";
-  slug: "aiz-i-12shagov";
-  body: string;
-  collection: "notes";
-  data: InferEntrySchema<"notes">
-} & { render(): Render[".md"] };
-"chto-delat-esli-vash-drug-ili-chlen-semi-internet-zavisimyj.md": {
-	id: "chto-delat-esli-vash-drug-ili-chlen-semi-internet-zavisimyj.md";
-  slug: "chto-delat-esli-vash-drug-ili-chlen-semi-internet-zavisimyj";
-  body: string;
-  collection: "notes";
-  data: InferEntrySchema<"notes">
-} & { render(): Render[".md"] };
-"instrumenty-dlya-polnocennoj-zhizni.md": {
-	id: "instrumenty-dlya-polnocennoj-zhizni.md";
-  slug: "instrumenty-dlya-polnocennoj-zhizni";
-  body: string;
-  collection: "notes";
-  data: InferEntrySchema<"notes">
-} & { render(): Render[".md"] };
-"kak-preodolet-internet-zavisimost-s-pomoshchyu-duhovnyh-principov.md": {
-	id: "kak-preodolet-internet-zavisimost-s-pomoshchyu-duhovnyh-principov.md";
-  slug: "kak-preodolet-internet-zavisimost-s-pomoshchyu-duhovnyh-principov";
-  body: string;
-  collection: "notes";
-  data: InferEntrySchema<"notes">
-} & { render(): Render[".md"] };
-"odin-iz-metodov-prohozhdeniya-shagov-AIZ.md": {
-	id: "odin-iz-metodov-prohozhdeniya-shagov-AIZ.md";
-  slug: "odin-iz-metodov-prohozhdeniya-shagov-aiz";
-  body: string;
-  collection: "notes";
-  data: InferEntrySchema<"notes">
-} & { render(): Render[".md"] };
-};
 "posts": {
 "12step-netlify-app.mdoc": {
 	id: "12step-netlify-app.mdoc";
@@ -299,6 +262,41 @@ declare module 'astro:content' {
 "12steps-group-aiz.mdoc": {
 	id: "12steps-group-aiz.mdoc";
   slug: "12steps-group-aiz";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
+"chto-delat-esli-vash-drug-ili-chlen-semi-internet-zavisimyj.mdoc": {
+	id: "chto-delat-esli-vash-drug-ili-chlen-semi-internet-zavisimyj.mdoc";
+  slug: "chto-delat-esli-vash-drug-ili-chlen-semi-internet-zavisimyj";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
+"instrumenty-dlya-polnoczennoj-zhizni.mdoc": {
+	id: "instrumenty-dlya-polnoczennoj-zhizni.mdoc";
+  slug: "instrumenty-dlya-polnoczennoj-zhizni";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
+"internet-zavisimost-i-12-shagov.mdoc": {
+	id: "internet-zavisimost-i-12-shagov.mdoc";
+  slug: "internet-zavisimost-i-12-shagov";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
+"kak-preodolet-internet-zavisimost-s-pomoshhyu-duhovnyh-princzipov.mdoc": {
+	id: "kak-preodolet-internet-zavisimost-s-pomoshhyu-duhovnyh-princzipov.mdoc";
+  slug: "kak-preodolet-internet-zavisimost-s-pomoshhyu-duhovnyh-princzipov";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
+"odin-iz-metodov-prohozhdeniya-shagov-aiz.mdoc": {
+	id: "odin-iz-metodov-prohozhdeniya-shagov-aiz.mdoc";
+  slug: "odin-iz-metodov-prohozhdeniya-shagov-aiz";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">

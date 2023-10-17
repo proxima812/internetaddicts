@@ -2,24 +2,25 @@
 import { getCollection } from 'astro:content'
 import Post from '../../layout/Post.astro'
 
-
-export const prerender = true;
+export const prerender = true
 
 export async function getStaticPaths() {
-  const posts = await getCollection("story");
+  const posts = await getCollection('story')
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: post,
-  }));
+  }))
 }
 
-const post = Astro.props;
-const { Content } = await post.render();
+const post = Astro.props
+const { Content } = await post.render()
 ---
 
 <Post title={post.data.title}>
-    <main class="mx-auto max-w-[780px] prose lg:prose-lg md:prose-md prose-p:text-slate-900 prose-a:text-blue-500 prose-headings:leading-relaxed  prose-a:no-underline prose-stone">
-       <h1>{post.data.title}</h1>
-      <Content />
-    </main>
+  <main
+    class="mx-auto max-w-[780px] prose lg:prose-lg md:prose-md prose-p:text-slate-900 prose-a:text-blue-500 prose-p:font-base prose-p:leading-relaxed prose-a:no-underline prose-stone"
+  >
+    <h1>{post.data.title}</h1>
+    <Content />
+  </main>
 </Post>

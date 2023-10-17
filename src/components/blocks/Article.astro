@@ -1,10 +1,11 @@
 ---
+import { Image } from 'astro:assets'
 export interface Props {
   data: {
-    img?: string
+    img: string
     title: string
     description: string
-    pubDate?: string
+    pubDate: string
   }
   slug
 }
@@ -17,16 +18,16 @@ const {
 
 <a href={`/posts/${slug}`} class="hover-top">
   <article class="rounded-lg pb-5 prose max-w-none">
-    <!-- {
-   img && (
-    <CustomImage src={img} title="Фотография к посту" alt="Фотография к посту" loading />
-   )
-  } -->
+    {
+      img && (
+        <Image src={img} class="rounded-xl" alt={title} format={'avif'} quality={'low'} />
+      )
+    }
     <h3>{title}</h3>
-    <p class="line-clamp-2">{description}</p>
+    <p class="line-clamp-2 text-gray-500">{description}</p>
     {
       pubDate && (
-        <time datetime={pubDate}>
+        <time datetime={pubDate} class="font-medium">
           {new Date(pubDate).toLocaleDateString('ru-RU', {
             year: 'numeric',
             month: 'numeric',

@@ -1,25 +1,23 @@
 ---
 import { getCollection } from 'astro:content'
-import Article from "../components/blocks/Article.astro"
-import Layout from "../layout/Layout.astro"
+import Article from '../components/blocks/Article.astro'
+import Layout from '../layout/Layout.astro'
 const posts = await getCollection('posts')
+const getPosts = posts
 ---
 
 <Layout
- title="Посты"
- desc="Посты АИЗ. Мероприятие, короткие новости, методы шагов, инструменты"
+  title="Посты"
+  desc="Посты АИЗ. Мероприятие, короткие новости, методы шагов, инструменты"
 >
- <div class="container">
-  <section>
-   <div class="grid gap-10 grid-cols-1 md:grid-cols-2">
-    {posts &&
-     posts.map((post) => (
-      <Article
-       slug={post.slug} data={post.data}
-      />
-     ))
-    }
-   </div>
-  </section>
- </div>
+  <div class="container">
+    <section class="mt-2">
+      <div class="grid gap-10 grid-cols-1 md:grid-cols-2">
+        {
+          getPosts &&
+            getPosts.map((post) => <Article slug={post.slug} data={post.data} />)
+        }
+      </div>
+    </section>
+  </div>
 </Layout>

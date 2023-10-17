@@ -2,8 +2,13 @@ import { collection, config, fields } from '@keystatic/core'
 
 export default config({
   storage: {
-    kind: 'local',
+    kind: 'github',
+    repo: {
+      owner: 'itaaSite',
+      name: 'internetaddicts',
+    },
   },
+
   collections: {
     posts: collection({
       label: 'Посты',
@@ -41,37 +46,6 @@ export default config({
         }),
       },
     }),
-    // notes: collection({
-    //   label: 'Заметки',
-    //   slugField: 'title',
-    //   path: 'src/content/notes/*',
-    //   entryLayout: 'content',
-    //   format: {
-    //       contentField: 'content',
-    //     },
-    //   schema: {
-    //     title: fields.slug({ name: { label: 'Заголовок' } }),
-    //     description: fields.text({
-    //       label: 'Описание',
-    //       description: 'от 20 до 150 символов',
-    //       validation: { length: { min: 20, max: 150 } }
-    //     }),
-    //     pubDate: fields.date({
-    //       label: 'Время',
-    //       description: 'Время публикации',
-    //     }),
-    //     content: fields.document({
-    //       label: 'Контент',
-    //       formatting: true,
-    //       dividers: true,
-    //       links: true,
-    //       images: {
-    //         directory: 'src/assets/images/notes',
-    //         publicPath: '../../assets/images/notes/',
-    //       },
-    //     }),
-    //   },
-    // }),
     story: collection({
       label: 'Л. истории',
       slugField: 'title',
@@ -100,7 +74,6 @@ export default config({
       label: 'Группы',
       slugField: 'title',
       path: 'src/content/groups/*',
-
       schema: {
         title: fields.slug({ name: { label: 'Название' } }),
         description: fields.text({
@@ -108,7 +81,7 @@ export default config({
           description: 'от 20 до 420 символов',
           validation: { length: { min: 20, max: 420 } },
         }),
-        date: fields.text({
+        dateTime: fields.text({
           label: 'Время',
           defaultValue: '20:00',
           description: 'Время публикации',

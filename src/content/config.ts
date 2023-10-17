@@ -1,6 +1,6 @@
 import { defineCollection, z } from 'astro:content'
 
-const groupCollection = defineCollection({
+const groupsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     dateTime: z.string().default('20:00'),
@@ -11,32 +11,24 @@ const groupCollection = defineCollection({
 })
 
 const postsCollection = defineCollection({
-  schema: z.object({
-    title: z.string().max(80),
-    description: z.string(),
-    pubDate: z.string(),
-    img: z.string().optional(),
-  })
-})
-
-const notesCollection = defineCollection({
-   schema: z.object({
-    title: z.string().max(80),
-    description: z.string(),
-    img: z.string(),
-  })
+  schema: ({ image }) =>
+    z.object({
+      title: z.string().max(80),
+      description: z.string(),
+      pubDate: z.string(),
+      img: image(),
+    }),
 })
 
 const storyCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     description: z.string(),
-  })
+  }),
 })
 
 export const collections = {
-  groups: groupCollection,
-  notes: notesCollection,
+  groups: groupsCollection,
   posts: postsCollection,
   story: storyCollection,
 }

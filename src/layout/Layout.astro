@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from 'astro:transitions'
 import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
 import Nav from '../components/Nav.astro'
@@ -27,7 +28,7 @@ const verification_yandex = '4b2209308b18d6d7'
 const verification_google = 'yG8qqyFB5KKCPLRVIaTwLRb44KoITy1i1bbCqL95iyo'
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
@@ -86,7 +87,7 @@ const verification_google = 'yG8qqyFB5KKCPLRVIaTwLRb44KoITy1i1bbCqL95iyo'
     <meta property="og:image" content={BANNER} />
 
     {pubDate && <meta property="article:modified_time" content={pubDate} />}
-
+    <ViewTransitions />
     <title>{'АИЗ | ' + title}</title>
   </head>
   <body>
@@ -99,31 +100,31 @@ const verification_google = 'yG8qqyFB5KKCPLRVIaTwLRb44KoITy1i1bbCqL95iyo'
     </main>
     <!-- Yandex.Metrika counter -->
     <script type="text/javascript">
-      ;(function (m, e, t, r, i, k, a) {
-        m[i] =
-          m[i] ||
-          function () {
-            ;(m[i].a = m[i].a || []).push(arguments)
-          }
-        m[i].l = 1 * new Date()
-        for (var j = 0; j < document.scripts.length; j++) {
-          if (document.scripts[j].src === r) {
-            return
-          }
+    ; (function (m, e, t, r, i, k, a) {
+      m[i] =
+        m[i] ||
+        function () {
+          ; (m[i].a = m[i].a || []).push(arguments)
         }
-        ;(k = e.createElement(t)),
-          (a = e.getElementsByTagName(t)[0]),
-          (k.async = 1),
-          (k.src = r),
-          a.parentNode.insertBefore(k, a)
-      })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
+      m[i].l = 1 * new Date()
+      for (var j = 0; j < document.scripts.length; j++) {
+        if (document.scripts[j].src === r) {
+          return
+        }
+      }
+      ; (k = e.createElement(t)),
+        (a = e.getElementsByTagName(t)[0]),
+        (k.async = 1),
+        (k.src = r),
+        a.parentNode.insertBefore(k, a)
+    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
 
-      ym(88691431, 'init', {
-        clickmap: true,
-        trackLinks: true,
-        accurateTrackBounce: true,
-        webvisor: true,
-      })
+    ym(88691431, 'init', {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+      webvisor: true,
+    })
     </script>
     <noscript
       ><div>
@@ -135,20 +136,20 @@ const verification_google = 'yG8qqyFB5KKCPLRVIaTwLRb44KoITy1i1bbCqL95iyo'
       </div></noscript
     >
     <!-- /Yandex.Metrika counter -->
+    <style is:global>
+      html,
+      body {
+        min-width: 320px;
+        font-family: 'Roboto', sans-serif;
+        color: var(--text);
+        background-color: #f7f7f7;
+        scroll-behavior: smooth;
+      }
+      .main-layout {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
   </body>
 </html>
-<style is:global>
-  html,
-  body {
-    min-width: 320px;
-    font-family: 'Roboto', sans-serif;
-    color: var(--text);
-    background-color: #f7f7f7;
-    scroll-behavior: smooth;
-  }
-  .main-layout {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-</style>
