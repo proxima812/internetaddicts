@@ -1,14 +1,17 @@
 import { collection, config, fields } from '@keystatic/core'
 
-export default config({
-  storage: {
-    kind: 'github',
-    repo: {
-      owner: 'itaaSite',
-      name: 'internetaddicts',
-    },
-  },
+const isProd = import.meta.env.PROD
 
+export default config({
+  storage: isProd
+    ? {
+        kind: 'github',
+        repo: {
+          owner: 'itaaSite',
+          name: 'internetaddicts',
+        },
+      }
+    : { kind: 'local' },
   collections: {
     posts: collection({
       label: 'Посты',
@@ -74,8 +77,10 @@ export default config({
       label: 'Группы',
       slugField: 'title',
       path: 'src/content/groups/*',
+      format: { contentField: 'body' },
       schema: {
         title: fields.slug({ name: { label: 'Название' } }),
+
         description: fields.text({
           label: 'Описание',
           description: 'от 20 до 420 символов',
@@ -84,15 +89,20 @@ export default config({
         dateTime: fields.text({
           label: 'Время',
           defaultValue: '20:00',
-          description: 'Время публикации',
+          description: 'Время проведения собрания по МСК +3',
         }),
         type: fields.text({
           label: 'Тип группы',
-          description: 'Онлайн либо Живая',
+          description: '"Онлайн" либо "Живая"',
           defaultValue: 'Онлайн',
         }),
         link: fields.url({
           label: 'Ссылка (URL)',
+        }),
+        body: fields.document({
+          label: 'НЕ ЗАПОЛНЯТЬ!',
+          formatting: true,
+          links: true,
         }),
       },
     }),

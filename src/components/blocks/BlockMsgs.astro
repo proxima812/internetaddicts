@@ -1,122 +1,86 @@
 ---
+const msgEmodjiPart1 = [
+  {
+    emodji: '😞',
+    desc: 'Я всегда жду новых уведомлений от других людей.',
+  },
+  {
+    emodji: '😰',
+    desc: 'Я всегда чувствую тревогу, когда не имею доступа к интернету.',
+  },
+  {
+    emodji: '😐',
+    desc: 'Я провожу часы, просматривая социальные сети каждый день.',
+  },
+  {
+    emodji: '😕',
+    desc: 'Я не могу представить свою жизнь без интернета.',
+  },
+  {
+    emodji: '🤖',
+    desc: 'Я предпочитаю общаться с друзьями через онлайн-мессенджеры, а не лицом к лицу.',
+  },
+  {
+    emodji: '😮',
+    desc: 'Я всегда проверяю свой телефон на наличие уведомлений или новых обновлений.',
+  },
+]
+const msgEmodjiPart2 = [
+  {
+    emodji: '🙏',
+    desc: 'Я начал доверять себе и людям.',
+  },
+  {
+    emodji: '✊',
+    desc: 'Я знаю, что у меня есть нечто, что дарует мне силы для жизненного пути.',
+  },
+  {
+    emodji: '😄',
+    desc: 'Я провожу часы с пользой, а не залипая на экран.',
+  },
+  {
+    emodji: '😇',
+    desc: 'Я не думаю только о себе.',
+  },
+  {
+    emodji: '🤗',
+    desc: 'Я предпочитаю общаться с друзьями в живую, а не онлайн.',
+  },
+  {
+    emodji: '😝',
+    desc: 'Я не проверяю каждую секунду, кто и когда мне написал. Я живу здесь и сейчас.',
+  },
+]
 ---
 
-<div class="main-message">
- <p>💭 Мысли интернет зависимого человека</p>
-</div>
-<div class="row">
- <div class="block-message">
-  <span>😞</span>
-  <p>Я всегда жду новых уведомлений от других людей.</p>
- </div>
- <div class="block-message">
-  <span>😰</span>
-  <p>Я всегда чувствую тревогу, когда не имею доступа к интернету.</p>
- </div>
- <div class="block-message">
-  <span>😐</span>
-  <p>Я провожу часы, просматривая социальные сети каждый день.</p>
- </div>
- <div class="block-message">
-  <span>😕</span>
-  <p>Я не могу представить свою жизнь без интернета.</p>
- </div>
- <div class="block-message">
-  <span>🤖</span>
-  <p>Я предпочитаю общаться с друзьями через онлайн-мессенджеры, а не лицом к лицу.</p>
- </div>
- <div class="block-message">
-  <span>😮</span>
-  <p>Я всегда проверяю свой телефон на наличие уведомлений или новых обновлений.</p>
- </div>
-</div>
+<div class="flex flex-col gap-8">
+  <h3 class="text-xl md:text-2xl font-bold">
+    💭 Мысли интернет зависимого человека без решения!
+  </h3>
 
-<div class="main-message">
- <p>💭 Мысли выздоровевшего человека от безнадежного залипания в интернете</p>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {
+      msgEmodjiPart1.map((item) => (
+        <div class="flex items-center gap-4 bg-white rounded-2xl p-4 relative outline outline-offset-4 ring-2 ring-gray-100 outline-white">
+          <span class="text-2xl">{item.emodji}</span>
+          <p class="leading-tight">{item.desc}</p>
+        </div>
+      ))
+    }
+  </div>
+
+  <h3 class="text-xl md:text-2xl font-bold">
+    💭 Мысли выздоровевшего человека от безнадежного залипания в интернете благодаря 12
+    шагам!
+  </h3>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {
+      msgEmodjiPart2.map((item) => (
+        <div class="flex items-center gap-4 bg-white rounded-2xl p-4 relative outline outline-offset-4 ring-2 ring-gray-100 outline-white">
+          <span class="text-2xl">{item.emodji}</span>
+          <p class="leading-tight">{item.desc}</p>
+        </div>
+      ))
+    }
+  </div>
 </div>
-<div class="row-1">
- <div class="block-message">
-  <span>🙏</span>
-  <p>Я начал доверять себе и людям.</p>
- </div>
- <div class="block-message">
-  <span>✊</span>
-  <p>Я знаю, что у меня есть нечто, что дарует мне силы для жизненного пути.</p>
- </div>
- <div class="block-message">
-  <span>😄</span>
-  <p>Я провожу часы с пользой, а не залипая на экран.</p>
- </div>
- <div class="block-message">
-  <span>😇</span>
-  <p>Я не думаю только о себе.</p>
- </div>
- <div class="block-message">
-  <span>🤗</span>
-  <p>Я предпочитаю общаться с друзьями в живую, а не онлайн.</p>
- </div>
- <div class="block-message">
-  <span>😝</span>
-  <p>Я не проверяю каждую секунду, кто и когда мне написал. Я живу здесь и сейчас.</p>
- </div>
-</div>
-
-<style>
-  .row,
- .row-1 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
- }
- .main-message {
-  margin: 10px 0;
-  padding: 20px;
- }
- .main-message p {
-  font-size: 22px;
-  font-weight: 700;
-  color: #474747;
- }
- .block-message {
-  background-color: var(--white);
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  border-radius: 10px;
-  box-shadow: var(--shadow);
-  transition: background-color var(--animate), transform var(--animate);
- }
- .block-message:hover {
-  transform: translateY(-5px);
-  transition: background-color var(--animate), transform var(--animate);
-  background-color: #fce2e2;
- }
-
- .row-1 .block-message:hover {
-  background-color: var(--present);
- }
- .block-message span {
-  display: inline-block;
-  margin-right: 20px;
-  font-size: 24px;
- }
- .block-message p {
-  line-height: 120%;
-  font-size: 16px;
-  font-weight: 300;
-  color: var(--text);
- }
-  @media (max-width: 992px) {
-      .row,
-  .row-1 {
-   grid-template-columns: repeat(2, 1fr);
-  }
-  }
-   @media (max-width: 768px) {
-
-  .row,
-  .row-1 {
-   grid-template-columns: repeat(1, 1fr);
-  }
- }
-</style>

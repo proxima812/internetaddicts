@@ -1,55 +1,63 @@
 ---
-import BlockMsgs from "../components/blocks/BlockMsgs.astro";
-import Title from "../components/blocks/Title.astro";
-import Layout from "../layout/Layout.astro";
+import { getCollection } from 'astro:content'
+import AIZinfosvg from '../components/AIZinfosvg.astro'
+import AIZsvg from '../components/AIZsvg.astro'
+import CTA from '../components/CTA.astro'
+import BlockMsgs from '../components/blocks/BlockMsgs.astro'
+import Title from '../components/blocks/Title.astro'
+import Layout from '../layout/Layout.astro'
 
-const p = "leading-relaxed";
+const links = [
+  { name: '🎈 Посты', link: '/posts', showPostCount: true },
+  { name: 'Присоединиться к нам', link: 'https://t.me/aiz_itta', styleWow: true },
+  { name: 'Инфоканал', link: 'https://t.me/aiz_info', styleInfo: true },
+  { name: '💎 Истории', link: '/stories', showPostCountStory: true },
+]
+
+const showPostCountLength = (await getCollection('posts')).length
+const showPostCountLengthStory = (await getCollection('story')).length
 ---
 
 <Layout
- title="Анонимные Интернет Зависимые - СНГ"
- desc="Это сообщество людей, которые поддерживают друг друга в преодолении проблем, вызванных одержимым использованием интернета и технических устройств."
+  title="Анонимные Интернет Зависимые - СНГ"
+  desc="Это сообщество людей, которые поддерживают друг друга в преодолении проблем, вызванных одержимым использованием интернета и технических устройств."
 >
- <div class="container">
-  <div
-   class="py-6 md:py-14 max-w-full prose prose-p:my-0 prose-span:my-0 flex flex-col items-center justify-center"
-  >
-   <Title />
+  <div class="flex flex-col gap-20">
+    <Title />
 
-   <div class="grid items-start gap-10 grid-cols-1 md:grid-cols-2">
-    <div class={p}>
-     <p>
-      <b>АИЗ сообщество людей,</b> которые поддерживают друг друга в преодолении проблем, вызванных
-      деструктивным, одержимым и компульсивным использованием интернета и гаджетов.
-     </p>
-    </div>
-    <div class={p}>
-     <p>
-      <b>Сообщество АИЗ</b> не связаны ни с какой политической, религиозной или правоохранительной
-      организацией, и не находимся ни под чьим контролем.
-     </p>
-    </div>
-    <div class={p}>
-     <p>
-      <b>Наша цель</b> воздерживаться от разрушительного использования интернета и помочь другим
-      страдающим от этой зависимости.
-     </p>
-    </div>
-    <div class={p}>
-     <p>
-      <b>Присоединиться к нам</b>- может каждый, независимо от возраста, пола,
-      национальности, убеждений, религии, или отсутствия таковой.
-     </p>
-    </div>
-    <div class={p}>
-     <p>
-      <b>Единственным условием для членства в АИЗ</b> является желание преодолеть интернет-зависимость
-      и остановить компульсивное использование интернета и устройств.
-     </p>
-    </div>
-   </div>
+    <nav
+      class="bg-white md:flex-row flex-col rounded-xl p-2 gap-2 flex items-center max-w-4xl mx-auto"
+    >
+      {
+        links.map((item) => (
+          <a
+            data-aos="zoom-out"
+            data-aos-duration="1000"
+            href={item.link}
+            style={`${
+              item.styleWow
+                ? 'background-image: radial-gradient(76.33% 76.59% at 50.15% 6.06%, #98F4A9 0, rgba(97, 239, 180, 1) 100%'
+                : null
+            } `}
+            class={`${
+              item.styleWow
+                ? 'flex gap-2 py-2 px-3 rounded-lg text-white font-bold tracking-wide'
+                : 'py-2 px-3 rounded-lg bg-gray-50 ring-1 ring-gray-100 hover:bg-gray-100 transition-colors ease-linear font-medium text-center self-stretch ' +
+                  (item.styleInfo
+                    ? 'flex item gap-2 py-2 px-3 rounded-lg bg-gradient-to-tr from-purple-400 to-indigo-500 text-white font-bold tracking-wide justify-center'
+                    : null)
+            }  `}
+          >
+            {item.styleWow ? <AIZsvg /> : null} {item.styleInfo ? <AIZinfosvg /> : null}{' '}
+            {item.name} {item.showPostCount ? ` (${showPostCountLength})` : null}
+            {item.showPostCountStory ? ` (${showPostCountLengthStory})` : null}
+          </a>
+        ))
+      }
+    </nav>
+
+    <CTA />
+
+    <BlockMsgs />
   </div>
-
-  <BlockMsgs />
- </div>
 </Layout>

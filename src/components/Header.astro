@@ -1,60 +1,14 @@
 ---
-import { TELEGRAM, VK, YOUTUBE } from "../consts";
-import Logo from "./Logo.astro";
+import Link from './Link.astro'
+import Logo from './Logo.astro'
 ---
 
-<header>
- <div class="container">
-  <div class="menu justify-center md:justify-between">
-   <div>
+<header class="py-5 bg-white">
+  <div class="container max-w-6xl px-5 mx-auto gap-5 flex flex-wrap justify-between items-center">
     <Logo />
-   </div>
-   <div class="socials">
-    <a href={VK} target="_blank">ВКонтакте</a>
-    <a href={TELEGRAM} target="_blank">Телеграм</a>
-    <a href={YOUTUBE} target="_blank">Ютуб</a>
-   </div>
+    <nav class="flex gap-2 flex-wrap items-center">
+      <Link href="/">🏠 Главная</Link>
+      <Link href="/groups">🎁 Собрания</Link>
+    </nav>
   </div>
- </div>
 </header>
-
-<style>
- header {
-  background-color: var(--white);
-  padding: 15px 0;
- }
- .mail a {
-  font-size: var(--size-desc);
-  font-weight: 500;
-  color: var(--tag);
- }
- .online {
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
- }
- .online span {
-  font-size: var(--size-link);
-  font-weight: 400;
-  color: var(--text);
- }
- .menu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
- }
- .socials {
-  display: flex;
-  gap: 20px;
- }
- .socials a {
-  font-size: var(--size-link);
-  font-weight: 500;
-  color: var(--tag);
- }
- @media (max-width: 992px) {
-  .socials {
-   display: none;
-  }
- }
-</style>

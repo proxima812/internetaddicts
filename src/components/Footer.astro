@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
-import { BASE_FILES, TELEGRAM, VK, YOUTUBE } from "../consts"
-import Logo from "./Logo.astro"
+import { BASE_FILES, TELEGRAM, VK, YOUTUBE } from '../consts'
+import Logo from './Logo.astro'
 
 const story = await getCollection('story')
 const posts = await getCollection('posts')
@@ -9,135 +9,139 @@ const posts = await getCollection('posts')
 
 <div class="top"></div>
 <footer>
- <div class="container">
-  <div class="top-footer">
-   <div
-    class="grid-footer grid gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6"
-   >
-    <div class="col-footer">
-     <div class="logo-footer">
-      <Logo />
-     </div>
+  <div class="container max-w-6xl px-5 mx-auto">
+    <div class="top-footer">
+      <div
+        class="grid-footer grid gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-6"
+      >
+        <div class="col-footer">
+          <div class="logo-footer">
+            <Logo />
+          </div>
+        </div>
+        <div class="col-footer">
+          <span>Информация</span>
+          <a href={TELEGRAM}>Онлайн собрания АИЗ</a>
+          <a href="https://t.me/aiz_rko">Комитет АИЗ</a>
+        </div>
+        <div class="col-footer">
+          <span>Страницы</span>
+          <a href="/notes">Заметки</a>
+          <a href="/posts">Посты</a>
+          <a href="/groups">Собрания</a>
+          <a href="/stories">Личные истории</a>
+        </div>
+        <div class="col-footer">
+          <span>Последние Л. истории</span>
+          {
+            story.slice(0, 5).map((post) => (
+              <a href={`/stories/${post.slug}`} target="_blank">
+                {post.data.title}
+              </a>
+            ))
+          }
+        </div>
+        <div class="col-footer">
+          <span>Последние посты</span>
+          {
+            posts.slice(0, 5).map((post) => (
+              <a href={`/posts/${post.slug}`} target="_blank">
+                {post.data.title}
+              </a>
+            ))
+          }
+        </div>
+        <div class="col-footer">
+          <span>Полезные ссылки</span>
+          <a href={BASE_FILES}>12 шагов - база знаний</a>
+          <a href="https://t.me/solutionof12steps">АИЗ: группа 12 шагов</a>
+        </div>
+      </div>
     </div>
-    <div class="col-footer">
-     <span>Информация</span>
-     <a href={TELEGRAM}>Онлайн собрания АИЗ</a>
-     <a href="https://t.me/aiz_rko">Комитет АИЗ</a>
+    <div class="bottom-footer">
+      <div class="bottom-flex">
+        <span><b id="year"></b></span>
+        <div class="socials">
+          <a href={VK} target="_blank">ВКонтакте</a>
+          <a href={TELEGRAM} target="_blank">Телеграм</a>
+          <a href={YOUTUBE} target="_blank">Ютуб</a>
+        </div>
+      </div>
     </div>
-    <div class="col-footer">
-     <span>Страницы</span>
-     <a href="/notes">Заметки</a>
-     <a href="/posts">Посты</a>
-     <a href="/groups">Собрания</a>
-     <a href="/stories">Личные истории</a>
-    </div>
-    <div class="col-footer">
-     <span>Последние Л. истории</span>
-     {
-      story.slice(0, 5).map((post) => (
-       <a href={`/stories/${post.slug}`} target="_blank">
-        {post.data.title}
-       </a>
-      ))
-     }
-    </div>
-    <div class="col-footer">
-     <span>Последние посты</span>
-     {
-      posts.slice(0, 5).map((post) => (
-       <a href={`/posts/${post.slug}`} target="_blank">
-        {post.data.title}
-       </a>
-      ))
-     }
-    </div>
-    <div class="col-footer">
-     <span>Полезные ссылки</span>
-     <a href={BASE_FILES}>12 шагов - база знаний</a>
-     <a href="https://t.me/solutionof12steps">АИЗ: группа 12 шагов</a>
-    </div>
-   </div>
+
+    <style>
+      .top {
+        margin-top: var(--mt);
+      }
+      footer {
+        border-top-left-radius: var(--border-large);
+        border-top-right-radius: var(--border-large);
+        margin-top: auto;
+        padding: 40px;
+        background-color: #fff;
+      }
+
+      .col-footer {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .col-footer span {
+        color: var(--green);
+        font-size: var(--size-desc);
+        font-weight: 700;
+      }
+      .col-footer a {
+        color: var(--text);
+        font-size: var(--size-link);
+        font-weight: 400;
+        transition:
+          color var(--animate),
+          transform var(--animate);
+      }
+      .col-footer a:hover {
+        transition:
+          color var(--animate),
+          transform var(--animate);
+        transform: translateY(-2px);
+        color: grey;
+      }
+      .bottom-footer {
+        margin-top: var(--mt);
+        border-top: 1px solid #eee;
+      }
+      .bottom-flex {
+        margin-top: var(--mt);
+        display: flex;
+        justify-content: space-between;
+      }
+      .bottom-flex span {
+        font-size: var(--size-desc);
+        display: inline-block;
+      }
+      .socials {
+        display: flex;
+        gap: 20px;
+      }
+      .socials a {
+        font-size: var(--size-link);
+        font-weight: 500;
+        color: var(--tag);
+      }
+
+      @media (max-width: 1024px) {
+        .grid-footer {
+          grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        }
+        .bottom-flex {
+          flex-direction: column;
+          gap: 20px;
+        }
+      }
+    </style>
+
+    <script lang="js">
+      document.getElementById('year').innerHTML = new Date().getFullYear()
+    </script>
   </div>
-  <div class="bottom-footer">
-   <div class="bottom-flex">
-    <span><b id="year"></b></span>
-    <div class="socials">
-     <a href={VK} target="_blank">ВКонтакте</a>
-     <a href={TELEGRAM} target="_blank">Телеграм</a>
-     <a href={YOUTUBE} target="_blank">Ютуб</a>
-    </div>
-   </div>
-  </div>
-
-  <style>
-   .top {
-    margin-top: var(--mt);
-   }
-   footer {
-    border-top-left-radius: var(--border-large);
-    border-top-right-radius: var(--border-large);
-    margin-top: auto;
-    padding: 40px;
-    background-color: #fff;
-   }
-
-   .col-footer {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-   }
-   .col-footer span {
-    color: var(--green);
-    font-size: var(--size-desc);
-    font-weight: 700;
-   }
-   .col-footer a {
-    color: var(--text);
-    font-size: var(--size-link);
-    font-weight: 400;
-    transition: color var(--animate), transform var(--animate);
-   }
-   .col-footer a:hover {
-    transition: color var(--animate), transform var(--animate);
-    transform: translateY(-2px);
-    color: grey;
-   }
-   .bottom-footer {
-    margin-top: var(--mt);
-    border-top: 1px solid #eee;
-   }
-   .bottom-flex {
-    margin-top: var(--mt);
-    display: flex;
-    justify-content: space-between;
-   }
-   .bottom-flex span {
-    font-size: var(--size-desc);
-    display: inline-block;
-   }
-   .socials {
-    display: flex;
-    gap: 20px;
-   }
-   .socials a {
-    font-size: var(--size-link);
-    font-weight: 500;
-    color: var(--tag);
-   }
-
-   @media (max-width: 1024px) {
-    .grid-footer {
-     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-    .bottom-flex {
-     flex-direction: column;
-     gap: 20px;
-    }
-   }
-  </style>
-
-  <script lang="js">
-   document.getElementById("year").innerHTML = new Date().getFullYear();
-  </script>
- </div>
 </footer>
