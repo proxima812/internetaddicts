@@ -1,13 +1,13 @@
 ---
-import { ViewTransitions } from 'astro:transitions'
 import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
-import Nav from '../components/Nav.astro'
-import ToUp from '../components/blocks/ToUp.astro'
 import { BANNER } from '../consts'
 import '../css/base.css'
 import '../css/default.css'
 import '../css/style.css'
+import Metrika from '../components/Head/Metrika.astro'
+import Links from '../components/Head/Links.astro'
+import Verification from '../components/Head/Verification.astro'
 
 export interface Props {
   title?: string
@@ -24,8 +24,6 @@ const poster = BANNER
 const { title, desc, typeSite, pubDate, elemsTrue } = Astro.props
 
 const typeSiteFinal = typeSite ?? 'website'
-const verification_yandex = '4b2209308b18d6d7'
-const verification_google = 'yG8qqyFB5KKCPLRVIaTwLRb44KoITy1i1bbCqL95iyo'
 ---
 
 <!doctype html>
@@ -37,48 +35,14 @@ const verification_google = 'yG8qqyFB5KKCPLRVIaTwLRb44KoITy1i1bbCqL95iyo'
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="generator" content={Astro.generator} />
 
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
-      as="style"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="yandex-tableau-widget" href="/tableau.json" />
-
-    <link rel="icon" type="image/svg+xml" href="/favicons/icon.svg" />
-    <link
-      rel="apple-touch-icon"
-      type="image/png"
-      sizes="167x167"
-      href="/favicons/icon-167.png"
-    />
-    <link
-      rel="apple-touch-icon"
-      type="image/png"
-      sizes="180x180"
-      href="/favicons/icon-180.png"
-    />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/icon-32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/icon-16.png" />
-    <link rel="icon" type="image/png" sizes="48x48" href="/favicons/icon-48.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/favicons/icon-192.png" />
-
-    <meta name="yandex-verification" content={verification_yandex} />
-    <meta name="google-site-verification" content={verification_google} />
-
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={Astro.url} />
 
+    <Links />
+    <Verification />
+
     <meta name="title" content={'АИЗ | ' + title} />
     <meta name="description" content={desc} />
-
     <meta property="og:type" content={typeSiteFinal} />
     <meta property="og:url" content={Astro.url} />
     <meta property="og:site_name" content="АИЗ - Анонимные Интернет Зависимые" />
@@ -87,69 +51,21 @@ const verification_google = 'yG8qqyFB5KKCPLRVIaTwLRb44KoITy1i1bbCqL95iyo'
     <meta property="og:image" content={BANNER} />
 
     {pubDate && <meta property="article:modified_time" content={pubDate} />}
-    <ViewTransitions />
+
     <title>{'АИЗ | ' + title}</title>
   </head>
-  <body>
-    <main class="main-layout">
-      <Header />
-      <ToUp />
-      <Nav />
+  <body class="scroll-smooth bg-gray-50 min-w-[320px] overflow-x-hidden">
+    <Header />
+    <div class="py-16 container max-w-6xl px-5 mx-auto">
       <slot />
-      <Footer />
-    </main>
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript">
-    ; (function (m, e, t, r, i, k, a) {
-      m[i] =
-        m[i] ||
-        function () {
-          ; (m[i].a = m[i].a || []).push(arguments)
-        }
-      m[i].l = 1 * new Date()
-      for (var j = 0; j < document.scripts.length; j++) {
-        if (document.scripts[j].src === r) {
-          return
-        }
-      }
-      ; (k = e.createElement(t)),
-        (a = e.getElementsByTagName(t)[0]),
-        (k.async = 1),
-        (k.src = r),
-        a.parentNode.insertBefore(k, a)
-    })(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym')
+    </div>
+    <Footer />
 
-    ym(88691431, 'init', {
-      clickmap: true,
-      trackLinks: true,
-      accurateTrackBounce: true,
-      webvisor: true,
-    })
+    <Metrika />
+    <script>
+      import AOS from 'aos'
+      import 'aos/dist/aos.css'
+      AOS.init()
     </script>
-    <noscript
-      ><div>
-        <img
-          src="https://mc.yandex.ru/watch/88691431"
-          style="position:absolute; left:-9999px;"
-          alt=""
-        />
-      </div></noscript
-    >
-    <!-- /Yandex.Metrika counter -->
-    <style is:global>
-      html,
-      body {
-        min-width: 320px;
-        font-family: 'Roboto', sans-serif;
-        color: var(--text);
-        background-color: #f7f7f7;
-        scroll-behavior: smooth;
-      }
-      .main-layout {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
-    </style>
   </body>
 </html>

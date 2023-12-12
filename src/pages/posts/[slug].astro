@@ -2,8 +2,6 @@
 import { getCollection } from 'astro:content'
 import Post from '../../layout/Post.astro'
 
-export const prerender = true
-
 export async function getStaticPaths() {
   const posts = await getCollection('posts')
   return posts.map((post) => ({
@@ -17,8 +15,15 @@ const { Content } = await post.render()
 ---
 
 <Post title={post.data.title}>
+  <aside class="mx-auto max-w-[780px] mb-10">
+    <a
+      href="/posts"
+      class="text-lg md:ml-10 ml-5 bg-white font-medium rounded-lg py-2 px-3"
+      >⬅ Назад к постам</a
+    >
+  </aside>
   <main
-    class="mx-auto max-w-[780px] prose lg:prose-lg md:prose-md prose-p:text-slate-900 prose-a:text-blue-500 prose-headings:leading-tight prose-p:leading-relaxed prose-a:no-underline prose-stone"
+    class="mx-auto max-w-[780px] prose lg:prose-lg xl:prose-xl md:prose-md prose-p:text-slate-900 prose-a:text-blue-500 prose-headings:leading-tight prose-p:leading-relaxed prose-a:no-underline prose-zinc bg-white md:p-10 p-5 rounded-2xl"
   >
     <h1>{post.data.title}</h1>
     <Content />
