@@ -8,14 +8,14 @@ import Title from '../components/blocks/Title.astro'
 import Layout from '../layout/Layout.astro'
 
 const links = [
-  { name: '🎈 Посты', link: '/posts', showPostCount: true },
+  // { name: '🎈 Посты', link: '/posts', showPostCount: true },
   { name: 'Присоединиться к нам', link: 'https://t.me/aiz_itta', styleWow: true },
   { name: 'Инфоканал', link: 'https://t.me/aiz_info', styleInfo: true },
-  { name: '💎 Истории', link: '/stories', showPostCountStory: true },
+  // { name: '💎 Истории', link: '/stories', showPostCountStory: true },
 ]
 
-const showPostCountLength = (await getCollection('posts')).length
-const showPostCountLengthStory = (await getCollection('story')).length
+// const showPostCountLength = (await getCollection('posts')).length
+// const showPostCountLengthStory = (await getCollection('story')).length
 ---
 
 <Layout
@@ -31,17 +31,10 @@ const showPostCountLengthStory = (await getCollection('story')).length
       {
         links.map((item) => (
           <a
-            data-aos="zoom-out"
-            data-aos-duration="1000"
             href={item.link}
-            style={`${
-              item.styleWow
-                ? 'background-image: radial-gradient(76.33% 76.59% at 50.15% 6.06%, #98F4A9 0, rgba(97, 239, 180, 1) 100%'
-                : null
-            } `}
             class={`${
               item.styleWow
-                ? 'flex gap-2 py-2 px-3 rounded-lg text-white font-bold tracking-wide'
+                ? 'flex gap-2 py-2 px-3 rounded-lg bg-gradient-to-r from-green-400 to-emerald-400 text-white font-bold tracking-wide'
                 : 'py-2 px-3 rounded-lg bg-gray-50 ring-1 ring-gray-100 hover:bg-gray-100 transition-colors ease-linear font-medium text-center self-stretch ' +
                   (item.styleInfo
                     ? 'flex item gap-2 py-2 px-3 rounded-lg bg-gradient-to-tr from-purple-400 to-indigo-500 text-white font-bold tracking-wide justify-center'
@@ -49,11 +42,12 @@ const showPostCountLengthStory = (await getCollection('story')).length
             }  `}
           >
             {item.styleWow ? <AIZsvg /> : null} {item.styleInfo ? <AIZinfosvg /> : null}{' '}
-            {item.name} {item.showPostCount ? ` (${showPostCountLength})` : null}
-            {item.showPostCountStory ? ` (${showPostCountLengthStory})` : null}
-          </a>
-        ))
-      }
+            {item.name} 
+            </a>
+            ))
+          }
+          <!-- {item.showPostCount ? ` (${showPostCountLength})` : null}
+          {item.showPostCountStory ? ` (${showPostCountLengthStory})` : null} -->
     </nav>
 
     <CTA />

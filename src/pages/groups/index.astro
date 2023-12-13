@@ -1,87 +1,107 @@
 ---
+import { marked } from 'marked'
+
 import { getCollection } from 'astro:content'
 import Layout from '../../layout/Layout.astro'
 
 const groups = await getCollection('groups')
 const groupsCounter = (await getCollection('groups')).length
+
+const dayOrder = {
+  Понедельник: 1,
+  Вторник: 2,
+  Среда: 3,
+  Четверг: 4,
+  Пятница: 5,
+  Суббота: 6,
+  Воскресенье: 7,
+}
+
+function sortGroupsByDay(groups) {
+  return groups.sort((a, b) => {
+    return dayOrder[a.data.when] - dayOrder[b.data.when]
+  })
+}
 ---
 
 <Layout
-  title="Онлайн собрания и Офлайн"
-  desc="Время встреч для анонимных интернет зависимых, шде деляться опытом, силами и надеждой."
+  title={`Онлайн собрания и Офлайн`}
+  desc={`Время встреч для анонимных интернет зависимых. Собраний (${groupsCounter})`}
 >
   <section>
     <h3 class="pb-10 text-2xl font-medium text-gray-700">
       ⭐ Количество групп на данный момент: <b>{groupsCounter}</b>
     </h3>
-    <h4 class="py-10 text-2xl text-gray-700 font-medium">🌐 Онлайн группы</h4>
+    <h4 class="py-10 text-2xl text-gray-700 font-medium">
+      🌐 Онлайн группы ({groups.filter((f) => f.data.type === 'Онлайн').length})
+    </h4>
     <div class="grid grid-cols-1 items-start md:grid-cols-2 lg:grid-cols-3 gap-5">
       {
         groups &&
-          groups
-            .filter((f) => f.data.type === 'Онлайн')
-            .map((group) => (
-              <div class="p-4 bg-white rounded-lg ring-1 ring-gray-100">
-                <div class="flex flex-col gap-3">
-                  <div class="flex items-center justify-between gap-2 flex-wrap">
-                    <h4 class="font-bold text-lg">{group.data.title}</h4>
+          sortGroupsByDay(groups.filter((f) => f.data.type === 'Онлайн')).map((group) => (
+            <div class="p-4 bg-white rounded-lg ring-1 ring-gray-100">
+              <div class="flex flex-col gap-3">
+                <div class="flex items-center justify-between gap-2 flex-wrap">
+                  <h4 class="font-bold text-lg">{group.data.title}</h4>
 
-                    <span class="bg-green-100 ring-1 ring-green-200 px-2 py-1 rounded-md">
-                      🌐 {group.data.type}
-                    </span>
-                  </div>
-                  <time class="font-medium" datetime={group.data.dateTime}>
-                    ⌚
-                    <span class="underline underline-offset-4">
-                      {group.data.dateTime}
-                    </span>
-                  </time>
-                  <p>{group.data.description}</p>
-
-                  <a
-                    href={group.data.link}
-                    class="text-center py-1 px-2 rounded-md bg-blue-500 text-white hover:bg-blue-700"
-                  >
-                    Войти
-                  </a>
+                  <span class="bg-green-100 ring-1 ring-green-200 px-2 py-1 rounded-md">
+                    🌐 {group.data.type}
+                  </span>
                 </div>
+                <time class="font-medium" datetime={group.data.dateTime}>
+                  ⌚
+                  <span class="underline underline-offset-4">{group.data.dateTime}</span>
+                </time>
+                <p>
+                  Группа проходит: <b>{group.data.when}</b>
+                </p>
+                <p set:html={marked(group.body)} />
+
+                <a
+                  href={group.data.link}
+                  class="text-center py-1 px-2 rounded-md bg-blue-500 text-white hover:bg-blue-700"
+                >
+                  Войти
+                </a>
               </div>
-            ))
+            </div>
+          ))
       }
     </div>
-    <h4 class="py-10 text-2xl text-gray-700 font-medium">🌤 Живые группы</h4>
+    <h4 class="py-10 text-2xl text-gray-700 font-medium">
+      🌤 Живые группы ({groups.filter((f) => f.data.type === 'Живая').length})
+    </h4>
     <div class="grid grid-cols-1 items-start md:grid-cols-2 lg:grid-cols-3 gap-5">
       {
         groups &&
-          groups
-            .filter((f) => f.data.type === 'Живая')
-            .map((group) => (
-              <div class="p-4 bg-white rounded-lg ring-1 ring-gray-100">
-                <div class="flex flex-col gap-3">
-                  <div class="flex items-center justify-between gap-2 flex-wrap">
-                    <h4 class="font-bold text-lg">{group.data.title}</h4>
+          sortGroupsByDay(groups.filter((f) => f.data.type === 'Живая')).map((group) => (
+            <div class="p-4 bg-white rounded-lg ring-1 ring-gray-100">
+              <div class="flex flex-col gap-3">
+                <div class="flex items-center justify-between gap-2 flex-wrap">
+                  <h4 class="font-bold text-lg">{group.data.title}</h4>
 
-                    <span class="bg-sky-100 ring-1 ring-sky-200 px-2 py-1 rounded-md">
-                      🌤 {group.data.type}
-                    </span>
-                  </div>
-                  <time class="font-medium" datetime={group.data.dateTime}>
-                    ⌚
-                    <span class="underline underline-offset-4">
-                      {group.data.dateTime}
-                    </span>
-                  </time>
-                  <p>{group.data.description}</p>
-
-                  <a
-                    href={group.data.link}
-                    class="text-center py-1 px-2 rounded-md bg-purple-500 text-white hover:bg-purple-700"
-                  >
-                    На карте
-                  </a>
+                  <span class="bg-sky-100 ring-1 ring-sky-200 px-2 py-1 rounded-md">
+                    🌤 {group.data.type}
+                  </span>
                 </div>
+                <time class="font-medium" datetime={group.data.dateTime}>
+                  ⌚
+                  <span class="underline underline-offset-4">{group.data.dateTime}</span>
+                </time>
+                <p>
+                  Группа проходит: <b>{group.data.when}</b>
+                </p>
+                <p set:html={marked(group.body)} />
+
+                <a
+                  href={group.data.link}
+                  class="text-center py-1 px-2 rounded-md bg-purple-500 text-white hover:bg-purple-700"
+                >
+                  На карте
+                </a>
               </div>
-            ))
+            </div>
+          ))
       }
     </div>
   </section>

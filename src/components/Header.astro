@@ -1,14 +1,23 @@
 ---
+import { getCollection } from 'astro:content'
 import Link from './Link.astro'
 import Logo from './Logo.astro'
+
+const posts = (await getCollection('posts')).length
+const story = (await getCollection('story')).length
+const groups = (await getCollection('groups')).length
 ---
 
 <header class="py-5 bg-white">
-  <div class="container max-w-6xl px-5 mx-auto gap-5 flex flex-wrap justify-between items-center">
+  <div
+    class="container max-w-6xl px-5 mx-auto gap-5 flex flex-wrap justify-between items-center"
+  >
     <Logo />
     <nav class="flex gap-2 flex-wrap items-center">
       <Link href="/">🏠 Главная</Link>
-      <Link href="/groups">🎁 Собрания</Link>
+      <Link href="/groups">🎁 Собрания ({groups})</Link>
+      <Link href="/posts">🎈 Посты ({posts})</Link>
+      <Link href="/stories">💎 Истории ({story})</Link>
     </nav>
   </div>
 </header>
