@@ -3,8 +3,9 @@ import { defineCollection, z } from 'astro:content'
 const groupsCollection = defineCollection({
   schema: z.object({
     title: z.string(),
+    when: z.string(),
     dateTime: z.string().default('20:00'),
-    description: z.string().optional(),
+    body: z.string().optional(),
     type: z.string().default('Онлайн'),
     link: z.string().default('https://t.me/aiz_itta'),
   }),

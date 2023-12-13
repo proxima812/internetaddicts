@@ -194,58 +194,65 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"groups": {
-"2.mdoc": {
-	id: "2.mdoc";
-  slug: "2";
+"net-nazvaniya-1.mdoc": {
+	id: "net-nazvaniya-1.mdoc";
+  slug: "net-nazvaniya-1";
   body: string;
   collection: "groups";
   data: InferEntrySchema<"groups">
 } & { render(): Render[".mdoc"] };
-"3.mdoc": {
-	id: "3.mdoc";
-  slug: "3";
+"net-nazvaniya-2.mdoc": {
+	id: "net-nazvaniya-2.mdoc";
+  slug: "net-nazvaniya-2";
   body: string;
   collection: "groups";
   data: InferEntrySchema<"groups">
 } & { render(): Render[".mdoc"] };
-"4.mdoc": {
-	id: "4.mdoc";
-  slug: "4";
+"net-nazvaniya-3.mdoc": {
+	id: "net-nazvaniya-3.mdoc";
+  slug: "net-nazvaniya-3";
   body: string;
   collection: "groups";
   data: InferEntrySchema<"groups">
 } & { render(): Render[".mdoc"] };
-"5.mdoc": {
-	id: "5.mdoc";
-  slug: "5";
+"net-nazvaniya-4.mdoc": {
+	id: "net-nazvaniya-4.mdoc";
+  slug: "net-nazvaniya-4";
   body: string;
   collection: "groups";
   data: InferEntrySchema<"groups">
 } & { render(): Render[".mdoc"] };
-"6.mdoc": {
-	id: "6.mdoc";
-  slug: "6";
+"net-nazvaniya-5.mdoc": {
+	id: "net-nazvaniya-5.mdoc";
+  slug: "net-nazvaniya-5";
   body: string;
   collection: "groups";
   data: InferEntrySchema<"groups">
 } & { render(): Render[".mdoc"] };
-"7.mdoc": {
-	id: "7.mdoc";
-  slug: "7";
+"net-nazvaniya-6.mdoc": {
+	id: "net-nazvaniya-6.mdoc";
+  slug: "net-nazvaniya-6";
   body: string;
   collection: "groups";
   data: InferEntrySchema<"groups">
 } & { render(): Render[".mdoc"] };
-"8.mdoc": {
-	id: "8.mdoc";
-  slug: "8";
+"net-nazvaniya.mdoc": {
+	id: "net-nazvaniya.mdoc";
+  slug: "net-nazvaniya";
   body: string;
   collection: "groups";
   data: InferEntrySchema<"groups">
 } & { render(): Render[".mdoc"] };
-"ponedelnik.mdoc": {
-	id: "ponedelnik.mdoc";
-  slug: "ponedelnik";
+"svoboda-dlya-vseh.mdoc": {
+	id: "svoboda-dlya-vseh.mdoc";
+  slug: "svoboda-dlya-vseh";
+  body: string;
+  collection: "groups";
+  data: InferEntrySchema<"groups">
+} & { render(): Render[".mdoc"] };
+"zhivoj-internet.mdoc": {
+	id: "zhivoj-internet.mdoc";
+  slug: "zhivoj-internet";
   body: string;
   collection: "groups";
   data: InferEntrySchema<"groups">

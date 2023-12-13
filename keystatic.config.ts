@@ -77,14 +77,21 @@ export default config({
       label: 'Группы',
       slugField: 'title',
       path: 'src/content/groups/*',
+      entryLayout: 'content',
       format: { contentField: 'body' },
       schema: {
-        title: fields.slug({ name: { label: 'Название' } }),
-
-        description: fields.text({
-          label: 'Описание',
-          description: 'от 20 до 420 символов',
-          validation: { length: { min: 20, max: 420 } },
+        title: fields.slug({ name: { label: 'Название группы' } }),
+        body: fields.document({
+          label: 'Описание группы',
+          formatting: true,
+          dividers: true,
+          links: true,
+        }),
+        when: fields.text({
+          label: 'Время',
+          defaultValue: 'Пятница',
+          description:
+            'Когда? Понедельник, Вторник, Среда, Четверг, Пятница, Суббота или Воскресенье',
         }),
         dateTime: fields.text({
           label: 'Время',
@@ -97,12 +104,7 @@ export default config({
           defaultValue: 'Онлайн',
         }),
         link: fields.url({
-          label: 'Ссылка (URL)',
-        }),
-        body: fields.document({
-          label: 'НЕ ЗАПОЛНЯТЬ!',
-          formatting: true,
-          links: true,
+          label: 'Ссылка (URL) на нее, либо карта (если живая группа)',
         }),
       },
     }),
