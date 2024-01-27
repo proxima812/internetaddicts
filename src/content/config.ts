@@ -11,6 +11,23 @@ const groupsCollection = defineCollection({
   }),
 })
 
+const spikers = defineCollection({
+	schema: z.object({
+		title: z.string(),
+		pubDate: z.string(),
+		desc: z.string().optional(),
+		idYB: z.string(),
+	}),
+})
+
+const pagesCollections = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    desc: z.string(),
+    ogImage: z.string().optional(),
+  })
+})
+
 const postsCollection = defineCollection({
   schema: ({ image }) =>
     z.object({
@@ -29,7 +46,9 @@ const storyCollection = defineCollection({
 })
 
 export const collections = {
-  groups: groupsCollection,
-  posts: postsCollection,
-  story: storyCollection,
+	groups: groupsCollection,
+	posts: postsCollection,
+	story: storyCollection,
+	pages: pagesCollections,
+	spikers: spikers,
 }

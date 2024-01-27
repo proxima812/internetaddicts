@@ -229,13 +229,6 @@ declare module 'astro:content' {
   collection: "groups";
   data: InferEntrySchema<"groups">
 } & { render(): Render[".mdoc"] };
-"net-nazvaniya-6.mdoc": {
-	id: "net-nazvaniya-6.mdoc";
-  slug: "net-nazvaniya-6";
-  body: string;
-  collection: "groups";
-  data: InferEntrySchema<"groups">
-} & { render(): Render[".mdoc"] };
 "net-nazvaniya.mdoc": {
 	id: "net-nazvaniya.mdoc";
   slug: "net-nazvaniya";
@@ -250,6 +243,13 @@ declare module 'astro:content' {
   collection: "groups";
   data: InferEntrySchema<"groups">
 } & { render(): Render[".mdoc"] };
+"utro-aiz.mdoc": {
+	id: "utro-aiz.mdoc";
+  slug: "utro-aiz";
+  body: string;
+  collection: "groups";
+  data: InferEntrySchema<"groups">
+} & { render(): Render[".mdoc"] };
 "zhivoj-internet.mdoc": {
 	id: "zhivoj-internet.mdoc";
   slug: "zhivoj-internet";
@@ -258,7 +258,23 @@ declare module 'astro:content' {
   data: InferEntrySchema<"groups">
 } & { render(): Render[".mdoc"] };
 };
+"pages": {
+"testovaya-stranicza.mdoc": {
+	id: "testovaya-stranicza.mdoc";
+  slug: "testovaya-stranicza";
+  body: string;
+  collection: "pages";
+  data: InferEntrySchema<"pages">
+} & { render(): Render[".mdoc"] };
+};
 "posts": {
+"12-shagov-chast-zhizni.mdoc": {
+	id: "12-shagov-chast-zhizni.mdoc";
+  slug: "12-shagov-chast-zhizni";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
 "12step-netlify-app.mdoc": {
 	id: "12step-netlify-app.mdoc";
   slug: "12step-netlify-app";
@@ -294,9 +310,44 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".mdoc"] };
+"kak-otklyuchit-you-tube-shorts.mdoc": {
+	id: "kak-otklyuchit-you-tube-shorts.mdoc";
+  slug: "kak-otklyuchit-you-tube-shorts";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
+"kak-perestat-zalipat-v-internete.mdoc": {
+	id: "kak-perestat-zalipat-v-internete.mdoc";
+  slug: "kak-perestat-zalipat-v-internete";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
 "kak-preodolet-internet-zavisimost-s-pomoshhyu-duhovnyh-princzipov.mdoc": {
 	id: "kak-preodolet-internet-zavisimost-s-pomoshhyu-duhovnyh-princzipov.mdoc";
   slug: "kak-preodolet-internet-zavisimost-s-pomoshhyu-duhovnyh-princzipov";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
+"kak-sozdat-gruppu-aiz.mdoc": {
+	id: "kak-sozdat-gruppu-aiz.mdoc";
+  slug: "kak-sozdat-gruppu-aiz";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
+"kto-takie-aiz.mdoc": {
+	id: "kto-takie-aiz.mdoc";
+  slug: "kto-takie-aiz";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
+"kto-takoj-sponsor-nastavnik-v-anonimnyh-internet-zavisimyh.mdoc": {
+	id: "kto-takoj-sponsor-nastavnik-v-anonimnyh-internet-zavisimyh.mdoc";
+  slug: "kto-takoj-sponsor-nastavnik-v-anonimnyh-internet-zavisimyh";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
@@ -315,12 +366,84 @@ declare module 'astro:content' {
   collection: "posts";
   data: InferEntrySchema<"posts">
 } & { render(): Render[".mdoc"] };
+"ponyatie-trezvosti-ili-chistoty-v-aiz-est-li-eti-ponyatiya-zdes.mdoc": {
+	id: "ponyatie-trezvosti-ili-chistoty-v-aiz-est-li-eti-ponyatiya-zdes.mdoc";
+  slug: "ponyatie-trezvosti-ili-chistoty-v-aiz-est-li-eti-ponyatiya-zdes";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
+"princzipy-12-shagov-v-nashih-delah.mdoc": {
+	id: "princzipy-12-shagov-v-nashih-delah.mdoc";
+  slug: "princzipy-12-shagov-v-nashih-delah";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
 "proekt-dlya-12-shagov.mdoc": {
 	id: "proekt-dlya-12-shagov.mdoc";
   slug: "proekt-dlya-12-shagov";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
+"sluzhenie-eto-vyrazhenie-nashej-blagodarnosti-sodruzhestvu.mdoc": {
+	id: "sluzhenie-eto-vyrazhenie-nashej-blagodarnosti-sodruzhestvu.mdoc";
+  slug: "sluzhenie-eto-vyrazhenie-nashej-blagodarnosti-sodruzhestvu";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
+"vse-chto-est-v-aiz.mdoc": {
+	id: "vse-chto-est-v-aiz.mdoc";
+  slug: "vse-chto-est-v-aiz";
+  body: string;
+  collection: "posts";
+  data: InferEntrySchema<"posts">
+} & { render(): Render[".mdoc"] };
+};
+"spikers": {
+"aiz-anonimnye-internet-zavisimye-demyan-spikerskaya.mdoc": {
+	id: "aiz-anonimnye-internet-zavisimye-demyan-spikerskaya.mdoc";
+  slug: "aiz-anonimnye-internet-zavisimye-demyan-spikerskaya";
+  body: string;
+  collection: "spikers";
+  data: InferEntrySchema<"spikers">
+} & { render(): Render[".mdoc"] };
+"aiz-anonimnye-internet-zavisimye-kamil-spikerskaya-5-tradicziya-i-prodvizheniya.mdoc": {
+	id: "aiz-anonimnye-internet-zavisimye-kamil-spikerskaya-5-tradicziya-i-prodvizheniya.mdoc";
+  slug: "aiz-anonimnye-internet-zavisimye-kamil-spikerskaya-5-tradicziya-i-prodvizheniya";
+  body: string;
+  collection: "spikers";
+  data: InferEntrySchema<"spikers">
+} & { render(): Render[".mdoc"] };
+"aiz-anonimnye-internet-zavisimye-kamil-spikerskaya-pro-nezavisimost-grupp-4-tradicziya.mdoc": {
+	id: "aiz-anonimnye-internet-zavisimye-kamil-spikerskaya-pro-nezavisimost-grupp-4-tradicziya.mdoc";
+  slug: "aiz-anonimnye-internet-zavisimye-kamil-spikerskaya-pro-nezavisimost-grupp-4-tradicziya";
+  body: string;
+  collection: "spikers";
+  data: InferEntrySchema<"spikers">
+} & { render(): Render[".mdoc"] };
+"aiz-anonimnye-internet-zavisimye-sergej-spikerskaya-opyt-programmy.mdoc": {
+	id: "aiz-anonimnye-internet-zavisimye-sergej-spikerskaya-opyt-programmy.mdoc";
+  slug: "aiz-anonimnye-internet-zavisimye-sergej-spikerskaya-opyt-programmy";
+  body: string;
+  collection: "spikers";
+  data: InferEntrySchema<"spikers">
+} & { render(): Render[".mdoc"] };
+"aiz-itaa-spikerskaya-evgenij-n-g-cheboksary-tema-kak-ya-izbavilsya-ot-internet.mdoc": {
+	id: "aiz-itaa-spikerskaya-evgenij-n-g-cheboksary-tema-kak-ya-izbavilsya-ot-internet.mdoc";
+  slug: "aiz-itaa-spikerskaya-evgenij-n-g-cheboksary-tema-kak-ya-izbavilsya-ot-internet";
+  body: string;
+  collection: "spikers";
+  data: InferEntrySchema<"spikers">
+} & { render(): Render[".mdoc"] };
+"evelina-r-spikerskaya-tema-sluzhenie-neotemlemaya-chast-vyzdorovleniya.mdoc": {
+	id: "evelina-r-spikerskaya-tema-sluzhenie-neotemlemaya-chast-vyzdorovleniya.mdoc";
+  slug: "evelina-r-spikerskaya-tema-sluzhenie-neotemlemaya-chast-vyzdorovleniya";
+  body: string;
+  collection: "spikers";
+  data: InferEntrySchema<"spikers">
 } & { render(): Render[".mdoc"] };
 };
 "story": {

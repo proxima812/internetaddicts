@@ -11,7 +11,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/markdoc": "^0.5.0",
+    "@astro-community/astro-embed-youtube": "^0.4.4",
+    "@astrojs/markdoc": "^0.8.2",
     "@astrojs/mdx": "^1.0.0",
     "@astrojs/netlify": "^3.0.2",
     "@astrojs/partytown": "^1.0.3",
