@@ -1,25 +1,23 @@
 ---
-import { getCollection } from 'astro:content'
-import Article from '../components/blocks/Article.astro'
-import Layout from '../layout/Layout.astro'
-const posts = await getCollection('posts')
-const getPosts = posts
+import { getCollection } from "astro:content"
+import Article from "../components/blocks/Article.astro"
+import Layout from "../layout/Layout.astro"
+const posts = await getCollection("posts")
 ---
 
 <Layout
-  title="Посты"
-  desc="Посты АИЗ. Мероприятие, короткие новости, методы шагов, инструменты"
+	title="Посты"
+	desc="Посты АИЗ. Мероприятие, короткие новости, методы шагов, инструменты"
 >
-  <div class="container">
-    <section class="mt-2">
-      <div class="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {
-          getPosts &&
-            getPosts
-              .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
-              .map((post) => <Article slug={post.slug} data={post.data} />)
-        }
-      </div>
-    </section>
-  </div>
+	<div class="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+		{
+			posts &&
+				posts
+					.sort(
+						(a, b) =>
+							new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+					)
+					.map(post => <Article slug={post.slug} data={post.data} />)
+		}
+	</div>
 </Layout>

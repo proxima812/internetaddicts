@@ -11,14 +11,14 @@ const spikers = (await getCollection('spikers')).length
 
 <header class="py-5 bg-white">
   <div
-    class="container max-w-6xl px-5 mx-auto gap-5 flex flex-wrap justify-between items-center"
+    class="container max-w-6xl px-5 mx-auto gap-5 flex justify-between items-start md:items-center flex-col sm:flex-row"
   >
     <Logo />
     <nav class="flex gap-2 flex-wrap items-center">
       <Link href="/">🏠 Главная</Link>
-      <Link href="/groups">🎁 Собрания ({groups})</Link>
-      <Link href="/posts">🎈 Посты ({posts})</Link>
-      <Link href="/stories">💎 Истории ({story})</Link>
+      <Link href="/groups">🫂 Собрания ({groups})</Link>
+      <Link href="/posts">🎉 Посты ({posts})</Link>
+      <Link href="/stories">💚 Истории ({story})</Link>
       <Link href="/speaker">⭐ Спикерские ({spikers})</Link>
     </nav>
   </div>

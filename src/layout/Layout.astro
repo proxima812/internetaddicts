@@ -49,24 +49,15 @@ const typeSiteFinal = typeSite ?? 'website'
     <meta property="og:title" content={'АИЗ | ' + title} />
     <meta property="og:description" content={desc} />
     <meta property="og:image" content={BANNER} />
-
     {pubDate && <meta property="article:modified_time" content={pubDate} />}
-
     <title>{'АИЗ | ' + title}</title>
   </head>
-  <body class="scroll-smooth bg-gray-50 min-w-[320px] overflow-x-hidden">
+  <body class="scroll-smooth bg-zinc-50 min-w-[320px] overflow-x-hidden">
     <Header />
-    <div class="py-16 container max-w-6xl px-5 mx-auto">
+    <div class="py-12 flex flex-col gap-12 container max-w-6xl px-5 mx-auto">
       <slot />
     </div>
     <Footer />
-
     <Metrika />
-    
-    <!-- <script>
-      import AOS from 'aos'
-      import 'aos/dist/aos.css'
-      AOS.init()
-    </script> -->
   </body>
 </html>
