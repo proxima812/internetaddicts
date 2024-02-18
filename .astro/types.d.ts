@@ -403,6 +403,13 @@ declare module 'astro:content' {
 } & { render(): Render[".mdoc"] };
 };
 "spikers": {
+"12-tradiczij-dlya-iz-po-illyustracziyam-primerami-i-opytom.mdoc": {
+	id: "12-tradiczij-dlya-iz-po-illyustracziyam-primerami-i-opytom.mdoc";
+  slug: "12-tradiczij-dlya-iz-po-illyustracziyam-primerami-i-opytom";
+  body: string;
+  collection: "spikers";
+  data: InferEntrySchema<"spikers">
+} & { render(): Render[".mdoc"] };
 "aiz-anonimnye-internet-zavisimye-demyan-spikerskaya.mdoc": {
 	id: "aiz-anonimnye-internet-zavisimye-demyan-spikerskaya.mdoc";
   slug: "aiz-anonimnye-internet-zavisimye-demyan-spikerskaya";
