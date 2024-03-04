@@ -1,4 +1,4 @@
-import { collection, config, fields } from '@keystatic/core'
+import { collection, config, fields } from "@keystatic/core"
 
 const isProd = import.meta.env.PROD
 
@@ -6,11 +6,9 @@ export default config({
 	storage: isProd
 		? {
 				kind: "github",
-				repo: {
-					owner: "itaaSite",
-					name: "internetaddicts",
-				},
-		  }
+				repo: "itaaSite/internetaddicts",
+				branchPrefix: "main/",
+			}
 		: { kind: "local" },
 	collections: {
 		posts: collection({
