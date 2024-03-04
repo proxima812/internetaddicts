@@ -7,7 +7,7 @@ export default config({
 		? {
 				kind: "github",
 				repo: "itaaSite/internetaddicts",
-				branchPrefix: "main/",
+				// branchPrefix: "main/",
 			}
 		: { kind: "local" },
 	collections: {
