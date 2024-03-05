@@ -9,7 +9,7 @@ export default config({
 		// 	kind: "github",
 		// 	repo: "itaaSite/internetaddicts",
 		// 	branchPrefix: "main/",
-		// },
+    // },
 	{ kind: "local" },
 	collections: {
 		posts: collection({
