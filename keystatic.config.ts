@@ -5,12 +5,12 @@ const isProd = import.meta.env.PROD
 export default config({
 	storage:
 		// isProd ?
-		{
-			kind: "github",
-			repo: "itaaSite/internetaddicts",
-			branchPrefix: "main/",
-		},
-	// : { kind: "local" },
+		// {
+		// 	kind: "github",
+		// 	repo: "itaaSite/internetaddicts",
+		// 	branchPrefix: "main/",
+		// },
+	{ kind: "local" },
 	collections: {
 		posts: collection({
 			label: "Посты",
