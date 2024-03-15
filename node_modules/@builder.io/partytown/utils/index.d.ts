@@ -60,14 +60,14 @@ export declare function libDirPath(opts?: LibDirOptions): string;
  *
  * @public
  */
-export declare function partytownRollup(opts: PartytownRollupOptions): {
+export declare function partytownRollup(opts?: PartytownRollupOptions): {
     name: string;
 };
 
 /** @public */
 export declare interface PartytownRollupOptions {
     /** An absolute path to the destination directory where the lib files should be copied. */
-    dest: string;
+    dest?: string;
     /**
      * When `debug` is set to `false`, the `lib/debug` directory will not be copied.
      * The default is that both the production and debug directories are copied to the destination.

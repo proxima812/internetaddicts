@@ -1,0 +1,43 @@
+---
+import { YouTube } from "@astro-community/astro-embed-youtube"
+import { getCollection } from "astro:content"
+import MainLayout from "../../layout/MainLayout.astro"
+const speakers = await getCollection("speakers")
+---
+
+<MainLayout
+	title="Спикерские членов АИЗ и других"
+	description="Спикеры АИЗ их опыт выздоровления и преодоления залипания"
+>
+	<div class="container">
+		<section class="mt-2">
+			<div class="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+				{
+					speakers
+						.sort(
+							(a, b) =>
+								new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+						)
+						.map(post => (
+							<a href={`/speakers/${post.slug}`} class="hover-top">
+								<article class="bg-white p-5 rounded-2xl prose max-w-none">
+									<YouTube id={post.data.idYB} />
+									<h3>{post.data.title}</h3>
+									<p class="line-clamp-2 text-gray-500">{post.data.description}</p>
+									{post.data.pubDate && (
+										<time datetime={post.data.pubDate} class="font-medium">
+											{new Date(post.data.pubDate).toLocaleDateString("ru-RU", {
+												year: "numeric",
+												month: "numeric",
+												day: "numeric",
+											})}
+										</time>
+									)}
+								</article>
+							</a>
+						))
+				}
+			</div>
+		</section>
+	</div>
+</MainLayout>

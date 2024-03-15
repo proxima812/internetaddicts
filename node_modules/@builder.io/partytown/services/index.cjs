@@ -1,7 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 /**
  * Forwards Facebool Pixels main window calls to Partytown's worker thread.
  *

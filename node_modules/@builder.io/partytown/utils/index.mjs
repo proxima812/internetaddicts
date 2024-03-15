@@ -1,7 +1,8 @@
 import fs from 'fs';
-import { dirname, resolve, isAbsolute, join } from 'path';
+import { dirname, resolve, isAbsolute, join as join$1 } from 'path';
 import { promisify } from 'util';
 import { fileURLToPath } from 'url';
+import { join, isAbsolute as isAbsolute$1 } from 'node:path';
 
 const copyFile = promisify(fs.copyFile);
 const mkdir = promisify(fs.mkdir);
@@ -85,20 +86,17 @@ async function copyLibDir(srcDir, destDir, opts) {
  */
 function partytownRollup(opts) {
     opts = opts || {};
-    if (typeof opts.dest !== 'string' || opts.dest.length === 0) {
-        throw new Error(`Partytown plugin must have "dest" property.`);
-    }
-    if (!isAbsolute(opts.dest)) {
-        throw new Error(`Partytown plugin "dest" property must be an absolute path.`);
-    }
-    let hasCopied = false;
     const plugin = {
         name: 'rollup-plugin-partytown',
-        async writeBundle() {
-            if (!hasCopied) {
-                await copyLibFiles(opts.dest, { debugDir: opts.debug });
-                hasCopied = true;
+        async writeBundle(rollupOpts) {
+            const dir = (opts === null || opts === void 0 ? void 0 : opts.dest) || (rollupOpts.dir ? join(rollupOpts.dir, '~partytown') : undefined);
+            if (typeof dir !== 'string') {
+                throw new Error(`A destination directory must be specified either via the Partytown "dest" option or Rollup output dir option.`);
             }
+            if (!isAbsolute$1(dir)) {
+                throw new Error(`Partytown plugin "dest" property must be an absolute path.`);
+            }
+            await copyLibFiles(dir, { debugDir: opts === null || opts === void 0 ? void 0 : opts.debug });
         },
     };
     return plugin;
@@ -129,7 +127,7 @@ function partytownVite(opts) {
                         const fileName = pathname.split('/').pop();
                         if (fileName && fileName.endsWith('.js')) {
                             const libDir = libDirPath({ debugDir: pathname.includes('/debug/') });
-                            const filePath = join(libDir, fileName);
+                            const filePath = join$1(libDir, fileName);
                             const buf = await readFile(filePath);
                             res.writeHead(200, {
                                 'Content-Type': 'application/javascript; charset=utf-8',

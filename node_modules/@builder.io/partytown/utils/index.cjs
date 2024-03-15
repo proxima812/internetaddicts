@@ -1,22 +1,18 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 var fs = require('fs');
 var path = require('path');
 var util = require('util');
 var url = require('url');
+var node_path = require('node:path');
 
-function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-var fs__default = /*#__PURE__*/_interopDefaultLegacy(fs);
-
-const copyFile = util.promisify(fs__default["default"].copyFile);
-const mkdir = util.promisify(fs__default["default"].mkdir);
-const readdir = util.promisify(fs__default["default"].readdir);
-const readFile = util.promisify(fs__default["default"].readFile);
-const stat = util.promisify(fs__default["default"].stat);
-const __dirname$1 = path.dirname(url.fileURLToPath((typeof document === 'undefined' ? new (require('u' + 'rl').URL)('file:' + __filename).href : (document.currentScript && document.currentScript.src || new URL('index.cjs', document.baseURI).href))));
+var _documentCurrentScript = typeof document !== 'undefined' ? document.currentScript : null;
+const copyFile = util.promisify(fs.copyFile);
+const mkdir = util.promisify(fs.mkdir);
+const readdir = util.promisify(fs.readdir);
+const readFile = util.promisify(fs.readFile);
+const stat = util.promisify(fs.stat);
+const __dirname$1 = path.dirname(url.fileURLToPath((typeof document === 'undefined' ? require('u' + 'rl').pathToFileURL(__filename).href : (_documentCurrentScript && _documentCurrentScript.src || new URL('index.cjs', document.baseURI).href))));
 
 /**
  * Absolute path to the Partytown lib directory within the
@@ -93,20 +89,17 @@ async function copyLibDir(srcDir, destDir, opts) {
  */
 function partytownRollup(opts) {
     opts = opts || {};
-    if (typeof opts.dest !== 'string' || opts.dest.length === 0) {
-        throw new Error(`Partytown plugin must have "dest" property.`);
-    }
-    if (!path.isAbsolute(opts.dest)) {
-        throw new Error(`Partytown plugin "dest" property must be an absolute path.`);
-    }
-    let hasCopied = false;
     const plugin = {
         name: 'rollup-plugin-partytown',
-        async writeBundle() {
-            if (!hasCopied) {
-                await copyLibFiles(opts.dest, { debugDir: opts.debug });
-                hasCopied = true;
+        async writeBundle(rollupOpts) {
+            const dir = (opts === null || opts === void 0 ? void 0 : opts.dest) || (rollupOpts.dir ? node_path.join(rollupOpts.dir, '~partytown') : undefined);
+            if (typeof dir !== 'string') {
+                throw new Error(`A destination directory must be specified either via the Partytown "dest" option or Rollup output dir option.`);
             }
+            if (!node_path.isAbsolute(dir)) {
+                throw new Error(`Partytown plugin "dest" property must be an absolute path.`);
+            }
+            await copyLibFiles(dir, { debugDir: opts === null || opts === void 0 ? void 0 : opts.debug });
         },
     };
     return plugin;

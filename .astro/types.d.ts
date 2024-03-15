@@ -28,8 +28,6 @@ declare module 'astro:content' {
 }
 
 declare module 'astro:content' {
-	export { z } from 'astro/zod';
-
 	type Flatten<T> = T extends { [K: string]: infer U } ? U : never;
 
 	export type CollectionKey = keyof AnyEntryMap;
@@ -37,53 +35,6 @@ declare module 'astro:content' {
 
 	export type ContentCollectionKey = keyof ContentEntryMap;
 	export type DataCollectionKey = keyof DataEntryMap;
-
-	// This needs to be in sync with ImageMetadata
-	export type ImageFunction = () => import('astro/zod').ZodObject<{
-		src: import('astro/zod').ZodString;
-		width: import('astro/zod').ZodNumber;
-		height: import('astro/zod').ZodNumber;
-		format: import('astro/zod').ZodUnion<
-			[
-				import('astro/zod').ZodLiteral<'png'>,
-				import('astro/zod').ZodLiteral<'jpg'>,
-				import('astro/zod').ZodLiteral<'jpeg'>,
-				import('astro/zod').ZodLiteral<'tiff'>,
-				import('astro/zod').ZodLiteral<'webp'>,
-				import('astro/zod').ZodLiteral<'gif'>,
-				import('astro/zod').ZodLiteral<'svg'>,
-				import('astro/zod').ZodLiteral<'avif'>,
-			]
-		>;
-	}>;
-
-	type BaseSchemaWithoutEffects =
-		| import('astro/zod').AnyZodObject
-		| import('astro/zod').ZodUnion<[BaseSchemaWithoutEffects, ...BaseSchemaWithoutEffects[]]>
-		| import('astro/zod').ZodDiscriminatedUnion<string, import('astro/zod').AnyZodObject[]>
-		| import('astro/zod').ZodIntersection<BaseSchemaWithoutEffects, BaseSchemaWithoutEffects>;
-
-	type BaseSchema =
-		| BaseSchemaWithoutEffects
-		| import('astro/zod').ZodEffects<BaseSchemaWithoutEffects>;
-
-	export type SchemaContext = { image: ImageFunction };
-
-	type DataCollectionConfig<S extends BaseSchema> = {
-		type: 'data';
-		schema?: S | ((context: SchemaContext) => S);
-	};
-
-	type ContentCollectionConfig<S extends BaseSchema> = {
-		type?: 'content';
-		schema?: S | ((context: SchemaContext) => S);
-	};
-
-	type CollectionConfig<S> = ContentCollectionConfig<S> | DataCollectionConfig<S>;
-
-	export function defineCollection<S extends BaseSchema>(
-		input: CollectionConfig<S>
-	): CollectionConfig<S>;
 
 	type AllValuesOf<T> = T extends any ? T[keyof T] : never;
 	type ValidContentEntrySlug<C extends keyof ContentEntryMap> = AllValuesOf<
@@ -174,11 +125,11 @@ declare module 'astro:content' {
 			? {
 					collection: C;
 					slug: ValidContentEntrySlug<C>;
-			  }
+				}
 			: {
 					collection: C;
 					id: keyof DataEntryMap[C];
-			  }
+				}
 	>;
 	// Allow generic `string` to avoid excessive type errors in the config
 	// if `dev` is not running to update as you edit.
@@ -194,6 +145,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"groups": {
+"12x12.mdoc": {
+	id: "12x12.mdoc";
+  slug: "12x12";
+  body: string;
+  collection: "groups";
+  data: InferEntrySchema<"groups">
+} & { render(): Render[".mdoc"] };
 "net-nazvaniya-1.mdoc": {
 	id: "net-nazvaniya-1.mdoc";
   slug: "net-nazvaniya-1";
@@ -259,198 +217,86 @@ declare module 'astro:content' {
 } & { render(): Render[".mdoc"] };
 };
 "pages": {
-"testovaya-stranicza.mdoc": {
-	id: "testovaya-stranicza.mdoc";
-  slug: "testovaya-stranicza";
+"test.mdx": {
+	id: "test.mdx";
+  slug: "test";
   body: string;
   collection: "pages";
   data: InferEntrySchema<"pages">
-} & { render(): Render[".mdoc"] };
+} & { render(): Render[".mdx"] };
 };
 "posts": {
-"12-shagov-chast-zhizni.mdoc": {
-	id: "12-shagov-chast-zhizni.mdoc";
-  slug: "12-shagov-chast-zhizni";
+"new-group.mdx": {
+	id: "new-group.mdx";
+  slug: "new-group";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"12step-netlify-app.mdoc": {
-	id: "12step-netlify-app.mdoc";
-  slug: "12step-netlify-app";
+} & { render(): Render[".mdx"] };
+"shorts-delete.mdx": {
+	id: "shorts-delete.mdx";
+  slug: "shorts-delete";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"12steps-group-aiz.mdoc": {
-	id: "12steps-group-aiz.mdoc";
-  slug: "12steps-group-aiz";
+} & { render(): Render[".mdx"] };
+"sponsor.mdx": {
+	id: "sponsor.mdx";
+  slug: "sponsor";
   body: string;
   collection: "posts";
   data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"chto-delat-esli-vash-drug-ili-chlen-semi-internet-zavisimyj.mdoc": {
-	id: "chto-delat-esli-vash-drug-ili-chlen-semi-internet-zavisimyj.mdoc";
-  slug: "chto-delat-esli-vash-drug-ili-chlen-semi-internet-zavisimyj";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"instrumenty-dlya-polnoczennoj-zhizni.mdoc": {
-	id: "instrumenty-dlya-polnoczennoj-zhizni.mdoc";
-  slug: "instrumenty-dlya-polnoczennoj-zhizni";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"internet-zavisimost-i-12-shagov.mdoc": {
-	id: "internet-zavisimost-i-12-shagov.mdoc";
-  slug: "internet-zavisimost-i-12-shagov";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"kak-otklyuchit-you-tube-shorts.mdoc": {
-	id: "kak-otklyuchit-you-tube-shorts.mdoc";
-  slug: "kak-otklyuchit-you-tube-shorts";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"kak-perestat-zalipat-v-internete.mdoc": {
-	id: "kak-perestat-zalipat-v-internete.mdoc";
-  slug: "kak-perestat-zalipat-v-internete";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"kak-preodolet-internet-zavisimost-s-pomoshhyu-duhovnyh-princzipov.mdoc": {
-	id: "kak-preodolet-internet-zavisimost-s-pomoshhyu-duhovnyh-princzipov.mdoc";
-  slug: "kak-preodolet-internet-zavisimost-s-pomoshhyu-duhovnyh-princzipov";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"kak-sozdat-gruppu-aiz.mdoc": {
-	id: "kak-sozdat-gruppu-aiz.mdoc";
-  slug: "kak-sozdat-gruppu-aiz";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"kto-takie-aiz.mdoc": {
-	id: "kto-takie-aiz.mdoc";
-  slug: "kto-takie-aiz";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"kto-takoj-sponsor-nastavnik-v-anonimnyh-internet-zavisimyh.mdoc": {
-	id: "kto-takoj-sponsor-nastavnik-v-anonimnyh-internet-zavisimyh.mdoc";
-  slug: "kto-takoj-sponsor-nastavnik-v-anonimnyh-internet-zavisimyh";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"odin-iz-metodov-prohozhdeniya-shagov-aiz.mdoc": {
-	id: "odin-iz-metodov-prohozhdeniya-shagov-aiz.mdoc";
-  slug: "odin-iz-metodov-prohozhdeniya-shagov-aiz";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"online-cowork.mdoc": {
-	id: "online-cowork.mdoc";
-  slug: "online-cowork";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"ponyatie-trezvosti-ili-chistoty-v-aiz-est-li-eti-ponyatiya-zdes.mdoc": {
-	id: "ponyatie-trezvosti-ili-chistoty-v-aiz-est-li-eti-ponyatiya-zdes.mdoc";
-  slug: "ponyatie-trezvosti-ili-chistoty-v-aiz-est-li-eti-ponyatiya-zdes";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"princzipy-12-shagov-v-nashih-delah.mdoc": {
-	id: "princzipy-12-shagov-v-nashih-delah.mdoc";
-  slug: "princzipy-12-shagov-v-nashih-delah";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"proekt-dlya-12-shagov.mdoc": {
-	id: "proekt-dlya-12-shagov.mdoc";
-  slug: "proekt-dlya-12-shagov";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"sluzhenie-eto-vyrazhenie-nashej-blagodarnosti-sodruzhestvu.mdoc": {
-	id: "sluzhenie-eto-vyrazhenie-nashej-blagodarnosti-sodruzhestvu.mdoc";
-  slug: "sluzhenie-eto-vyrazhenie-nashej-blagodarnosti-sodruzhestvu";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
-"vse-chto-est-v-aiz.mdoc": {
-	id: "vse-chto-est-v-aiz.mdoc";
-  slug: "vse-chto-est-v-aiz";
-  body: string;
-  collection: "posts";
-  data: InferEntrySchema<"posts">
-} & { render(): Render[".mdoc"] };
+} & { render(): Render[".mdx"] };
 };
-"spikers": {
+"speakers": {
 "12-tradiczij-dlya-iz-po-illyustracziyam-primerami-i-opytom.mdoc": {
 	id: "12-tradiczij-dlya-iz-po-illyustracziyam-primerami-i-opytom.mdoc";
   slug: "12-tradiczij-dlya-iz-po-illyustracziyam-primerami-i-opytom";
   body: string;
-  collection: "spikers";
-  data: InferEntrySchema<"spikers">
+  collection: "speakers";
+  data: InferEntrySchema<"speakers">
 } & { render(): Render[".mdoc"] };
 "aiz-anonimnye-internet-zavisimye-demyan-spikerskaya.mdoc": {
 	id: "aiz-anonimnye-internet-zavisimye-demyan-spikerskaya.mdoc";
   slug: "aiz-anonimnye-internet-zavisimye-demyan-spikerskaya";
   body: string;
-  collection: "spikers";
-  data: InferEntrySchema<"spikers">
+  collection: "speakers";
+  data: InferEntrySchema<"speakers">
 } & { render(): Render[".mdoc"] };
 "aiz-anonimnye-internet-zavisimye-kamil-spikerskaya-5-tradicziya-i-prodvizheniya.mdoc": {
 	id: "aiz-anonimnye-internet-zavisimye-kamil-spikerskaya-5-tradicziya-i-prodvizheniya.mdoc";
   slug: "aiz-anonimnye-internet-zavisimye-kamil-spikerskaya-5-tradicziya-i-prodvizheniya";
   body: string;
-  collection: "spikers";
-  data: InferEntrySchema<"spikers">
+  collection: "speakers";
+  data: InferEntrySchema<"speakers">
 } & { render(): Render[".mdoc"] };
 "aiz-anonimnye-internet-zavisimye-kamil-spikerskaya-pro-nezavisimost-grupp-4-tradicziya.mdoc": {
 	id: "aiz-anonimnye-internet-zavisimye-kamil-spikerskaya-pro-nezavisimost-grupp-4-tradicziya.mdoc";
   slug: "aiz-anonimnye-internet-zavisimye-kamil-spikerskaya-pro-nezavisimost-grupp-4-tradicziya";
   body: string;
-  collection: "spikers";
-  data: InferEntrySchema<"spikers">
+  collection: "speakers";
+  data: InferEntrySchema<"speakers">
 } & { render(): Render[".mdoc"] };
 "aiz-anonimnye-internet-zavisimye-sergej-spikerskaya-opyt-programmy.mdoc": {
 	id: "aiz-anonimnye-internet-zavisimye-sergej-spikerskaya-opyt-programmy.mdoc";
   slug: "aiz-anonimnye-internet-zavisimye-sergej-spikerskaya-opyt-programmy";
   body: string;
-  collection: "spikers";
-  data: InferEntrySchema<"spikers">
+  collection: "speakers";
+  data: InferEntrySchema<"speakers">
 } & { render(): Render[".mdoc"] };
 "aiz-itaa-spikerskaya-evgenij-n-g-cheboksary-tema-kak-ya-izbavilsya-ot-internet.mdoc": {
 	id: "aiz-itaa-spikerskaya-evgenij-n-g-cheboksary-tema-kak-ya-izbavilsya-ot-internet.mdoc";
   slug: "aiz-itaa-spikerskaya-evgenij-n-g-cheboksary-tema-kak-ya-izbavilsya-ot-internet";
   body: string;
-  collection: "spikers";
-  data: InferEntrySchema<"spikers">
+  collection: "speakers";
+  data: InferEntrySchema<"speakers">
 } & { render(): Render[".mdoc"] };
 "evelina-r-spikerskaya-tema-sluzhenie-neotemlemaya-chast-vyzdorovleniya.mdoc": {
 	id: "evelina-r-spikerskaya-tema-sluzhenie-neotemlemaya-chast-vyzdorovleniya.mdoc";
   slug: "evelina-r-spikerskaya-tema-sluzhenie-neotemlemaya-chast-vyzdorovleniya";
   body: string;
-  collection: "spikers";
-  data: InferEntrySchema<"spikers">
+  collection: "speakers";
+  data: InferEntrySchema<"speakers">
 } & { render(): Render[".mdoc"] };
 };
 "story": {
@@ -492,5 +338,5 @@ declare module 'astro:content' {
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;
 
-	type ContentConfig = typeof import("../src/content/config");
+	export type ContentConfig = typeof import("../src/content/config.js");
 }

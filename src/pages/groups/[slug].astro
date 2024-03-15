@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets"
+import { getCollection } from "astro:content"
+import PostLayout from "../../layout/PostLayout.astro"
+
+export async function getStaticPaths() {
+	const posts = await getCollection("groups")
+	return posts.map(post => ({
+		params: { slug: post.slug },
+		props: post,
+	}))
+}
+
+const post = Astro.props
+const { Content } = await post.render()
+---
+
+<PostLayout {...post.data} img={post.data.groupImg?.src}>
+	<aside class="mx-auto max-w-[780px] mb-10">
+		<a
+			href="/groups"
+			class="text-lg md:ml-10 ml-5 bg-white font-medium rounded-lg py-2 px-3"
+			>⬅ Назад к группам</a
+		>
+	</aside>
+	<main
+		class="mx-auto max-w-[780px] prose lg:prose-lg xl:prose-xl md:prose-md prose-p:text-slate-900 prose-a:text-blue-500 prose-headings:leading-tight prose-p:leading-relaxed prose-a:no-underline prose-zinc bg-white md:p-10 p-5 rounded-2xl"
+	>
+		<div class="flex gap-5 flex-wrap items-center">
+			{
+				post.data.groupImg ? (
+					<Image
+						src={post.data.groupImg}
+						format="avif"
+						class="w-[150px] h-[150px] rounded-xl"
+						quality={"low"}
+						alt={post.data.title}
+					/>
+				) : (
+					<div class="w-[150px] h-[150px] rounded-xl bg-black" />
+				)
+			}
+			<h1 class="not-prose text-4xl font-bold">{post.data.title}</h1>
+		</div>
+		<p class="">{post.data.when}: <b>{post.data.dateTime}</b></p>
+		<Content />
+	</main>
+</PostLayout>
