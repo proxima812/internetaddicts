@@ -1,47 +1,47 @@
 ---
 import Title from "../components/blocks/Title.astro"
-import MainLayout from "../layout/MainLayout.astro"
+import Layout from "../layout/Layout.astro"
 
 const links = [
 	{
 		name: "Кто такие АИЗ?",
-		link: "https://internetaddicts.ru/PostLayouts/kto-takie-aiz/",
+		link: "https://internetaddicts.ru/posts/kto-takie-aiz/",
 	},
 	{
 		name: "Кто такой наставник в АИЗ?",
-		link: "https://internetaddicts.ru/PostLayouts/kto-takoj-sponsor-nastavnik-v-anonimnyh-internet-zavisimyh/",
+		link: "https://internetaddicts.ru/posts/kto-takoj-sponsor-nastavnik-v-anonimnyh-internet-zavisimyh/",
 	},
 	{
 		name: "Что дают нам шаги? Принципы шагов.",
-		link: "https://internetaddicts.ru/PostLayouts/princzipy-12-shagov-v-nashih-delah/",
+		link: "https://internetaddicts.ru/posts/princzipy-12-shagov-v-nashih-delah/",
 	},
 	{
 		name: "Инструменты для полноценной жизни",
-		link: "https://internetaddicts.ru/PostLayouts/instrumenty-dlya-polnoczennoj-zhizni/",
+		link: "https://internetaddicts.ru/posts/instrumenty-dlya-polnoczennoj-zhizni/",
 	},
 ]
 ---
 
-<MainLayout
+<Layout
 	title="Анонимные Интернет Зависимые"
-	description="Это сообщество людей, которые поддерживают друг друга в преодолении проблем, вызванных одержимым использованием интернета и технических устройств."
+	desc="Это сообщество людей, которые поддерживают друг друга в преодолении проблем, вызванных одержимым использованием интернета и технических устройств."
 >
 	<Title />
 	<section class="max-w-[880px] mx-auto flex flex-col gap-10 text-zinc-600">
 		<nav class="flex justify-between items-center flex-wrap gap-2 md:gap-3">
-			<div class="flex flex-wrap gap-2 md:gap-3">
-				<a
-					href="https://t.me/aiz_itta"
-					class="text-green-700 self-end bg-green-50 ring-1 ring-green-400 rounded-full px-2.5 py-2 w-full md:w-auto md:text-left text-center"
-					>👍 Присоединиться к АИЗ</a
-				>
-				<a
-					href="https://t.me/aiz_info"
-					class="text-slate-700 self-end bg-slate-50 ring-1 ring-slate-400 rounded-full px-2.5 py-2 w-full md:w-auto md:text-left text-center"
-					>ℹ️ Инфоканал АИЗ</a
-				>
-			</div>
-			<a
+	<div class="flex flex-wrap gap-2 md:gap-3">
+	  		<a
+  				href="https://t.me/aiz_itta"
+  				class="text-green-700 self-end bg-green-50 ring-1 ring-green-400 rounded-full px-2.5 py-2 w-full md:w-auto md:text-left text-center"
+  				>👍 Присоединиться к АИЗ</a
+  			>
+  			<a
+  				href="https://t.me/aiz_info"
+  				class="text-slate-700 self-end bg-slate-50 ring-1 ring-slate-400 rounded-full px-2.5 py-2 w-full md:w-auto md:text-left text-center"
+  				>ℹ️ Инфоканал АИЗ</a
+  			>
+	</div>
+      <a
 				href="https://t.me/all_12steps"
 				class="text-sky-700 self-end bg-sky-50 ring-1 ring-sky-400 rounded-full px-2.5 py-2 w-full md:w-auto md:text-left text-center"
 				>🦋 Материалы по 12 шагам</a
@@ -50,8 +50,8 @@ const links = [
 
 		<p class="text-xl leading-relaxed font-light">
 			Мы рады, что вы нашли нас, и надеемся, что наше сообщество окажется для вас
-			полезным, как и для нас. <b>АИЗ</b> - это двенадцатишаговое сообщество людей, которые
-			поддерживают друг друга в выздоровлении от залипания в интернете.
+			полезным, как и для нас. <b>АИЗ</b> - это двенадцатишаговое сообщество людей,
+			которые поддерживают друг друга в выздоровлении от залипания в интернете.
 		</p>
 		<p class="text-xl leading-relaxed font-light">
 			К ним относятся зависимость от <b>социальных сетей</b>, <b>смартфонов</b>, <b
@@ -82,4 +82,4 @@ const links = [
 			</nav>
 		</div>
 	</section>
-</MainLayout>
+</Layout>

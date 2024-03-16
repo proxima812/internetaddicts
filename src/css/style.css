@@ -1,49 +1,49 @@
 :root {
-	/* Цвета блоков секции */
-	--article: #fbfbfb;
-	--present: #e7fff4;
-	/* Кнопки и их цвета с параметрами */
-	--btn: #48c993;
-	--btn-hover: #37ab7a;
-	--btn-paddings: 6px 16px;
-	--p: #313131;
-	/* Округления */
-	--border-small: 10px;
-	--border-medium: 20px;
-	--border-large: 30px;
-	/* Границы цвет */
-	--border-color-params: 1px solid #f1f1f1;
-	/* Высота секции */
-	--mt: 30px;
-	/* Размер текстов и ссылок */
-	--size-large: 32px;
-	--size-medium: 24px;
-	--size-description: 16px;
-	--size-link: 14px;
-	--size-span: 12px;
-	/* Прочие настройки */
-	--animate: 0.2s linear;
-	--shadow: 0px 0px 6px rgba(221, 221, 221, 0.25);
-	---next--shadow: 0 0 0 1px rgb(0 0 0 / 7%), 0 2px 4px rgb(0 0 0 / 5%),
-		0 12px 24px rgb(0 0 0 / 5%);
-	/* TODO Цвета */
-	--white: #fff;
-	--black: #010101;
-	--text: #070123;
-	--text-paragrah: #25212b;
-	--description: #888;
-	--tag: #0077ff;
-	--purple: #4f42e0;
-	--green: #3bc884;
-	--color-accent: linear-gradient(90.14deg, #f8724f 46.85%, #ff1e46 102.32%);
-	/* TODO Для content */
-	--margin: 14px;
+ /* Цвета блоков секции */
+ --article: #fbfbfb;
+ --present: #e7fff4;
+ /* Кнопки и их цвета с параметрами */
+ --btn: #48c993;
+ --btn-hover: #37ab7a;
+ --btn-paddings: 6px 16px;
+ --p: #313131;
+ /* Округления */
+ --border-small: 10px;
+ --border-medium: 20px;
+ --border-large: 30px;
+ /* Границы цвет */
+ --border-color-params: 1px solid #f1f1f1;
+ /* Высота секции */
+ --mt: 30px;
+ /* Размер текстов и ссылок */
+ --size-large: 32px;
+ --size-medium: 24px;
+ --size-desc: 16px;
+ --size-link: 14px;
+ --size-span: 12px;
+ /* Прочие настройки */
+ --animate: 0.2s linear;
+ --shadow: 0px 0px 6px rgba(221, 221, 221, 0.25);
+ ---next--shadow: 0 0 0 1px rgb(0 0 0 / 7%), 0 2px 4px rgb(0 0 0 / 5%),
+  0 12px 24px rgb(0 0 0 / 5%);
+ /* TODO Цвета */
+ --white: #fff;
+ --black: #010101;
+ --text: #070123;
+ --text-paragrah: #25212b;
+ --desc: #888;
+ --tag: #0077ff;
+ --purple: #4f42e0;
+ --green: #3bc884;
+ --color-accent: linear-gradient(90.14deg, #f8724f 46.85%, #ff1e46 102.32%);
+ /* TODO Для content */
+ --margin: 14px;
 }
 
 .hover-top {
-	transition: transform 0.2s linear;
+ transition: transform 0.2s linear;
 }
 .hover-top:hover {
-	transform: translateY(-3px);
-	transition: transform 0.2s linear;
+ transform: translateY(-3px);
+ transition: transform 0.2s linear;
 }

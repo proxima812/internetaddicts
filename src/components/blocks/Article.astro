@@ -1,48 +1,40 @@
 ---
-import { Image } from "astro:assets"
+import { Image } from 'astro:assets'
 export interface Props {
-	data: {
-		img: string
-		title: string
-		description: string
-		pubDate: string
-	}
-	slug
+  data: {
+    img: string
+    title: string
+    description: string
+    pubDate: string
+  }
+  slug
 }
 
 const {
-	data: { description, title, pubDate, img },
-	slug,
+  data: { description, title, pubDate, img },
+  slug,
 } = Astro.props
 ---
 
 <a href={`/posts/${slug}`} class="hover-top">
-	<article class="bg-white p-5 rounded-2xl prose max-w-none">
-		{
-			img && (
-				<Image
-					src={img}
-					width={920}
-					height={920}
-					class="rounded-xl"
-					alt={title}
-					format={"avif"}
-					quality={"low"}
-				/>
-			)
-		}
-		<h3>{title}</h3>
-		<p class="line-clamp-2 text-gray-500">{description}</p>
-		{
-			pubDate && (
-				<time datetime={pubDate} class="font-medium">
-					{new Date(pubDate).toLocaleDateString("ru-RU", {
-						year: "numeric",
-						month: "numeric",
-						day: "numeric",
-					})}
-				</time>
-			)
-		}
-	</article>
+  <article class="bg-white p-5 rounded-2xl prose max-w-none">
+    {
+      img && (
+        <Image src={img} class="rounded-xl" alt={title} format={'avif'} quality={'low'} />
+      )
+    }
+    <h3>{title}</h3>
+    <p class="line-clamp-2 text-gray-500">{description}</p>
+    {
+      pubDate && (
+        <time datetime={pubDate} class="font-medium">
+          {new Date(pubDate).toLocaleDateString('ru-RU', {
+            year: 'numeric',
+            month: 'numeric',
+            day: 'numeric',
+          })}
+        </time>
+      )
+    }
+  </article>
 </a>

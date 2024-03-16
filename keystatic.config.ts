@@ -3,27 +3,19 @@ import { collection, config, fields } from "@keystatic/core"
 const isProd = import.meta.env.PROD
 
 export default config({
-	storage: isProd
-		? {
-				kind: "github",
-				repo: "itaaSite/internetaddicts",
-				branchPrefix: "main/",
-			}
-		: { kind: "local" },
-	ui: {
-		brand: { name: "АИЗ" },
-		navigation: {
-			Content: ["pages", "posts"],
-			Группы: ["groups"],
-			Истории: ["story", "speakers"],
-		},
-	},
+	storage:
+		// isProd ?
+		// {
+		// 	kind: "github",
+		// 	repo: "itaaSite/internetaddicts",
+		// 	branchPrefix: "main/",
+    // },
+	{ kind: "local" },
 	collections: {
 		posts: collection({
 			label: "Посты",
 			slugField: "title",
 			path: "src/content/posts/*",
-			columns: ["title", "pubDate"],
 			entryLayout: "content",
 			format: {
 				contentField: "content",
@@ -37,9 +29,6 @@ export default config({
 				}),
 				pubDate: fields.date({
 					label: "Время",
-					defaultValue: {
-						kind: "today",
-					},
 					description: "Время публикации",
 				}),
 				img: fields.image({
@@ -47,13 +36,14 @@ export default config({
 					directory: "src/assets/images/posts",
 					publicPath: "../../assets/images/posts/",
 				}),
-				content: fields.mdx({
+				content: fields.document({
 					label: "Контент",
-					options: {
-						image: {
-							directory: "src/assets/images/posts",
-							publicPath: "../../assets/images/posts/",
-						},
+					formatting: true,
+					dividers: true,
+					links: true,
+					images: {
+						directory: "src/assets/images/posts",
+						publicPath: "../../assets/images/posts/",
 					},
 				}),
 			},
@@ -63,7 +53,6 @@ export default config({
 			slugField: "title",
 			path: "src/content/story/*",
 			format: { contentField: "content" },
-			columns: ["title"],
 			schema: {
 				title: fields.slug({ name: { label: "Заголовок" } }),
 				description: fields.text({
@@ -71,22 +60,22 @@ export default config({
 					description: "от 20 до 150 символов",
 					validation: { length: { min: 40, max: 320 } },
 				}),
-				content: fields.mdx({
+				content: fields.document({
 					label: "Контент",
-					options: {
-						image: {
-							directory: "src/assets/images/posts",
-							publicPath: "../../assets/images/posts/",
-						},
+					formatting: true,
+					dividers: true,
+					links: true,
+					images: {
+						directory: "src/assets/images/stories",
+						publicPath: "../../assets/images/stories/",
 					},
 				}),
 			},
 		}),
-		speakers: collection({
+		spikers: collection({
 			label: "Спикерские",
 			slugField: "title",
-			path: "src/content/speakers/*",
-			columns: ["title", "pubDate"],
+			path: "src/content/spikers/*",
 			format: { contentField: "content" },
 			schema: {
 				title: fields.slug({ name: { label: "Заголовок" } }),
@@ -99,18 +88,16 @@ export default config({
 				}),
 				pubDate: fields.date({
 					label: "Время",
-					defaultValue: {
-						kind: "today",
-					},
 					description: "Время публикации",
 				}),
-				content: fields.mdx({
+				content: fields.document({
 					label: "Контент",
-					options: {
-						image: {
-							directory: "src/assets/images/posts",
-							publicPath: "../../assets/images/posts/",
-						},
+					formatting: true,
+					dividers: true,
+					links: true,
+					images: {
+						directory: "src/assets/images/stories",
+						publicPath: "../../assets/images/stories/",
 					},
 				}),
 			},
@@ -120,7 +107,6 @@ export default config({
 			slugField: "title",
 			path: "src/content/groups/*",
 			entryLayout: "content",
-			columns: ["title", "type", "when", "dateTime"],
 			format: { contentField: "body" },
 			schema: {
 				title: fields.slug({ name: { label: "Название группы" } }),
@@ -129,11 +115,6 @@ export default config({
 					formatting: true,
 					dividers: true,
 					links: true,
-				}),
-				groupImg: fields.image({
-					label: "Фото группы",
-					directory: "src/assets/images/groups",
-					publicPath: "../../assets/images/groups/",
 				}),
 				when: fields.text({
 					label: "Время",
@@ -161,13 +142,12 @@ export default config({
 			slugField: "title",
 			path: "src/content/pages/*",
 			entryLayout: "content",
-			columns: ["title", "description"],
 			format: {
 				contentField: "content",
 			},
 			schema: {
 				title: fields.slug({ name: { label: "Заголовок страницы" } }),
-				description: fields.text({
+				desc: fields.text({
 					label: "Описание страницы",
 					description: "до 145 символов",
 					validation: { length: { min: 20, max: 150 } },
@@ -177,13 +157,14 @@ export default config({
 					directory: "src/assets/images/pages",
 					publicPath: "../../assets/images/pages/",
 				}),
-				content: fields.mdx({
+				content: fields.document({
 					label: "Контент страницы",
-					options: {
-						image: {
-							directory: "src/assets/images/pages",
-							publicPath: "../../assets/images/pages/",
-						},
+					formatting: true,
+					dividers: true,
+					links: true,
+					images: {
+						directory: "src/assets/images/pages",
+						publicPath: "../../assets/images/pages/",
 					},
 				}),
 			},

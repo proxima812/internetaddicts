@@ -1,14 +1,14 @@
 ---
-import MainLayout from "./MainLayout.astro"
+import Layout from '../layout/Layout.astro'
 
-interface Props {
-	title: string
-	description: string
+interface Props{
+  title: string;
+  desc: string;
 }
 
-const { title, description } = Astro.props
+const {title, desc} = Astro.props
 ---
 
-<MainLayout title={title} description={description}>
-	<slot />
-</MainLayout>
+<Layout title={title} desc={desc}>
+  <slot/>
+</Layout>

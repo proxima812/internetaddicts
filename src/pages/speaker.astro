@@ -1,0 +1,43 @@
+---
+import { YouTube } from '@astro-community/astro-embed-youtube'
+import { getCollection } from 'astro:content'
+import Layout from "../layout/Layout.astro"
+const spikers = await getCollection("spikers")
+---
+
+<Layout
+	title="Спикерские членов АИЗ и других"
+	desc="Спикеры АИЗ их опыт выздоровления и преодоления залипания"
+>
+	<div class="container">
+		<section class="mt-2">
+			<div class="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+				{ spikers &&
+					spikers
+						.sort(
+							(a, b) =>
+								new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+						)
+						.map(post => (
+							<a href={`/spikers/${post.slug}`} class="hover-top">
+								<article class="bg-white p-5 rounded-2xl prose max-w-none">
+              <YouTube id={post.data.idYB} />
+									<h3>{post.data.title}</h3>
+									<p class="line-clamp-2 text-gray-500">{post.data.desc}</p>
+									{post.data.pubDate && (
+										<time datetime={post.data.pubDate} class="font-medium">
+											{new Date(post.data.pubDate).toLocaleDateString("ru-RU", {
+												year: "numeric",
+												month: "numeric",
+												day: "numeric",
+											})}
+										</time>
+									)}
+								</article>
+							</a>
+						))
+				}
+			</div>
+		</section>
+	</div>
+</Layout>
