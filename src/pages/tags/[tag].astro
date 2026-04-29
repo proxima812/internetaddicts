@@ -1,0 +1,52 @@
+---
+import Article from "@/components/Article.astro"
+import Tags from "@/components/Tags.astro"
+import Layout from "@/layout/Layout.astro"
+import { getAllPosts } from "@/lib/getPosts"
+import getTaxonomy from "@/lib/getTaxonomy"
+import taxonomyFilter from "@/lib/taxonomyFilter"
+import { slugify } from "@/lib/utils"
+import { Icon } from "astro-icon/components"
+
+export async function getStaticPaths() {
+	const categories = await getTaxonomy("posts", "tags")
+
+	return categories.map(tag => {
+		return {
+			params: { tag: slugify(tag) },
+			props: { label: tag },
+		}
+	})
+}
+
+const { tag } = Astro.params
+const { label } = Astro.props
+const posts = await getAllPosts("posts")
+const filterByTags = taxonomyFilter(posts, "tags", tag)
+const displayTag = label ?? tag
+---
+
+<Layout
+	data-pagefind-ignore
+	title={`Архив: ${displayTag}`}
+	desc="Статьи АИЗ. Полезная информация, методы шагов, инструменты"
+>
+	<h1 class="text-3xl text-gray-700 font-semibold flex gap-2 items-center">
+		<Icon name="mdi:label-outline" />
+		<span>{`Архив: ${displayTag}`}</span>
+	</h1>
+
+	<Tags />
+
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+		{
+			filterByTags &&
+				filterByTags
+					.sort(
+						(a, b) =>
+							new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+					)
+					.map(post => <Article slug={post.slug} data={post.data} />)
+		}
+	</div>
+</Layout>

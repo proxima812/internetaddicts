@@ -1,2 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /keystatic
+Disallow: /admin
+Disallow: /api/
+Disallow: /tags/
+Crawl-delay: 10

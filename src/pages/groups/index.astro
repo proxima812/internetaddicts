@@ -1,108 +1,66 @@
 ---
-import { marked } from 'marked'
+import GroupArticle from "@/components/GroupArticle.astro"
+import Layout from "@/layout/Layout.astro"
+import { Icon } from "astro-icon/components"
+import { getCollection } from "astro:content"
 
-import { getCollection } from 'astro:content'
-import Layout from '../../layout/Layout.astro'
-
-const groups = await getCollection('groups')
-const groupsCounter = (await getCollection('groups')).length
+const groups = await getCollection("groups")
 
 const dayOrder = {
-  Понедельник: 1,
-  Вторник: 2,
-  Среда: 3,
-  Четверг: 4,
-  Пятница: 5,
-  Суббота: 6,
-  Воскресенье: 7,
+	Понедельник: 1,
+	Вторник: 2,
+	Среда: 3,
+	Четверг: 4,
+	Пятница: 5,
+	Суббота: 6,
+	Воскресенье: 7,
+	По_запросу: 8,
 }
 
+const someDate = "2024-12-28"
+
 function sortGroupsByDay(groups) {
-  return groups.sort((a, b) => {
-    return dayOrder[a.data.when] - dayOrder[b.data.when]
-  })
+	return groups
+		.sort((a, b) => {
+			const t1 = someDate + a.data.dateTime
+			const t2 = someDate + b.data.dateTime
+			return new Date(t2).getMilliseconds() - new Date(t1).getMilliseconds()
+		})
+		.sort((a, b) => {
+			return dayOrder[a.data.when] - dayOrder[b.data.when]
+		})
 }
 ---
 
 <Layout
-  title={`Онлайн собрания и Офлайн`}
-  desc={`Время встреч для анонимных интернет зависимых. Собраний (${groupsCounter})`}
+	title={`Онлайн и Оффлайн группы`}
+	desc={`Время встреч для анонимных интернет-зависимых. Собрания/Встречи и мероприятие каждый день.`}
 >
-  <section>
-    <h3 class="pb-10 text-2xl font-medium text-gray-700">
-      ⭐ Количество групп на данный момент: <b>{groupsCounter}</b>
-    </h3>
-    <h4 class="py-10 text-2xl text-gray-700 font-medium">
-      🌐 Онлайн группы ({groups.filter((f) => f.data.type === 'Онлайн').length})
-    </h4>
-    <div class="grid grid-cols-1 items-start md:grid-cols-2 lg:grid-cols-3 gap-5">
-      {
-        groups &&
-          sortGroupsByDay(groups.filter((f) => f.data.type === 'Онлайн')).map((group) => (
-            <div class="p-4 bg-white rounded-lg ring-1 ring-gray-100">
-              <div class="flex flex-col gap-3">
-                <div class="flex items-center justify-between gap-2 flex-wrap">
-                  <h4 class="font-bold text-lg">{group.data.title}</h4>
+	<h3 class="text-3xl text-gray-700 font-semibold flex gap-2 items-center">
+		<Icon name="mdi:account-group" />
+		<span>Оффлайн-группы</span>
+	</h3>
 
-                  <span class="bg-green-100 ring-1 ring-green-200 px-2 py-1 rounded-md">
-                    🌐 {group.data.type}
-                  </span>
-                </div>
-                <time class="font-medium" datetime={group.data.dateTime}>
-                  ⌚
-                  <span class="underline underline-offset-4">{group.data.dateTime}</span>
-                </time>
-                <p>
-                  Группа проходит: <b>{group.data.when}</b>
-                </p>
-                <p set:html={marked(group.body)} />
+	<div class="grid grid-cols-1 items-start md:grid-cols-2 lg:grid-cols-4 gap-5">
+		{
+			groups &&
+				sortGroupsByDay(groups.filter(f => f.data.type === "Живая")).map(group => (
+					<GroupArticle data={group.data} body={group.body} />
+				))
+		}
+	</div>
 
-                <a
-                  href={group.data.link}
-                  class="text-center py-1 px-2 rounded-md bg-blue-500 text-white hover:bg-blue-700"
-                >
-                  Войти
-                </a>
-              </div>
-            </div>
-          ))
-      }
-    </div>
-    <h4 class="py-10 text-2xl text-gray-700 font-medium">
-      🌤 Живые группы ({groups.filter((f) => f.data.type === 'Живая').length})
-    </h4>
-    <div class="grid grid-cols-1 items-start md:grid-cols-2 lg:grid-cols-3 gap-5">
-      {
-        groups &&
-          sortGroupsByDay(groups.filter((f) => f.data.type === 'Живая')).map((group) => (
-            <div class="p-4 bg-white rounded-lg ring-1 ring-gray-100">
-              <div class="flex flex-col gap-3">
-                <div class="flex items-center justify-between gap-2 flex-wrap">
-                  <h4 class="font-bold text-lg">{group.data.title}</h4>
+	<h3 class="text-3xl text-gray-700 font-semibold flex gap-2 items-center">
+		<Icon name="mdi:wifi" />
+		<span>Онлайн-группы</span>
+	</h3>
 
-                  <span class="bg-sky-100 ring-1 ring-sky-200 px-2 py-1 rounded-md">
-                    🌤 {group.data.type}
-                  </span>
-                </div>
-                <time class="font-medium" datetime={group.data.dateTime}>
-                  ⌚
-                  <span class="underline underline-offset-4">{group.data.dateTime}</span>
-                </time>
-                <p>
-                  Группа проходит: <b>{group.data.when}</b>
-                </p>
-                <p set:html={marked(group.body)} />
-
-                <a
-                  href={group.data.link}
-                  class="text-center py-1 px-2 rounded-md bg-purple-500 text-white hover:bg-purple-700"
-                >
-                  На карте
-                </a>
-              </div>
-            </div>
-          ))
-      }
-    </div>
-  </section>
+	<div class="grid grid-cols-1 items-start md:grid-cols-2 lg:grid-cols-4 gap-5">
+		{
+			groups &&
+				sortGroupsByDay(groups.filter(f => f.data.type === "Онлайн")).map(group => (
+					<GroupArticle data={group.data} body={group.body} />
+				))
+		}
+	</div>
 </Layout>

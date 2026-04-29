@@ -1,5 +1,15 @@
 {
+  "name": "АИЗ",
+  "short_name": "АИЗ",
+  "description": "Анонимные Интернет-Зависимые: статьи, группы, истории и материалы сообщества.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0071e3",
+  "lang": "ru",
   "icons": [
+    { "src": "/favicons/icon-192.png", "type": "image/png", "sizes": "192x192" },
     { "src": "/favicons/icon-512.png", "type": "image/png", "sizes": "512x512" }
   ]
 }

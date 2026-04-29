@@ -1,0 +1,35 @@
+---
+const posts = await getAllPosts("posts")
+import { getAllPosts } from "@/lib/getPosts"
+import getTaxonomy from "@/lib/getTaxonomy"
+import { slugify } from "@/lib/utils"
+import TagLink from "./TagLink.astro"
+
+const countPostsByTag = (posts, tagField = "tags") => {
+	const tagCounts = {}
+
+	posts.forEach(post => {
+		const tags = post.data[tagField] || []
+		tags.forEach(tag => {
+			tagCounts[tag] = (tagCounts[tag] || 0) + 1
+		})
+	})
+
+	return tagCounts
+}
+const tags = await getTaxonomy("posts", "tags")
+const tagCounts = countPostsByTag(posts)
+---
+
+<div class="flex flex-wrap gap-2">
+	<TagLink href="/posts">Все посты ({posts.length})</TagLink>
+
+	{
+		tags &&
+			tags.map(tag => (
+				<TagLink href={`/tags/${slugify(tag)}`}>
+					{tag} ({tagCounts[tag] || 0})
+				</TagLink>
+			))
+	}
+</div>

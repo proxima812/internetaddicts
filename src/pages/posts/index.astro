@@ -1,0 +1,51 @@
+---
+import Article from "@/components/Article.astro";
+import Authors from "@/components/Authors.astro";
+import Tags from "@/components/Tags.astro";
+import Layout from "@/layout/Layout.astro";
+import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
+const posts = await getCollection("posts");
+---
+
+<Layout
+	title={`Статьи`}
+	desc="Архив АИЗ. Полезная информация, методы шагов, инструменты и прочее."
+>
+	<Authors />
+	<Tags />
+
+	<h3 class="text-3xl text-gray-700 font-semibold flex gap-2 items-center">
+		<Icon name="mdi:file-search-outline" />
+		<span>Важные</span>
+	</h3>
+
+	{
+		posts && (
+			<div class="md:grid-cols-3 gap-3 grid grid-cols-1">
+				{posts &&
+					posts
+						.filter((post) => post.data.favorite === true)
+						.slice(0, 3)
+						.map((post) => <Article favorite slug={post.slug} data={post.data} />)}
+			</div>
+		)
+	}
+
+	<h3 class="text-3xl text-gray-700 font-semibold flex gap-2 items-center">
+		<Icon name="mdi:file-search-outline" />
+		<span>Остальные</span>
+	</h3>
+
+	<div class="grid md:grid-cols-3 grid-cols-1 gap-3">
+		{
+			posts &&
+				posts
+					.filter((post) => post.data.favorite !== true)
+					.sort(
+						(a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+					)
+					.map((post) => <Article slug={post.slug} data={post.data} />)
+		}
+	</div>
+</Layout>

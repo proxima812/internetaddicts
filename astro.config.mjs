@@ -1,22 +1,24 @@
-import markdoc from '@astrojs/markdoc';
-import mdx from '@astrojs/mdx';
-import partytown from '@astrojs/partytown';
-import react from '@astrojs/react';
-import sitemap from '@astrojs/sitemap';
-import tailwind from '@astrojs/tailwind';
-import keystatic from '@keystatic/astro';
-import { defineConfig } from 'astro/config';
-import netlify from "@astrojs/netlify/functions";
+import mdx from "@astrojs/mdx";
+import sitemap from "@astrojs/sitemap";
+import solid from "@astrojs/solid-js";
+import keystatic from "@keystatic/astro";
+import tailwindcss from "@tailwindcss/vite";
+import icon from "astro-icon";
+import { defineConfig } from "astro/config";
 
-// https://astro.build/config
+import vercel from "@astrojs/vercel";
+
+import react from "@astrojs/react";
+
 export default defineConfig({
-  integrations: [react(), markdoc(), keystatic(), mdx(), partytown({
-    config: {
-      forward: ['dataLayer.push']
-    }
-  }), sitemap(), tailwind({
-    applyBaseStyles: false
-  })],
-  output: 'hybrid',
-  adapter: netlify()
+    site: "https://internetaddicts.ru/",
+    prefetch: {
+        defaultStrategy: "viewport",
+    },
+    integrations: [solid(), mdx(), sitemap(), icon(), keystatic(), react()],
+    vite: {
+        plugins: [tailwindcss()],
+    },
+    adapter: vercel(),
+    output: "static",
 });

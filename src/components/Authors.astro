@@ -1,0 +1,26 @@
+---
+import TagLink from "@/components/TagLink.astro"
+import { getAllPosts } from "@/lib/getPosts"
+import { slugify } from "@/lib/utils"
+
+const posts = await getAllPosts("posts")
+
+const authorCounts = posts.reduce((acc, post) => {
+	const author = post.data.author || "АИЗ"
+	acc[author] = (acc[author] || 0) + 1
+	return acc
+}, {})
+
+const authors = Object.keys(authorCounts).sort((a, b) => a.localeCompare(b, "ru"))
+---
+
+<div class="flex flex-wrap gap-2">
+	<TagLink href="/posts">Все авторы ({authors.length})</TagLink>
+	{
+		authors.map(author => (
+			<TagLink href={`/authors/${slugify(author)}`}>
+				{author} ({authorCounts[author] || 0})
+			</TagLink>
+		))
+	}
+</div>

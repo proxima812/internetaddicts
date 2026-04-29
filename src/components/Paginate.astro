@@ -1,0 +1,90 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { page } = Astro.props;
+
+const {
+	currentPage,
+	lastPage,
+	url: { prev, next },
+} = page;
+
+const delta = 2;
+
+function pageHref(p) {
+	if (p === 1) return "/posts";
+	return `/posts/${p}`;
+}
+
+function getPages() {
+	const pages = [];
+
+	for (let i = 1; i <= lastPage; i++) {
+		if (i === 1 || i === lastPage || (i >= currentPage - delta && i <= currentPage + delta)) {
+			pages.push(i);
+		}
+	}
+
+	return pages.reduce((acc, p, index) => {
+		if (index > 0 && p - acc[acc.length - 1] > 1) {
+			acc.push("…");
+		}
+		acc.push(p);
+		return acc;
+	}, []);
+}
+
+const pages = getPages();
+---
+
+{
+	lastPage > 1 && (
+		<nav
+			class="flex flex-wrap items-center justify-center gap-3 md:gap-6 rounded-xl ring-zinc-300/50 ring-1 bg-zinc-50 px-4 py-3"
+			aria-label="Pagination"
+		>
+			{prev && (
+				<a
+					href={currentPage - 1 === 1 ? "/posts" : prev}
+					class="flex items-center gap-1 rounded-lg bg-zinc-500 px-3 py-2 text-white hover:bg-zinc-600"
+				>
+					<Icon name="mdi:chevron-left" />
+					<span class="hidden sm:inline">Назад</span>
+				</a>
+			)}
+
+			<ul class="flex items-center gap-3 md:gap-6">
+				{pages.map((p) =>
+					p === "…" ? (
+						<li class="px-2 text-zinc-400 select-none">…</li>
+					) : (
+						<li>
+							<a
+								href={p === currentPage ? undefined : pageHref(p)}
+								aria-current={p === currentPage ? "posts" : undefined}
+								class:list={[
+									"min-w-[40px] rounded-lg px-3 py-2 text-center transition",
+									p === currentPage
+										? "ring-1 text-zinc-700 bg-zinc-50 ring-zinc-500/50 font-semibold cursor-default"
+										: "bg-white text-zinc-700  ",
+								]}
+							>
+								{p}
+							</a>
+						</li>
+					),
+				)}
+			</ul>
+
+			{next && (
+				<a
+					href={next}
+					class="flex items-center gap-1 rounded-lg bg-zinc-500 px-3 py-2 text-white hover:bg-zinc-600"
+				>
+					<span class="hidden sm:inline">Дальше</span>
+					<Icon name="mdi:chevron-right" />
+				</a>
+			)}
+		</nav>
+	)
+}

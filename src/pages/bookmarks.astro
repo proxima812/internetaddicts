@@ -1,0 +1,18 @@
+---
+import BookmarksList from "@/components/BookmarksList"
+import Layout from "@/layout/Layout.astro"
+---
+
+<Layout
+	data-pagefind-ignore
+	title="Закладки"
+	desc="Ваши сохранённые закладки со статьями АИЗ."
+>
+	<section class="mx-auto w-full max-w-5xl">
+		<div class="mb-6">
+			<h1 class="text-4xl font-black tracking-tight text-zinc-900">Закладки</h1>
+			<p class="mt-2 text-zinc-600">Здесь отображаются все статьи, которые вы добавили в закладки.</p>
+		</div>
+		<BookmarksList client:only="solid-js" />
+	</section>
+</Layout>

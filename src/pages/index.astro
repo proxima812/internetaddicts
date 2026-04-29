@@ -1,57 +1,44 @@
 ---
-import { getCollection } from 'astro:content'
-import AIZinfosvg from '../components/AIZinfosvg.astro'
-import AIZsvg from '../components/AIZsvg.astro'
-import CTA from '../components/CTA.astro'
-import BlockMsgs from '../components/blocks/BlockMsgs.astro'
-import Title from '../components/blocks/Title.astro'
-import Layout from '../layout/Layout.astro'
-
-const links = [
-  // { name: '🎈 Посты', link: '/posts', showPostCount: true },
-  { name: 'Присоединиться к нам', link: 'https://t.me/aiz_itta', styleWow: true },
-  { name: 'Инфоканал', link: 'https://t.me/aiz_info', styleInfo: true },
-  // { name: '💎 Истории', link: '/stories', showPostCountStory: true },
-]
-
-// const showPostCountLength = (await getCollection('posts')).length
-// const showPostCountLengthStory = (await getCollection('story')).length
+import Title from "@/components/Title.astro";
+import { Content as AboutCommnuity } from "@/data/page/about.mdx";
+import Layout from "@/layout/Layout.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <Layout
-  title="Анонимные Интернет Зависимые - СНГ"
-  desc="Это сообщество людей, которые поддерживают друг друга в преодолении проблем, вызванных одержимым использованием интернета и технических устройств."
+	containerOff
+	title="Анонимные Интернет-Зависимые"
+	desc="Это сообщество людей, которые поддерживают друг друга в преодолении проблем, вызванных одержимым использованием интернета и технических устройств."
 >
-  <div class="flex flex-col gap-20">
-    <Title />
+	<main class="flex flex-col gap-6 py-24 px-5">
+		<Title />
 
-    <nav
-      class="bg-white md:flex-row flex-col rounded-xl p-2 gap-2 flex items-center max-w-4xl mx-auto"
-    >
-      {
-        links.map((item) => (
-          <a
-            href={item.link}
-            class={`${
-              item.styleWow
-                ? 'flex gap-2 py-2 px-3 rounded-lg bg-gradient-to-r from-green-400 to-emerald-400 text-white font-bold tracking-wide'
-                : 'py-2 px-3 rounded-lg bg-gray-50 ring-1 ring-gray-100 hover:bg-gray-100 transition-colors ease-linear font-medium text-center self-stretch ' +
-                  (item.styleInfo
-                    ? 'flex item gap-2 py-2 px-3 rounded-lg bg-gradient-to-tr from-purple-400 to-indigo-500 text-white font-bold tracking-wide justify-center'
-                    : null)
-            }  `}
-          >
-            {item.styleWow ? <AIZsvg /> : null} {item.styleInfo ? <AIZinfosvg /> : null}{' '}
-            {item.name} 
-            </a>
-            ))
-          }
-          <!-- {item.showPostCount ? ` (${showPostCountLength})` : null}
-          {item.showPostCountStory ? ` (${showPostCountLengthStory})` : null} -->
-    </nav>
+		<section class="flex gap-3 flex-wrap justify-center self-center">
+			<a
+				href="/stories"
+				class="justify-center border border-[#0071e3] text-[#0071e3] self-center rounded-full px-4 py-2 flex items-center gap-1 text-center transition-all duration-75 ease-linear hover:translate-y-[1px]"
+				><Icon name="mdi:format-list-group-plus" /><span>Личные истории</span></a
+			>
+			<a
+				href="/groups"
+				class="justify-center bg-[#0071e3] text-white self-center rounded-full px-4 py-2 flex items-center gap-1 text-center transition-all duration-75 ease-linear hover:translate-y-[1px]"
+				><Icon name="mdi:account-group" /><span>Найти Собрание</span></a
+			>
+			<a
+				href="https://t.me/aiz_resources"
+				target="_blank"
+				class="justify-center border border-[#0071e3] text-[#0071e3] self-center rounded-full px-4 py-2 flex items-center gap-1 text-center transition-all duration-75 ease-linear hover:translate-y-[1px]"
+				><Icon name="mdi:telegram" /><span>А.И.З. ресурсы</span></a
+			>
+		</section>
+    
+	</main>
 
-    <CTA />
-
-    <BlockMsgs />
-  </div>
+	<section class="max-w-4xl mx-auto px-5 mb-14 mt-10">
+		<div
+			class="prose max-w-none prose-lg prose-p:text-pretty prose-headings:text-balance xl:prose-xl leading-relaxed prose-a:no-underline prose-a:text-[#0098EA] prose-a:font-normal prose-a:hover:text-blue-500"
+		>
+			<AboutCommnuity />
+		</div>
+	</section>
 </Layout>

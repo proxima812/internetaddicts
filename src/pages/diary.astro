@@ -1,0 +1,100 @@
+---
+import Layout from "@/layout/Layout.astro"
+import { Icon } from "astro-icon/components"
+import { getCollection, getEntry } from "astro:content"
+export const prerender = false
+
+const plusParam = Number(Astro.url.searchParams.get("plus") || "0")
+const minusParam = Number(Astro.url.searchParams.get("minus") || "0")
+
+const currentParam = plusParam - minusParam
+
+let plusLink
+if (minusParam === 0) {
+	plusLink = "?plus=" + (currentParam + 1)
+} else {
+	plusLink = "?minus=" + (minusParam - 1)
+}
+let minusLink
+if (plusParam > 0) {
+	minusLink = "?plus=" + (plusParam - 1)
+} else {
+	minusLink = "?minus=" + (minusParam + 1)
+}
+
+const diary = await getCollection("diary")
+const currentDate = new Date()
+const currentDay = currentDate.getDate()
+const currentMonth = currentDate.getMonth()
+
+const sortedDiary = diary
+	.sort((a, b) => {
+		const dateA = new Date(
+			currentDate.getFullYear(),
+			currentDate.getMonth(),
+			Number(a.data.when),
+		)
+		const dateB = new Date(
+			currentDate.getFullYear(),
+			currentDate.getMonth(),
+			Number(b.data.when),
+		)
+		return dateB.getTime() - dateA.getTime()
+	})
+	.reverse()
+
+const todayIndex = sortedDiary.findIndex(a => {
+	const diaryDay = Number(a.data.when)
+	return diaryDay === currentDay && currentMonth === currentDate.getMonth()
+})
+
+let currentDiary
+
+const realIndex = todayIndex + currentParam
+if (realIndex < 0 || realIndex >= sortedDiary.length) {
+	currentDiary = sortedDiary.at(0)
+} else {
+	currentDiary = sortedDiary.at(realIndex)
+}
+
+const diaryDay = Number(currentDiary.data.when)
+const diaryDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), diaryDay)
+
+const dateOptions: object = {
+	day: "numeric",
+	month: "long",
+}
+
+const formattedDate = diaryDate.toLocaleDateString("ru-RU", dateOptions)
+
+const entry = await getEntry("diary", currentDiary.slug)
+if (entry === undefined) {
+	return Astro.redirect("/404")
+}
+const { Content } = await entry.render()
+---
+
+<Layout data-pagefind-ignore title="Ежедневник" desc="Ежедневник АИЗ">
+	<main class="p-5">
+		<aside
+			class="mx-auto flex-wrap max-w-[780px] mb-10 items-center flex justify-between gap-3"
+		>
+			<a href={minusLink} class="text-3xl font-medium rounded-lg py-2 px-3">&#8592;</a>
+			<a
+				target="_blank"
+				href={`https://t.me/share/url?url=${new URL(Astro.url.pathname, Astro.site)}&text=Ежедневник АИЗ: ${currentDiary.data.title} | ${formattedDate}`}
+				class="text-sky-700 flex items-center gap-1 ring-1 ring-sky-400/50 bg-blue-100 rounded-lg px-4 py-1.5 hover:text-sky-700"
+			>
+				<Icon name="mdi:telegram" />
+				<span>Поделиться в группе</span>
+			</a>
+			<a href={plusLink} class="text-3xl font-medium rounded-lg py-2 px-3">&#8594;</a>
+		</aside>
+		<main class="prose-aiz mx-auto max-w-3xl">
+			<h1>Ежедневник АИЗ</h1>
+			<h3>{formattedDate}</h3>
+			<h4>{currentDiary.data.title}</h4>
+			<Content />
+		</main>
+	</main>
+</Layout>

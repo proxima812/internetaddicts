@@ -1,0 +1,34 @@
+---
+import Layout from "@/layout/Layout.astro"
+import { getCollection } from "astro:content"
+
+const stories = await getCollection("story")
+---
+
+<Layout
+	data-pagefind-ignore
+	title="Личные истории членов"
+	desc="Личные истории членов АИЗ, которые прошли путь и пришли к душевному спокойствию."
+>
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+		{
+			stories &&
+				stories.map(item => (
+					<a href={`/stories/${item.slug}/`}>
+						<article class="flex flex-col gap-2 shadow-2xs border-[0.5px] border-zinc-400/50 p-6 rounded-2xl">
+							<div class="flex justify-between gpa-3 items-center">
+								<h3 class="font-bold text-2xl">{item.data.title}</h3>
+								<span class="text-xl">👤💬</span>
+							</div>
+							{item.data.old ? (
+								<span class="text-sky-600 font-medium">{item.data.old}</span>
+							) : null}
+							<p class="font-normal leading-relaxed text-zinc-500 line-clamp-2">
+								{item.data.description}
+							</p>
+						</article>
+					</a>
+				))
+		}
+	</div>
+</Layout>

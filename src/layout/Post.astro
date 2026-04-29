@@ -1,18 +1,58 @@
 ---
-import Layout from './Layout.astro'
+import BookmarkButton from "@/components/BookmarkButton"
+import { getAuthorMeta } from "@/data/authors"
+import { Icon } from "astro-icon/components"
+import Layout from "./Layout.astro"
 
-export interface Props {
-  url: string
-  title: string
-  description: string
-  pubDate?: string
-}
-
-const { title, description, pubDate } = Astro.props
+const { backUrl, title, description, pubDate, post, slug } = Astro.props
+const authorMeta = getAuthorMeta(post?.author)
 ---
 
 <Layout title={title} desc={description} typeSite="article" pubDate={pubDate}>
-  <main class="p-5">
-    <slot />
-  </main>
+	<main class="max-w-4xl mx-auto flex flex-col gap-12">
+		<a
+			id="back"
+			href={backUrl}
+			class="bg-zinc-200 text-zinc-700 max-w-fit flex gap-1 items-center rounded-lg text-sm py-1.5 px-3"
+			><Icon name={"mdi:arrow-left"} /><span>Назад</span></a
+		>
+		<aside class="flex flex-col gap-3">
+			<div class="self-start">
+				<BookmarkButton client:only="solid-js" size="md" slug={slug} title={title} path={`/posts/${slug}`} />
+			</div>
+			<div id="tags" class="flex items-center gap-1">
+				{
+					post?.tags &&
+						post?.tags.map(tag => (
+							<span class="text-xs px-3 rounded-full bg-black/50 backdrop-blur-lg text-white py-1">
+								{tag}
+							</span>
+						))
+				}
+			</div>
+			<h1 class="text-4xl md:text-5xl lg:text-6xl text-zinc-950 font-black">
+				{post.title}
+			</h1>
+			<p class="text-zinc-500 italic">{post?.description}</p>
+			<div class="inline-flex items-center gap-2 text-sm text-zinc-500">
+				<span
+					class="w-4 h-4 rounded-full inline-flex items-center justify-center text-[8px] font-bold text-white bg-black"
+					style={`background: ${authorMeta.gradient}`}
+					aria-hidden="true"
+				>
+					{authorMeta.initials}
+				</span>
+				<span>Автор: <b>{authorMeta.name}</b></span>
+			</div>
+		</aside>
+		<hr
+			class="h-px w-full border-0 bg-gradient-to-r from-transparent via-zinc-200 to-transparent"
+		/>
+		<section class="prose-aiz -mt-12">
+			<slot />
+		</section>
+		<hr
+			class="h-px w-ful border-0 bg-gradient-to-r from-transparent via-zinc-200 to-transparent"
+		/>
+	</main>
 </Layout>

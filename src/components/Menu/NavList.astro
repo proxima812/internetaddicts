@@ -1,0 +1,21 @@
+---
+const { navigation, className = "" } = Astro.props
+import { cn } from "@/utils/cn"
+import { Icon } from "astro-icon/components"
+---
+
+{
+	navigation &&
+		navigation.map(link => (
+			<a
+				href={link.href}
+				title={link.label}
+				target={link.target}
+				class={cn(className, link.style)}
+			>
+				{link.icon && <Icon name={link.icon} />}
+				<span>{link.label}</span>
+				{link.count && <span class="">({link.count})</span>}
+			</a>
+		))
+}

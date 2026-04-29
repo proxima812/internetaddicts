@@ -1,0 +1,45 @@
+---
+import { Icon } from "astro-icon/components"
+import { Image } from "astro:assets"
+import { marked } from "marked"
+
+const { data, body } = Astro.props
+---
+
+<div class="rounded-2xl shadow-[inset_0_0_2px_1px_#ffffff4d] ring-1 ring-black/5">
+	<div class="rounded-2xl p-2 shadow-md shadow-black/5">
+		<div
+			class="rounded-xl shadow-lg ring-1 ring-black/5 grid grid-cols-1 gap-3 lg:shadow-2xl bg-white p-5"
+		>
+			<div class="flex items-center gap-3 flex-wrap">
+				{
+					data.logo ? (
+						<Image
+							src={data.logo}
+							class="w-10 h-10 rounded-full object-cover"
+							alt={data.title}
+						/>
+					) : (
+						<div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-teal-500 flex items-center justify-center">
+							<span class="font-black tracking-tight text-sm text-white">АИЗ</span>
+						</div>
+					)
+				}
+				<h4 class="font-bold">{data.title}</h4>
+			</div>
+			<p class="flex items-center gap-2">
+				<Icon name="mdi:alarm" />
+				<span>{data.when}</span>{" "}
+				{data.dateTime && <span class="font-bold">{data.dateTime}</span>}
+			</p>
+			<p set:html={marked(body)} />
+			<a
+				href={data.link}
+				class="bg-blue-500 text-white justify-center px-2 py-1.5 rounded-lg flex items-center gap-1 transition-colors duration-75 ease-linear hover:bg-blue-400"
+			>
+				<Icon name="mdi:telegram" />
+				<span>Присоединиться</span>
+			</a>
+		</div>
+	</div>
+</div>

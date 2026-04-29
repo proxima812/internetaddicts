@@ -1,0 +1,101 @@
+---
+import BookmarksCounter from "@/components/BookmarksCounter";
+import { navigation } from "@/data/consts";
+import NavList from "./NavList.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<nav class="hidden w-full md:flex gap-4 justify-between items-center">
+	<NavList
+		navigation={navigation}
+		className="text-zinc-700 flex items-center gap-1 transition-colors hover:text-zinc-600"
+	/>
+	<BookmarksCounter client:only="solid-js" />
+</nav>
+
+<button
+	title="Мобильное меню"
+	id="menu-open"
+	class="text-white md:hidden gap-2 px-4 h-10 justify-center flex items-center bg-zinc-900 py-1.5 rounded-xl ring-1 ring-zinc-700"
+	aria-controls="mobile-menu"
+	aria-expanded="false"
+>
+	<Icon name="mdi:menu" class="text-xl" />
+	<span>Меню</span>
+	<span class="sr-only">Мобильное меню</span>
+</button>
+
+<div id="mobile-menu" class="fixed inset-0 z-50 hidden md:hidden" aria-hidden="true">
+	<div
+		id="mobile-menu-overlay"
+		class="absolute inset-0 bg-black/45 backdrop-blur-sm opacity-0 transition-opacity duration-300"
+	>
+	</div>
+	<div
+		id="mobile-menu-panel"
+		class="absolute right-0 top-0 h-full w-[86%] max-w-sm translate-x-full bg-white p-5 shadow-2xl transition-transform duration-300"
+		role="menu"
+	>
+		<div class="flex items-center justify-between border-b border-zinc-200 pb-4">
+			<span class="text-sm font-semibold uppercase tracking-wide text-zinc-500">Навигация</span
+			>
+			<button
+				id="menu-close"
+				type="button"
+				class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-zinc-100 text-zinc-700 ring-1 ring-zinc-200"
+				aria-label="Закрыть меню"
+			>
+				<Icon name="mdi:close" class="text-xl" />
+			</button>
+		</div>
+		<div class="mt-4">
+			<BookmarksCounter mobile client:only="solid-js" />
+		</div>
+		<nav class="mt-4 flex flex-col gap-2">
+			<NavList
+				navigation={navigation}
+				className="flex gap-1 items-center rounded-xl border border-zinc-200 bg-zinc-50 px-3 py-3 text-base font-medium text-zinc-800 hover:bg-zinc-100"
+			/>
+		</nav>
+	</div>
+</div>
+
+<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const menu = document.querySelector("#mobile-menu");
+		const menuPanel = document.querySelector("#mobile-menu-panel");
+		const menuOverlay = document.querySelector("#mobile-menu-overlay");
+		const menuOpen = document.querySelector("#menu-open");
+		const menuClose = document.querySelector("#menu-close");
+		const body = document.querySelector("body");
+		const menuLinks = document.querySelectorAll("#mobile-menu a");
+
+		const closeMenu = () => {
+			menu?.classList.add("hidden");
+			menuPanel?.classList.add("translate-x-full");
+			menuOverlay?.classList.add("opacity-0");
+			body?.classList.remove("overflow-hidden");
+			menuOpen?.setAttribute("aria-expanded", "false");
+			menu?.setAttribute("aria-hidden", "true");
+		};
+
+		const openMenu = () => {
+			menu?.classList.remove("hidden");
+			requestAnimationFrame(() => {
+				menuPanel?.classList.remove("translate-x-full");
+				menuOverlay?.classList.remove("opacity-0");
+			});
+			body?.classList.add("overflow-hidden");
+			menuOpen?.setAttribute("aria-expanded", "true");
+			menu?.setAttribute("aria-hidden", "false");
+		};
+
+		menuOpen?.addEventListener("click", openMenu);
+		menuClose?.addEventListener("click", closeMenu);
+		menuOverlay?.addEventListener("click", closeMenu);
+		document.addEventListener("keydown", (e) => {
+			if (e.key === "Escape") closeMenu();
+		});
+		menuLinks.forEach((link) => link.addEventListener("click", closeMenu));
+	});
+</script>
